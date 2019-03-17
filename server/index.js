@@ -1,6 +1,6 @@
-const express = require('express');
-const {ApolloServer, gql} = require('apollo-server-express');
-const next = require('next');
+import express from 'express';
+import {ApolloServer, gql} from 'apollo-server-express';
+import next from 'next';
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -25,7 +25,7 @@ function createApolloServer() {
   return new ApolloServer({typeDefs, resolvers});
 }
 
-async function main() {
+export default async function main() {
   await nextApp.prepare();
 
   const server = express();
@@ -45,5 +45,3 @@ async function main() {
     console.log(`> Ready on http://localhost:${port}`);
   });
 }
-
-module.exports = main;

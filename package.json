@@ -1,0 +1,19 @@
+{
+  "name": "v8-bears-team-06",
+  "version": "0.0.1",
+  "description": "Add-project-description-here | Voyage-8 | https://chingu.io/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyages/v8-bears-team-06.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chingu-voyages/v8-bears-team-06/issues"
+  },
+  "homepage": "https://github.com/chingu-voyages/v8-bears-team-06#readme"
+}

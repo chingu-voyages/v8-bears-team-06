@@ -17,9 +17,10 @@
   },
   "homepage": "https://github.com/chingu-voyages/v8-bears-team-06#readme",
   "dependencies": {
+    "apollo-server-express": "^2.4.8",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "express-graphql": "^0.7.1",
+    "graphql": "^14.1.1",
     "next": "^8.0.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"

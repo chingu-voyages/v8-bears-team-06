@@ -1,21 +1,44 @@
-import {queryType, stringArg, makeSchema} from 'nexus';
+import {
+  interfaceType,
+  objectType,
+  queryType,
+  stringArg,
+  makeSchema,
+} from 'nexus';
+
+import {User as UserModel} from '../models/user';
+
+const Node = interfaceType({
+  name: 'Node',
+  definition(t) {
+    t.id('id', {description: 'Unique identifier for the resource'});
+    t.resolveType(() => null);
+  },
+});
+
+const User = objectType({
+  name: 'User',
+  definition(t) {
+    t.implements(Node);
+    t.string('email');
+    t.string('password');
+  },
+});
 
 const Query = queryType({
   definition(t) {
-    t.string('hello', {
-      args: {name: stringArg({nullable: true})},
-      resolve: (parent, {name}) => `Hello ${name || 'World'}!`,
+    t.list.field('users', {
+      type: User,
+      args: {},
+      async resolve(root, {}, ctx) {
+        const users = await UserModel.find();
+        return users;
+      },
     });
   },
 });
 
-// Recursively traverses the value passed to types looking for
-// any valid Nexus or graphql-js objects to add to the schema,
-// so you can be pretty flexible with how you import types here.
 export const schema = makeSchema({
-  types: [Query],
-  outputs: {
-    //   schema: __dirname + '/generated/schema.graphql',
-    //   typegen: __dirname + '/generated/typings.ts',
-  },
+  types: [Query, User, Node],
+  outputs: {},
 });

@@ -2,6 +2,7 @@ import express from 'express';
 import {ApolloServer, gql} from 'apollo-server-express';
 import next from 'next';
 
+import {insertMockData, setupDbConnection} from './db';
 import {schema} from './graphql/schema';
 
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -20,6 +21,16 @@ export default async function main() {
 
   const apolloServer = createApolloServer();
   apolloServer.applyMiddleware({app: server});
+
+  try {
+    await setupDbConnection(dev);
+    if (dev) {
+      insertMockData();
+    }
+  } catch (err) {
+    console.error(err);
+    return;
+  }
 
   // all requests to paths other than `/graphql` are processed by Nextjs
   server.get('*', (req, res) => {

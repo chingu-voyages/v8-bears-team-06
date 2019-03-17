@@ -2,27 +2,15 @@ import express from 'express';
 import {ApolloServer, gql} from 'apollo-server-express';
 import next from 'next';
 
+import {schema} from './graphql/schema';
+
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({dev, dir: './client'});
 const nextHandler = nextApp.getRequestHandler();
 
 function createApolloServer() {
-  // Construct a schema, using GraphQL schema language
-  const typeDefs = gql`
-    type Query {
-      hello: String
-    }
-  `;
-
-  // Provide resolver functions for your schema fields
-  const resolvers = {
-    Query: {
-      hello: () => 'Hello world!',
-    },
-  };
-
-  return new ApolloServer({typeDefs, resolvers});
+  return new ApolloServer({schema});
 }
 
 export default async function main() {

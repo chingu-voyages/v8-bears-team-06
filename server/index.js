@@ -4,8 +4,8 @@ const next = require('next');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
-const nextApp = next({dev});
-const nextHandler = app.getRequestHandler();
+const nextApp = next({dev, dir: './client'});
+const nextHandler = nextApp.getRequestHandler();
 
 function createApolloServer() {
   // Construct a schema, using GraphQL schema language
@@ -35,8 +35,8 @@ async function main() {
     return nextHandler(req, res);
   });
 
-  const apolloServer = crateApolloServer();
-  apolloServer.applyMiddleware({server});
+  const apolloServer = createApolloServer();
+  apolloServer.applyMiddleware({app: server});
 
   server.listen(port, err => {
     if (err) {

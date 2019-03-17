@@ -30,13 +30,13 @@ async function main() {
 
   const server = express();
 
+  const apolloServer = createApolloServer();
+  apolloServer.applyMiddleware({app: server});
+
   // all requests to paths other than `/graphql` are processed by Nextjs
   server.get('*', (req, res) => {
     return nextHandler(req, res);
   });
-
-  const apolloServer = createApolloServer();
-  apolloServer.applyMiddleware({app: server});
 
   server.listen(port, err => {
     if (err) {
@@ -46,4 +46,4 @@ async function main() {
   });
 }
 
-main();
+module.exports = main;

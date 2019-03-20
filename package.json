@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write '**/*.{js,jsx,json,md,yml,yaml,html,graphql}'",
     "format:check": "prettier --list-different '**/*.{js,jsx,json,md,yml,yaml,html,graphql}'",
-    "lint": "echo \"To be added\""
+    "lint": "eslint --ext jsx,js ."
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,9 @@
   },
   "devDependencies": {
     "@babel/node": "^7.2.2",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-react": "^7.12.4",
     "mongodb-memory-server": "^4.2.1",
     "nodemon": "^1.18.10",
     "prettier": "^1.16.4"

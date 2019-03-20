@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon index.js --exec babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write '**/*.{js,jsx,json,md,yml,yaml,html,graphql}'",
+    "format:check": "prettier --list-different '**/*.{js,jsx,json,md,yml,yaml,html,graphql}'",
+    "lint": "echo \"To be added\""
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,8 @@
-import React from 'react';
-import {Query} from 'react-apollo';
-import gql from 'graphql-tag';
+import React from "react";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
-import {User} from '../components/User';
+import { User } from "../components/User";
 
 export const allUsersQuery = gql`
   {
@@ -15,7 +15,7 @@ export const allUsersQuery = gql`
 
 export default () => (
   <Query query={allUsersQuery}>
-    {({loading, error, data}) => {
+    {({ loading, error, data }) => {
       if (error) {
         return <div>Could not fetch users</div>;
       }

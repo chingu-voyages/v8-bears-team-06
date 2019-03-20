@@ -1,5 +1,5 @@
-import {ApolloClient, InMemoryCache, HttpLink} from 'apollo-boost';
-import fetch from 'isomorphic-unfetch';
+import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
+import fetch from "isomorphic-unfetch";
 
 let apolloClient = null;
 
@@ -14,10 +14,10 @@ function create(initialState) {
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'http://localhost:3000/graphql', // Server URL (must be absolute)
-      credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
+      uri: "http://localhost:3000/graphql", // Server URL (must be absolute)
+      credentials: "same-origin" // Additional fetch() options like `credentials` or `headers`
     }),
-    cache: new InMemoryCache().restore(initialState || {}),
+    cache: new InMemoryCache().restore(initialState || {})
   });
 }
 

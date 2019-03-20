@@ -1,3 +1,3 @@
-import React from 'react';
+import React from "react";
 
-export const User = ({email}) => <span>{email}</span>;
+export const User = ({ email }) => <span>{email}</span>;

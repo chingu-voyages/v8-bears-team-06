@@ -21,7 +21,7 @@ When you make a new PR, make sure the following checks pass.
 - Format: `npm run format:check`  
   If format check fails, you can run `npm run format` to automatically format all the code.
 
-## Tech Stacks
+## Tech Stack
 
 - Frontend
   - Next.js: A React framework

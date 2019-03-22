@@ -5,7 +5,6 @@
 
 Add-project-description-here | Voyage-8 | https://chingu.io/
 
-
 ## Requirements
 
 - Node (>= 8.x should work)
@@ -15,7 +14,7 @@ Add-project-description-here | Voyage-8 | https://chingu.io/
 
 First, fork or clone this repository. Then run `npm ci` to install all dependencies.  
 To run a development server, run `npm start:dev`.  
-When you make a new PR, make sure the following checks pass.  
+When you make a new PR, make sure the following checks pass.
 
 - Test: `npm run test`
 - Lint: `npm run lint`

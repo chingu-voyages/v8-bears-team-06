@@ -13,7 +13,7 @@ export const allUsersQuery = gql`
   }
 `;
 
-export default () => (
+const Index = () => (
   <Query query={allUsersQuery}>
     {({ loading, error, data }) => {
       if (error) {
@@ -29,8 +29,8 @@ export default () => (
           <h1>List of Users</h1>
           <ul>
             {data.users.map(user => (
-              <li>
-                <User key={user.id} email={user.email} />
+              <li key={user.id}>
+                <User email={user.email} />
               </li>
             ))}
           </ul>
@@ -39,3 +39,5 @@ export default () => (
     }}
   </Query>
 );
+
+export default Index;

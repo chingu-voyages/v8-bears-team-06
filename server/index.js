@@ -1,6 +1,8 @@
 import express from "express";
+import createPino from "pino";
+import createExpressPino from "express-pino-logger";
 import bodyParser from "body-parser";
-import { ApolloServer, gql } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
 import next from "next";
 
 import { insertMockData, setupDbConnection } from "./db";
@@ -11,6 +13,8 @@ const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev, dir: "./client" });
 const nextHandler = nextApp.getRequestHandler();
 
+const logger = createPino(); // Create logger instance
+
 function createApolloServer() {
   return new ApolloServer({ schema });
 }
@@ -19,6 +23,10 @@ export default async function main() {
   await nextApp.prepare();
 
   const server = express();
+  const expressPino = createExpressPino({
+    logger
+  });
+  server.use(expressPino);
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: true }));
 
@@ -36,7 +44,7 @@ export default async function main() {
       insertMockData();
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
     return;
   }
 
@@ -44,6 +52,6 @@ export default async function main() {
     if (err) {
       throw err;
     }
-    console.log(`> Ready on http://localhost:${port}`);
+    logger.info(`> Ready on http://localhost:${port}`);
   });
 }

@@ -1,10 +1,4 @@
-import {
-  interfaceType,
-  objectType,
-  queryType,
-  stringArg,
-  makeSchema
-} from "nexus";
+import { interfaceType, objectType, queryType, makeSchema } from "nexus";
 
 import { User as UserModel } from "../models/user";
 
@@ -30,7 +24,7 @@ const Query = queryType({
     t.list.field("users", {
       type: User,
       args: {},
-      async resolve(root, {}, ctx) {
+      async resolve(root, args, ctx) {
         const users = await UserModel.find();
         return users;
       }

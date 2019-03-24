@@ -1,0 +1,13 @@
+body {
+    color: $color-primary-dark;
+    font-family: $font-primary;
+    font-weight: 300;
+    background-color: $color-white;
+    background-image: linear-gradient(to bottom, 
+        rgba($color-primary-light, .1) 0%,
+        rgba($color-primary-dark, .5) 60%);
+    
+    // for testing 
+    min-height: 100vh;
+    padding: 5rem;
+}

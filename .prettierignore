@@ -17,4 +17,4 @@ node_modules/
 .env.test
 
 # next.js build output
-.next
+client/.next

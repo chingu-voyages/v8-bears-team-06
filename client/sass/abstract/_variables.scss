@@ -1,0 +1,25 @@
+/////////////////////////////////////////////
+//
+// Varialbs
+//
+/////////////////////////////////////////////
+
+// Colors
+$color-primary: #008B8B;
+$color-primary-dark: #006161;
+$color-primary-light:  #4CADAD;
+
+$color-grey: #757575;
+
+$color-secondary: #4C4C4C;
+$color-white: #EFEFEF;
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,400,400i,700,700i|IBM+Plex+Serif:400,400i');
+$font-primary: 'IBM Plex Sans', sans-serif;
+$font-display: 'IBM Plex Serif', serif;
+
+// Responsive breakpoints
+$bp-largest: 75em;     // 1200px
+$bp-large: 62.5em;     // 1000px
+$bp-medium: 50em;      // 800px

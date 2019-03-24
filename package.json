@@ -44,10 +44,12 @@
   },
   "devDependencies": {
     "@babel/node": "^7.2.2",
+    "@zeit/next-sass": "^1.0.1",
     "eslint": "^5.15.3",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-react": "^7.12.4",
     "mongodb-memory-server": "^4.2.1",
+    "node-sass": "^4.11.0",
     "nodemon": "^1.18.10",
     "prettier": "^1.16.4"
   }

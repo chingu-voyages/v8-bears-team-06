@@ -37,4 +37,4 @@ jobs:
       - run: npm run format:check
       - run: npm run lint
       # TODO: add the step below when test script becomes available
-      # - run: npm test
+      - run: npm test

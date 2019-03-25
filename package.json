@@ -6,9 +6,9 @@
   "scripts": {
     "start:dev": "nodemon index.js --exec babel-node",
     "test": "jest",
-    "testwatch": "jest --watchAll",
-    "format": "prettier --write '**/*.{js,jsx,json,md,yml,yaml,html,graphql}'",
-    "format:check": "prettier --list-different '**/*.{js,jsx,json,md,yml,yaml,html,graphql}'",
+    "test:watch": "jest --watchAll",
+    "format": "prettier --write \"**/*.{js,jsx,json,md,yml,yaml,html,graphql}\"",
+    "format:check": "prettier --list-different \"**/*.{js,jsx,json,md,yml,yaml,html,graphql}\"",
     "lint": "eslint --ext jsx,js ."
   },
   "repository": {

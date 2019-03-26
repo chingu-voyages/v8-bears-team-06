@@ -1,15 +1,19 @@
 import React from "react";
-import Layout from '../components/Layout'
+import Layout from "../components/Layout";
 
 const Index = () => (
   <Layout>
     <div className="bg">
-        <h1>goodWork</h1>
-        <h3>Where charities and volunteers meet!</h3>
-        <div className="buttons">
-          <button type="button" className="btn btn-success">I'm a charity</button>
-          <button type="button" className="btn btn-outline-success">I'm a volunteer</button>
-        </div>
+      <h1>goodWork</h1>
+      <h3>Where charities and volunteers meet!</h3>
+      <div className="buttons">
+        <button type="button" className="btn btn-success">
+          I'm a charity
+        </button>
+        <button type="button" className="btn btn-outline-success">
+          I'm a volunteer
+        </button>
+      </div>
     </div>
     <style>{`
       body, html {
@@ -52,7 +56,6 @@ const Index = () => (
         text-align: center;
       }
     `}</style>
-    
   </Layout>
 );
 

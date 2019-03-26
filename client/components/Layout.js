@@ -10,7 +10,7 @@ const Layout = (props) => (
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>    
     </Head>
     <Navbar/>
-    <div className="container">
+    <div>
       {props.children}
     </div>
   </div>

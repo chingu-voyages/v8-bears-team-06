@@ -20,7 +20,8 @@
   "plugins": ["react"],
   "rules": {
     "react/prop-types": 0,
-    "no-unused-vars": ["error", { "args": "none" }]
+    "no-unused-vars": ["error", { "args": "none" }],
+    "react/jsx-filename-extension": "error"
   },
   "settings": {
     "react": {

@@ -1,5 +1,5 @@
 import express from "express";
-import createPino from "pino";
+import { logger } from "../logger";
 import createExpressPino from "express-pino-logger";
 import bodyParser from "body-parser";
 import { ApolloServer } from "apollo-server-express";
@@ -12,8 +12,6 @@ const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev, dir: "./client" });
 const nextHandler = nextApp.getRequestHandler();
-
-const logger = createPino(); // Create logger instance
 
 function createApolloServer() {
   return new ApolloServer({ schema });

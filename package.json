@@ -9,7 +9,8 @@
     "test:watch": "jest --watchAll",
     "format": "prettier --write \"**/*.{js,jsx,json,md,yml,yaml,html,graphql}\"",
     "format:check": "prettier --list-different \"**/*.{js,jsx,json,md,yml,yaml,html,graphql}\"",
-    "lint": "eslint --ext jsx,js ."
+    "lint": "eslint --ext jsx,js .",
+    "heroku-postbuild": "node index.js --exec babel-node"
   },
   "repository": {
     "type": "git",

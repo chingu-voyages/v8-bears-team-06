@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon index.js --exec babel-node",
-    "start": "nodemon index.js --exec babel-node",
+    "start": "node index.js --exec babel-node",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "format": "prettier --write \"**/*.{js,jsx,json,md,yml,yaml,html,graphql}\"",

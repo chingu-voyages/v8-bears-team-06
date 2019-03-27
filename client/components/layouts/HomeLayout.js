@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar";
 import React from "react";
 
 const Layout = props => (

@@ -5,12 +5,17 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon index.js --exec babel-node",
-    "start": "node index.js --exec babel-node",
+    "build": "./node_modules/next/dist/bin/next build",
+    "heroku-postbuild": "./node_modules/next/dist/bin/next build ./client",
+    "start": "NODE_ENV=production node index.js --exec babel-node",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "format": "prettier --write \"**/*.{js,jsx,json,md,yml,yaml,html,graphql}\"",
+    "format": "prettier --write \"**/*{js,jsx,json,md,yml,yaml,html,graphql}\"",
     "format:check": "prettier --list-different \"**/*.{js,jsx,json,md,yml,yaml,html,graphql}\"",
     "lint": "eslint --ext jsx,js ."
+  },
+  "engines": {
+    "node": "10"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
 import React from "react";
-import HomeLayout from '../components/layouts';
+import HomeLayout from "../components/layouts";
 
 const Index = () => (
   <HomeLayout>

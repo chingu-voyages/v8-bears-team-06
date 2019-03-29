@@ -1,38 +1,55 @@
-import { interfaceType, objectType, queryType, makeSchema } from "nexus";
+import { User } from "../models/user";
+import {
+  GraphQLObjectType,
+  GraphQLID,
+  GraphQLString,
+  GraphQLSchema,
+  GraphQLNonNull
+} from "graphql";
 
-import { User as UserModel } from "../models/user";
-
-const Node = interfaceType({
-  name: "Node",
-  definition(t) {
-    t.id("id", { description: "Unique identifier for the resource" });
-    t.resolveType(() => null);
-  }
-});
-
-const User = objectType({
+const UserType = new GraphQLObjectType({
   name: "User",
-  definition(t) {
-    t.implements(Node);
-    t.string("email");
-    t.string("password");
-  }
+  fields: () => ({
+    id: { type: GraphQLID },
+    email: { type: GraphQLString },
+    password: { type: GraphQLString }
+  })
 });
 
-const Query = queryType({
-  definition(t) {
-    t.list.field("users", {
-      type: User,
-      args: {},
-      async resolve(root, args, ctx) {
-        const users = await UserModel.find();
-        return users;
+const RootQuery = new GraphQLObjectType({
+  name: "RootQueryType",
+  fields: {
+    user: {
+      type: UserType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return User.findById(args.id);
       }
-    });
+    }
   }
 });
 
-export const schema = makeSchema({
-  types: [Query, User, Node],
-  outputs: {}
+const Mutation = new GraphQLObjectType({
+  name: "Mutation",
+  fields: {
+    addUser: {
+      type: UserType,
+      args: {
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve(parent, args) {
+        let user = new User({
+          email: args.email,
+          password: args.password
+        });
+        return user.save();
+      }
+    }
+  }
+});
+
+export const schema = new GraphQLSchema({
+  query: RootQuery,
+  mutation: Mutation
 });

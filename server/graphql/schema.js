@@ -1,14 +1,14 @@
-import { User } from '../models/user';
+import { User } from "../models/user";
 import {
   GraphQLObjectType,
   GraphQLID,
   GraphQLString,
   GraphQLSchema,
   GraphQLNonNull
-} from 'graphql';
+} from "graphql";
 
 const UserType = new GraphQLObjectType({
-  name: 'User',
+  name: "User",
   fields: () => ({
     id: { type: GraphQLID },
     email: { type: GraphQLString },
@@ -17,7 +17,7 @@ const UserType = new GraphQLObjectType({
 });
 
 const RootQuery = new GraphQLObjectType({
-  name: 'RootQueryType',
+  name: "RootQueryType",
   fields: {
     user: {
       type: UserType,
@@ -30,7 +30,7 @@ const RootQuery = new GraphQLObjectType({
 });
 
 const Mutation = new GraphQLObjectType({
-  name: 'Mutation',
+  name: "Mutation",
   fields: {
     addUser: {
       type: UserType,

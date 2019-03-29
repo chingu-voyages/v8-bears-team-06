@@ -7,23 +7,6 @@ const Signup = () => (
       <h2>Sign Up</h2>
       <form className="w-50 mt-5">
         <div className="form-group">
-          <label className="required" htmlFor="username">
-            User name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            aria-describedby="usernameHelp"
-            placeholder="Enter user name"
-            required
-          />
-          <small id="usernameHelp" className="form-text text-muted">
-            Not your legal name, just a user name. Let&apos;s keep it
-            professional.
-          </small>
-        </div>
-        <div className="form-group">
           <label className="required" htmlFor="email">
             Email address
           </label>

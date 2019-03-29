@@ -29,5 +29,4 @@ When you make a new PR, make sure the following checks pass.
 - Backend
   - Express.js: server side framework
   - Apollo Server: GraphQL server
-  - Nexus: Code-First GraphQL library
   - Mongoose: MongoDB client for Node.js

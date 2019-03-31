@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { ApolloConsumer } from "react-apollo";
 import gql from "graphql-tag";
 
-import HomeLayout from "../components/layouts/HomeLayout";
+import Layout from "../components/layouts/Layout";
+import { AuthContext } from "../context";
 
 export const LOGIN = gql`
   query login($email: String!, $password: String!) {
@@ -15,15 +16,16 @@ export const LOGIN = gql`
 export default () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useContext(AuthContext);
   return (
     <ApolloConsumer>
       {client => (
-        <HomeLayout>
-          <form className="form-signin">
-            <h1 className="mb-3">Login</h1>
+        <Layout>
+          <form className="form-signin mt-5">
+            <h1 className="mb-3">Sign In</h1>
             <input
               type="email"
-              className="form-control"
+              className="form-control mb-3"
               id="email"
               placeholder="Email"
               value={email}
@@ -46,14 +48,14 @@ export default () => {
             />
             <button
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-primary float-left"
               onClick={async event => {
                 event.preventDefault();
                 const { data } = await client.query({
                   query: LOGIN,
                   variables: { email, password }
                 });
-                console.log(data);
+                login(data.login.token);
               }}
             >
               Sign in
@@ -73,7 +75,7 @@ export default () => {
           padding: 10px;
         }
       `}</style>
-        </HomeLayout>
+        </Layout>
       )}
     </ApolloConsumer>
   );

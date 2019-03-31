@@ -1,52 +1,82 @@
-import React from "react";
-import UserLayout from "../components/layouts/UserLayout";
+import React, { useState } from "react";
+import { ApolloConsumer } from "react-apollo";
+import gql from "graphql-tag";
 
-const Signup = () => (
-  <UserLayout>
-    <div className="container mt-5">
-      <h2>Sign Up</h2>
-      <form className="w-50 mt-5">
-        <div className="form-group">
-          <label className="required" htmlFor="email">
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            placeholder="Enter your email address"
-            required
-          />
-          <small id="emailHelp" className="form-text text-muted">
-            We&apos;ll never share your email with anyone else.
-          </small>
-        </div>
-        <div className="form-group">
-          <label className="required" htmlFor="password">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            placeholder="Password"
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Sign Up!
-        </button>
-      </form>
-    </div>
-    <style>{`
-        .required:after{ 
-            content:'*'; 
-            color:red; 
-            padding-left:5px;
+import HomeLayout from "../components/layouts/HomeLayout";
+
+export const addUserMutation = gql`
+  mutation addUser($email: String!, $password: String!) {
+    addUser(email: $email, password: $password) {
+      email
+    }
+  }
+`;
+
+export default () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  return (
+    <ApolloConsumer>
+      {client => (
+        <HomeLayout>
+          <form className="form-signin">
+            <h1 className="mb-3">Sign Up</h1>
+            <input
+              type="email"
+              className="form-control mb-3"
+              id="email"
+              placeholder="Email"
+              value={email}
+              onChange={event => {
+                setEmail(event.target.value);
+              }}
+              autoFocus
+              required
+            />
+            <input
+              type="password"
+              className="form-control mb-3"
+              id="password"
+              placeholder="Password"
+              value={password}
+              onChange={event => {
+                setPassword(event.target.value);
+              }}
+              required
+            />
+            <button
+              type="submit"
+              className="btn btn-primary float-left"
+              onClick={async event => {
+                event.preventDefault();
+                const { data } = await client.mutate({
+                  mutation: addUserMutation,
+                  variables: { email, password }
+                });
+                setEmail("");
+                setPassword("");
+                console.log(data);
+              }}
+            >
+              Sign in
+            </button>
+          </form>
+          <style>{`
+        .form-signin {
+          text-align: center;
+          width: 100%;
+          max-width: 400px;
+          margin: auto;
+          padding-top: 40px;
+          padding-bottom: 40px;
         }
-        `}</style>
-  </UserLayout>
-);
 
-export default Signup;
+        .form-signin .form-control {
+          padding: 10px;
+        }
+      `}</style>
+        </HomeLayout>
+      )}
+    </ApolloConsumer>
+  );
+};

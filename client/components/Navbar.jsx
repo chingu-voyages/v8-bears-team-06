@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const Navbar = () => (
-  <nav className="navbar fixed-top navbar-expand-md navbar-light bg-faded">
+  <nav className="navbar navbar-expand-md navbar-light bg-warning">
     <div className="container">
       <a className="navbar-brand" href="/">
         goodWork

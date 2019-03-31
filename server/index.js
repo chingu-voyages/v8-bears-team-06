@@ -13,7 +13,23 @@ const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev, dir: "./client" });
 const nextHandler = nextApp.getRequestHandler();
 
+function getUser(token) {
+  const user = { loggedIn: true };
+  try {
+    const decoded = jwt.verify(token, "secret");
+  } catch (err) {
+    user.loggedIn = false;
+  }
+  return user;
+}
+
 function createApolloServer() {
+  const context = ({ req }) => {
+    const contextObj = {};
+    const token = req.headers.authorization || "";
+    contextObj.user = getUser(token);
+    return contextObj;
+  };
   return new ApolloServer({ schema });
 }
 

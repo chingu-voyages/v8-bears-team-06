@@ -50,13 +50,9 @@ const RootQuery = new GraphQLObjectType({
         if (user.password !== password) {
           throw new Error("Invalid credential");
         }
-        const token = jwt.sign(
-          { id: user.id, email: user.email },
-          "some jwt token",
-          {
-            expiresIn: "1h"
-          }
-        );
+        const token = jwt.sign({ id: user.id, email: user.email }, "secret", {
+          expiresIn: "1h"
+        });
         return { token };
       }
     }

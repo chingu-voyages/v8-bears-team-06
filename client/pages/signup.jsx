@@ -49,13 +49,12 @@ export default () => {
               className="btn btn-primary float-left"
               onClick={async event => {
                 event.preventDefault();
-                const { data } = await client.mutate({
+                await client.mutate({
                   mutation: addUserMutation,
                   variables: { email, password }
                 });
                 setEmail("");
                 setPassword("");
-                console.log(data);
               }}
             >
               Sign in

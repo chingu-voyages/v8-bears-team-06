@@ -1,37 +1,16 @@
 import express from "express";
-import { logger } from "../logger";
 import createExpressPino from "express-pino-logger";
 import bodyParser from "body-parser";
-import { ApolloServer } from "apollo-server-express";
 import next from "next";
 
 import { insertMockData, setupDbConnection } from "./db";
-import { schema } from "./graphql/schema";
+import { createApolloServer } from "./graphql/server";
+import { logger } from "../logger";
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev, dir: "./client" });
 const nextHandler = nextApp.getRequestHandler();
-
-function getUser(token) {
-  const user = { loggedIn: true };
-  try {
-    const decoded = jwt.verify(token, "secret");
-  } catch (err) {
-    user.loggedIn = false;
-  }
-  return user;
-}
-
-function createApolloServer() {
-  const context = ({ req }) => {
-    const contextObj = {};
-    const token = req.headers.authorization || "";
-    contextObj.user = getUser(token);
-    return contextObj;
-  };
-  return new ApolloServer({ schema });
-}
 
 export default async function main() {
   await nextApp.prepare();

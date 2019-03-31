@@ -1,8 +1,8 @@
 import React from "react";
-import HomeLayout from "../components/layouts/HomeLayout";
+import Layout from "../components/layouts/Layout";
 
 const Index = () => (
-  <HomeLayout>
+  <Layout>
     <div className="bg">
       <h1>goodWork</h1>
       <h3>Where charities and volunteers meet!</h3>
@@ -56,7 +56,7 @@ const Index = () => (
         text-align: center;
       }
     `}</style>
-  </HomeLayout>
+  </Layout>
 );
 
 export default Index;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ApolloConsumer } from "react-apollo";
 import gql from "graphql-tag";
 
-import HomeLayout from "../components/layouts/HomeLayout";
+import Layout from "../components/layouts/Layout";
 
 export const addUserMutation = gql`
   mutation addUser($email: String!, $password: String!) {
@@ -18,7 +18,7 @@ export default () => {
   return (
     <ApolloConsumer>
       {client => (
-        <HomeLayout>
+        <Layout>
           <form className="form-signin mt-5">
             <h1 className="mb-3">Sign Up</h1>
             <input
@@ -74,7 +74,7 @@ export default () => {
           padding: 10px;
         }
       `}</style>
-        </HomeLayout>
+        </Layout>
       )}
     </ApolloConsumer>
   );

@@ -19,7 +19,7 @@ export default () => {
     <ApolloConsumer>
       {client => (
         <HomeLayout>
-          <form className="form-signin">
+          <form className="form-signin mt-5">
             <h1 className="mb-3">Sign Up</h1>
             <input
               type="email"

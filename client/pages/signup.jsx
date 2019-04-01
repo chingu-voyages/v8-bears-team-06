@@ -8,6 +8,7 @@ export const addUserMutation = gql`
   mutation addUser($email: String!, $password: String!) {
     addUser(email: $email, password: $password) {
       email
+      password
     }
   }
 `;
@@ -15,6 +16,8 @@ export const addUserMutation = gql`
 export default () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   return (
     <ApolloConsumer>
       {client => (
@@ -73,11 +76,18 @@ export default () => {
               type="submit"
               className="btn btn-primary float-left"
               onClick={async event => {
+                setErrorMessage("");
+                setSuccessMessage("");
                 event.preventDefault();
-                await client.mutate({
+                const { data } = await client.mutate({
                   mutation: addUserMutation,
                   variables: { email, password }
                 });
+                if (data.addUser.email === null) {
+                  setErrorMessage("That email address is already in use.");
+                } else {
+                  setSuccessMessage("Your account has been created.");
+                }
                 setEmail("");
                 setPassword("");
               }}
@@ -85,6 +95,8 @@ export default () => {
               Sign in
             </button>
           </form>
+          <p className="text-center text-danger">{errorMessage}</p>
+          <p className="text-center text-success">{successMessage}</p>
           <style>{`
         .form-signin {
           text-align: center;

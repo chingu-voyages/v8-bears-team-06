@@ -98,7 +98,7 @@ export default () => {
               Sign in
             </button>
             <div>
-              Already have an account? <Link href="/login">Sign in</Link>
+              Already have an account? <Link href="/login"><a>Sign in</a></Link>
             </div>
           </form>
           {errorMessage.length ? (

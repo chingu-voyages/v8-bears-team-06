@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import Link from "next/link";
+import { ApolloConsumer } from "react-apollo";
 
 import { AuthContext } from "../context";
 
 const Navbar = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
   return (
+   <ApolloConsumer>
+      {client => (
     <nav className="navbar fixed-top navbar-expand-md navbar-light bg-warning">
       <div className="container">
         <Link href="/">
@@ -47,8 +50,9 @@ const Navbar = () => {
               <li className="nav-item">
                 <a
                   className="nav-link"
-                  onClick={() => {
+                  onClick={async() => {
                     logout();
+                    await client.cache.reset()
                   }}
                 >
                   Logout
@@ -58,7 +62,8 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-    </nav>
+    </nav>)}
+   </ApolloConsumer>
   );
 };
 

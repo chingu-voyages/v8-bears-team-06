@@ -86,7 +86,7 @@ export default () => {
                 if (data.addUser.email === null) {
                   setErrorMessage("That email address is already in use.");
                 } else {
-                  setSuccessMessage("Your account has been created.");
+                  setSuccessMessage("Your account has been created!");
                 }
                 setEmail("");
                 setPassword("");

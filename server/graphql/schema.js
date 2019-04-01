@@ -38,11 +38,16 @@ const Mutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
         password: { type: new GraphQLNonNull(GraphQLString) }
       },
-      resolve(parent, args) {
+      resolve: async (parent, args) => {
+        const check = await User.findOne({ email: args.email });
+        if (check) {
+          return { error: "Email already in use" };
+        }
         let user = new User({
           email: args.email,
           password: args.password
         });
+
         return user.save();
       }
     }

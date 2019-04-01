@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ApolloConsumer } from "react-apollo";
 import gql from "graphql-tag";
+import Link from "next/link";
 
 import Layout from "../components/layouts/Layout";
 
@@ -96,6 +97,9 @@ export default () => {
             >
               Sign in
             </button>
+            <div>
+              Already have an account? <Link href="/login">Sign in</Link>
+            </div>
           </form>
           {errorMessage.length ? (
             <p className="text-center text-danger">{errorMessage}</p>

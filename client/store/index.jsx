@@ -11,7 +11,8 @@ export const StoreProvider = ({ children }) => {
     },
     logout: () => {
       setToken(null);
-    }
+    },
+    isLoggedIn: token !== null
   };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

@@ -4,9 +4,10 @@ import Link from "next/link";
 const Navbar = () => (
   <nav className="navbar fixed-top navbar-expand-md navbar-light bg-warning">
     <div className="container">
-      <a className="navbar-brand" href="/">
-        goodWork
-      </a>
+      <Link href="/">
+        <a className="navbar-brand">goodWork</a>
+      </Link>
+
       <button
         className="navbar-toggler"
         type="button"

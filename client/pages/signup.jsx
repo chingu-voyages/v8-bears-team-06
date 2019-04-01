@@ -83,7 +83,9 @@ export default () => {
                   mutation: addUserMutation,
                   variables: { email, password }
                 });
-                if (data.addUser.email === null) {
+                if (data.addUser.email === "empty") {
+                  setErrorMessage("You must enter a valid email address");
+                } else if (data.addUser.email === "taken") {
                   setErrorMessage("That email address is already in use.");
                 } else {
                   setSuccessMessage("Your account has been created!");

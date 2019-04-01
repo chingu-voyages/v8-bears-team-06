@@ -41,13 +41,14 @@ const Mutation = new GraphQLObjectType({
       resolve: async (parent, args) => {
         const check = await User.findOne({ email: args.email });
         if (check) {
-          return { error: "Email already in use" };
+          return { email: "taken", password: "anything" };
+        } else if (args.email.length === 0) {
+          return { email: "empty", password: "anything" };
         }
         let user = new User({
           email: args.email,
           password: args.password
         });
-
         return user.save();
       }
     }

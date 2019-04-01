@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import Cookie from "js-cookie";
 
 import { AuthContext } from "../context";
 
 export const StoreProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
   const contextValue = {
-    token,
     login: token => {
-      setToken(token);
+      Cookie.set("token", token);
     },
     logout: () => {
-      setToken(null);
+      Cookie.remove("token");
     },
-    isLoggedIn: token !== null
+    isLoggedIn: Cookie.get("token") && Cookie.get("token") !== ""
   };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

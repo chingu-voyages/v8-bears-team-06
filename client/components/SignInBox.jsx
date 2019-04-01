@@ -35,9 +35,10 @@ const SignInBox = ({ setAuthFailed, apolloClient }) => {
             Router.push("/"); // TODO: change redirect path to user profile or something
           } catch {
             setAuthFailed(true);
-            setTimeout(() => { // Remove alert after 3s
-                setAuthFailed(false)
-            }, 3000)
+            setTimeout(() => {
+              // Remove alert after 3s
+              setAuthFailed(false);
+            }, 3000);
           }
           setLoading(false);
         }}
@@ -74,7 +75,10 @@ const SignInBox = ({ setAuthFailed, apolloClient }) => {
           {loading ? "Signing in" : "Sign in"}
         </button>
         <div className="clearfix">
-          Don&#39;t have an account? <Link href="/signup"><a>Create one</a></Link>
+          Don&#39;t have an account?{" "}
+          <Link href="/signup">
+            <a>Create one</a>
+          </Link>
         </div>
       </form>
       <style jsx>{`

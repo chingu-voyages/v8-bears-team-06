@@ -1,10 +1,10 @@
 import Router from "next/router";
 
-export default (context, target) => {
-  if (context.res) {
+export default (cxt, target) => {
+  if (cxt.res) {
     // For SSR
-    context.res.writeHead(303, { Location: target });
-    context.res.end();
+    cxt.res.writeHead(303, { Location: target });
+    cxt.res.end();
   } else {
     // on browser
     Router.replace(target);

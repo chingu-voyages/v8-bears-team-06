@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ApolloConsumer } from "react-apollo";
 
 import Layout from "../components/layouts/Layout";
-import redirect from "../lib/redirect";
 import Alert from "../components/atom/Alert";
 import SignInBox from "../components/SignInBox";
 
@@ -40,13 +39,5 @@ const Login = () => {
     </ApolloConsumer>
   );
 };
-
-// Login.getInitialProps = async (context) => {
-//   const loggedIn = false;
-//   if (loggedIn) {
-//     redirect(context, '/')
-//   }
-//   return {}
-// }
 
 export default Login;

@@ -65,7 +65,7 @@ export default () => {
               />
               <small
                 id="emailHelp"
-                className="form-text text-muted float-left mb-3 d-inline-block"
+                className="form-text text-muted float-left mb-3"
               >
                 Must contain at least 6 alphanumeric characters.
               </small>
@@ -97,8 +97,14 @@ export default () => {
               Sign in
             </button>
           </form>
-          <p className="text-center text-danger">{errorMessage}</p>
-          <p className="text-center text-success">{successMessage}</p>
+          {errorMessage.length ? (
+            <p className="text-center text-danger">{errorMessage}</p>
+          ) : (
+            successMessage.length > 0 && (
+              <p className="text-center text-success">{successMessage}</p>
+            )
+          )}
+
           <style>{`
         .form-signin {
           text-align: center;

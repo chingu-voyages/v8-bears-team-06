@@ -79,6 +79,18 @@ export default () => {
                 setErrorMessage("");
                 setSuccessMessage("");
                 event.preventDefault();
+                if (password.length < 6) {
+                  return setErrorMessage(
+                    "Password must be at least 6 characters in length"
+                  );
+                }
+                let passRegEx = /^[a-z0-9]+$/i;
+                if (passRegEx.test(password) === false) {
+                  return setErrorMessage(
+                    "Password must only contain alphanumeric characters"
+                  );
+                }
+
                 const { data } = await client.mutate({
                   mutation: addUserMutation,
                   variables: { email, password }

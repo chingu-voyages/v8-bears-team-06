@@ -1,3 +1,3 @@
 import createPino from "pino";
 
-export const logger = createPino();
+export const logger = createPino({ prettyPrint: true });

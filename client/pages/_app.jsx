@@ -24,16 +24,15 @@ const withStore = App => props => (
     <App {...props} />
   </StoreProvider>
 );
-
 const PUBLIC_PAGES = ["/", "/login", "/signup"];
 const withAuthorization = App => {
   return class Authorizer extends React.Component {
     static async getInitialProps(context) {
       const { ctx } = context;
-      // const isLoggedIn = login(ctx.res)
+      // TODO: authorize users on SSR
       const isLoggedIn = false;
       if (!PUBLIC_PAGES.includes(ctx.pathname) && !isLoggedIn) {
-        redirect(ctx, "/login");
+        return redirect(ctx, "/login");
       }
       return {};
     }

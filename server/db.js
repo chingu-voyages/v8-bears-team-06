@@ -11,7 +11,6 @@ export async function insertMockData() {
 }
 
 export async function setupDbConnection(mongoUri = "") {
-
   const mongoServer = new MongoMemoryServer({ binary: { version: "4.0.3" } });
   mongoUri = await mongoServer.getConnectionString();
   mongoose.connect(mongoUri, { useNewUrlParser: true });

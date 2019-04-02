@@ -4,10 +4,22 @@ import Link from "next/link";
 const Navbar = () => (
   <nav className="navbar fixed-top navbar-expand-md navbar-light bg-warning">
     <div className="container">
-      <a className="navbar-brand" href="/">
-        goodWork
-      </a>
-      <div className="collapse navbar-collapse">
+      <Link href="/">
+        <a className="navbar-brand">goodWork</a>
+      </Link>
+
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon" />
+      </button>
+      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <Link href="#">

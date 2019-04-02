@@ -18,6 +18,7 @@ function createApolloServer() {
 }
 
 export default async function main() {
+  logger.info(`Starting server in ${dev ? "Development" : "Production"} mode`);
   await nextApp.prepare();
 
   const server = express();

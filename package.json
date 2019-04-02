@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon index.js --exec babel-node",
-    "build": "./node_modules/next/dist/bin/next build",
-    "heroku-postbuild": "./node_modules/next/dist/bin/next build ./client",
+    "build": "next build ./client",
     "start": "node -r esm index.js",
     "test": "jest",
     "test:watch": "jest --watchAll",

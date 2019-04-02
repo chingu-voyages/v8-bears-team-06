@@ -1,9 +1,10 @@
 import Head from "next/head";
-import Navbar from "../Navbar";
 import React from "react";
 
+import Navbar from "../Navbar";
+
 const Layout = props => (
-  <div>
+  <>
     <Head>
       <title>goodWork</title>
       <link
@@ -31,7 +32,7 @@ const Layout = props => (
     </Head>
     <Navbar />
     <div>{props.children}</div>
-  </div>
+  </>
 );
 
 export default Layout;

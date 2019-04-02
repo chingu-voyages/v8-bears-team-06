@@ -1,21 +1,16 @@
 import express from "express";
-import { logger } from "../logger";
 import createExpressPino from "express-pino-logger";
 import bodyParser from "body-parser";
-import { ApolloServer } from "apollo-server-express";
 import next from "next";
 
 import { insertMockData, setupDbConnection } from "./db";
-import { schema } from "./graphql/schema";
+import { createApolloServer } from "./graphql/server";
+import { logger } from "../logger";
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev, dir: "./client" });
 const nextHandler = nextApp.getRequestHandler();
-
-function createApolloServer() {
-  return new ApolloServer({ schema });
-}
 
 export default async function main() {
   await nextApp.prepare();

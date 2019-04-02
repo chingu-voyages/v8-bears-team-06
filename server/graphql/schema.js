@@ -1,4 +1,3 @@
-import { User } from "../models/user";
 import {
   GraphQLObjectType,
   GraphQLID,
@@ -6,6 +5,9 @@ import {
   GraphQLSchema,
   GraphQLNonNull
 } from "graphql";
+import jwt from "jsonwebtoken";
+
+import { User } from "../models/user";
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -13,6 +15,13 @@ const UserType = new GraphQLObjectType({
     id: { type: GraphQLID },
     email: { type: GraphQLString },
     password: { type: GraphQLString }
+  })
+});
+
+const AuthDataType = new GraphQLObjectType({
+  name: "AuthData",
+  fields: () => ({
+    token: { type: GraphQLString }
   })
 });
 
@@ -24,6 +33,27 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return User.findById(args.id);
+      }
+    },
+    login: {
+      type: AuthDataType,
+      args: {
+        email: { type: GraphQLString },
+        password: { type: GraphQLString }
+      },
+      resolve: async (parent, { email, password }) => {
+        const user = await User.findOne({ email });
+        if (!user) {
+          throw new Error("Invalid credential");
+        }
+        // TODO: use bycrpt instead
+        if (user.password !== password) {
+          throw new Error("Invalid credential");
+        }
+        const token = jwt.sign({ id: user.id, email: user.email }, "secret", {
+          expiresIn: "1h"
+        });
+        return { token };
       }
     }
   }

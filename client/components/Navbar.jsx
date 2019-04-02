@@ -28,7 +28,7 @@ const Navbar = () => {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <Link href="#">
+                  <Link href="/howitworks">
                     <a className="nav-link">How it works</a>
                   </Link>
                 </li>

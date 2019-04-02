@@ -13,7 +13,7 @@ function getUser(token) {
   return user;
 }
 
-const publicOperations = ["login"];
+const publicOperations = ["login", "addUser"];
 
 export function createApolloServer() {
   const context = ({ req }) => {

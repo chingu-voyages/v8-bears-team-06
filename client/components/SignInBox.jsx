@@ -72,7 +72,7 @@ const SignInBox = ({ setAuthFailed, apolloClient }) => {
           className="btn btn-primary w-25 float-left"
           disabled={loading}
         >
-          {loading ? "Signing in" : "Sign in"}
+          {loading ? "Signing In" : "Sign In"}
         </button>
         <div className="clearfix">
           Don&#39;t have an account?{" "}

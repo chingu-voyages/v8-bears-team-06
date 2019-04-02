@@ -1,18 +1,17 @@
-/* eslint-disable react/no-unescaped-entities */
 import React from "react";
-import Layout from "../components/Layout";
+import HomeLayout from "../components/layouts/HomeLayout";
 
 const Index = () => (
-  <Layout>
+  <HomeLayout>
     <div className="bg">
       <h1>goodWork</h1>
       <h3>Where charities and volunteers meet!</h3>
       <div className="buttons">
         <button type="button" className="btn btn-success">
-          I'm a charity
+          {"I'm a charity"}
         </button>
         <button type="button" className="btn btn-outline-success">
-          I'm a volunteer
+          {"I'm a volunteer"}
         </button>
       </div>
     </div>
@@ -57,7 +56,7 @@ const Index = () => (
         text-align: center;
       }
     `}</style>
-  </Layout>
+  </HomeLayout>
 );
 
 export default Index;

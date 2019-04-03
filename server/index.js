@@ -9,6 +9,8 @@ import { logger } from "../logger";
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
+const JWT_SECRET_KEY =
+  process.env.JWT_SECRET_KEY || "SHOULD_NOT_USE_THIS_IN_PRODUCTION";
 const nextApp = next({ dev, dir: "./client" });
 const nextHandler = nextApp.getRequestHandler();
 
@@ -23,7 +25,7 @@ export default async function main() {
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: true }));
 
-  const apolloServer = createApolloServer();
+  const apolloServer = createApolloServer(JWT_SECRET_KEY);
   apolloServer.applyMiddleware({ app: server });
 
   // all requests to paths other than `/graphql` are processed by Nextjs

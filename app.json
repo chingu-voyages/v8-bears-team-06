@@ -1,7 +1,5 @@
 {
-  "addons": [
-
-  ],
+  "addons": [],
   "buildpacks": [
     {
       "url": "heroku/nodejs"
@@ -21,7 +19,6 @@
     }
   },
   "name": "v8-bears-team-06",
-  "scripts": {
-  },
+  "scripts": {},
   "stack": "heroku-18"
 }

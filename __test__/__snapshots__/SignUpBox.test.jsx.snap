@@ -71,7 +71,7 @@ exports[`With Snapshot Testing SignUpBox shows "Sign Up" 1`] = `
     onClick={[Function]}
     type="submit"
   >
-    Sign in
+    Sign Up
   </button>
 </form>
 `;

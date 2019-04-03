@@ -101,7 +101,7 @@ const SignUpBox = ({ apolloClient }) => {
             setPassword("");
           }}
         >
-          Sign in
+          Sign Up
         </button>
       </form>
       {errorMessage.length ? (

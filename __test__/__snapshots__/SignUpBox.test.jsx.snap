@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`With Snapshot Testing SignUpBox shows "Sign Up" 1`] = `
+<form
+  className="jsx-678892718 form-signin mt-5"
+>
+  <h1
+    className="jsx-678892718 mb-3"
+  >
+    Sign Up
+  </h1>
+  <div
+    className="jsx-678892718 form-group"
+  >
+    <label
+      className="jsx-678892718 float-left required"
+      htmlFor="email"
+    >
+      Email address
+    </label>
+    <input
+      autoFocus={true}
+      className="jsx-678892718 form-control"
+      id="email"
+      onChange={[Function]}
+      placeholder="Enter your email"
+      required={true}
+      type="email"
+      value=""
+    />
+    <small
+      className="jsx-678892718 form-text text-muted float-left mb-3"
+      id="emailHelp"
+    >
+      We'll never share your email with anyone else.
+    </small>
+    <br
+      className="jsx-678892718"
+    />
+  </div>
+  <div
+    className="jsx-678892718 form-group"
+  >
+    <label
+      className="jsx-678892718 float-left required"
+      htmlFor="password"
+    >
+      Password
+    </label>
+    <input
+      className="jsx-678892718 form-control"
+      id="password"
+      onChange={[Function]}
+      placeholder="Enter your password"
+      required={true}
+      type="password"
+      value=""
+    />
+    <small
+      className="jsx-678892718 form-text text-muted float-left mb-3"
+      id="emailHelp"
+    >
+      Must contain at least 6 alphanumeric characters.
+    </small>
+    <br
+      className="jsx-678892718"
+    />
+  </div>
+  <button
+    className="jsx-678892718 btn btn-primary float-left"
+    onClick={[Function]}
+    type="submit"
+  >
+    Sign in
+  </button>
+</form>
+`;

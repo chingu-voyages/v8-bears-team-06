@@ -59,7 +59,7 @@ const SignUpBox = ({ apolloClient }) => {
             required
           />
           <small
-            id="emailHelp"
+            id="passwordHelp"
             className="form-text text-muted float-left mb-3"
           >
             Must contain at least 6 alphanumeric characters.

@@ -58,7 +58,7 @@ exports[`With Snapshot Testing SignUpBox shows "Sign Up" 1`] = `
     />
     <small
       className="jsx-678892718 form-text text-muted float-left mb-3"
-      id="emailHelp"
+      id="passwordHelp"
     >
       Must contain at least 6 alphanumeric characters.
     </small>

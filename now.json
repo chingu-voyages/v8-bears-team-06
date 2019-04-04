@@ -1,5 +1,6 @@
 {
 	"version": 2,
+  "public": true,
 	"builds": [{ "src": "./now.js", "use": "@now/node-server" }],
 	"routes": [{ "src": "/(.*)", "dest": "/now.js" }]
 }

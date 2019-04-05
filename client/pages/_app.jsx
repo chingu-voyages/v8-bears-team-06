@@ -1,6 +1,7 @@
 import App, { Container } from "next/app";
 import React from "react";
 import { ApolloProvider } from "react-apollo";
+import nextCookie from "next-cookies";
 
 import withApolloClient from "../lib/with-apollo-client";
 import { StoreProvider } from "../store";
@@ -19,22 +20,47 @@ class MyApp extends App {
   }
 }
 
-const withStore = App => props => (
-  <StoreProvider>
-    <App {...props} />
-  </StoreProvider>
-);
+const withStore = App => {
+  return class extends React.Component {
+    static async getInitialProps(context) {
+      const componentProps =
+        App.getInitialProps && (await App.getInitialProps(context));
+
+      return { ...componentProps };
+    }
+
+    constructor(props) {
+      super(props);
+    }
+    render() {
+      return (
+        <StoreProvider>
+          <App {...this.props} />
+        </StoreProvider>
+      );
+    }
+  };
+};
+
 const PUBLIC_PAGES = ["/", "/login", "/signup"];
-const withAuthorization = App => {
+
+function auth(context) {
+  const { token } = nextCookie(context);
+  if (!PUBLIC_PAGES.includes(context.pathname) && !token) {
+    return redirect(context, "/login");
+  }
+}
+
+const withAuth = App => {
   return class Authorizer extends React.Component {
     static async getInitialProps(context) {
       const { ctx } = context;
-      // TODO: authorize users on SSR
-      const isLoggedIn = false;
-      if (!PUBLIC_PAGES.includes(ctx.pathname) && !isLoggedIn) {
-        return redirect(ctx, "/login");
-      }
-      return {};
+      auth(ctx);
+
+      const componentProps =
+        App.getInitialProps && (await App.getInitialProps(context));
+
+      return { ...componentProps };
     }
 
     constructor(props) {
@@ -47,4 +73,4 @@ const withAuthorization = App => {
   };
 };
 
-export default withStore(withApolloClient(withAuthorization(MyApp)));
+export default withStore(withApolloClient(withAuth(MyApp)));

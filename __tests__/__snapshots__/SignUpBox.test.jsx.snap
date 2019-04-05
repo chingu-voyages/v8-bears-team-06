@@ -21,6 +21,7 @@ exports[`With Snapshot Testing SignUpBox shows "Sign Up" 1`] = `
     <input
       autoFocus={true}
       className="jsx-678892718 form-control"
+      data-testid="emailVal"
       id="email"
       onChange={[Function]}
       placeholder="Enter your email"
@@ -49,6 +50,7 @@ exports[`With Snapshot Testing SignUpBox shows "Sign Up" 1`] = `
     </label>
     <input
       className="jsx-678892718 form-control"
+      data-testid="passVal"
       id="password"
       onChange={[Function]}
       placeholder="Enter your password"
@@ -68,6 +70,7 @@ exports[`With Snapshot Testing SignUpBox shows "Sign Up" 1`] = `
   </div>
   <button
     className="jsx-678892718 btn btn-primary float-left"
+    data-testid="submitBtn"
     onClick={[Function]}
     type="submit"
   >

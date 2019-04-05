@@ -15,6 +15,7 @@ const SignUpBox = ({ apolloClient }) => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
   return (
     <>
       <form className="form-signin mt-5">
@@ -24,6 +25,7 @@ const SignUpBox = ({ apolloClient }) => {
             Email address
           </label>
           <input
+            data-testid="emailVal"
             type="email"
             className="form-control"
             id="email"
@@ -48,6 +50,7 @@ const SignUpBox = ({ apolloClient }) => {
             Password
           </label>
           <input
+            data-testid="passVal"
             type="password"
             className="form-control"
             id="password"
@@ -68,6 +71,7 @@ const SignUpBox = ({ apolloClient }) => {
         </div>
 
         <button
+          data-testid="submitBtn"
           type="submit"
           className="btn btn-primary float-left"
           onClick={async event => {
@@ -105,10 +109,14 @@ const SignUpBox = ({ apolloClient }) => {
         </button>
       </form>
       {errorMessage.length ? (
-        <p className="text-center text-danger">{errorMessage}</p>
+        <p data-testid="messageVal" className="text-center text-danger">
+          {errorMessage}
+        </p>
       ) : (
         successMessage.length > 0 && (
-          <p className="text-center text-success">{successMessage}</p>
+          <p data-testid="messageVal" className="text-center text-success">
+            {successMessage}
+          </p>
         )
       )}
 

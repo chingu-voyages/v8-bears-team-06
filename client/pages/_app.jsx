@@ -33,9 +33,10 @@ const withStore = App => {
       super(props);
     }
     render() {
+      const { token, ...props } = this.props;
       return (
-        <StoreProvider>
-          <App {...this.props} />
+        <StoreProvider token={token}>
+          <App {...props} />
         </StoreProvider>
       );
     }
@@ -49,18 +50,19 @@ function auth(context) {
   if (!PUBLIC_PAGES.includes(context.pathname) && !token) {
     return redirect(context, "/login");
   }
+  return token;
 }
 
 const withAuth = App => {
   return class Authorizer extends React.Component {
     static async getInitialProps(context) {
       const { ctx } = context;
-      auth(ctx);
+      const token = auth(ctx);
 
       const componentProps =
         App.getInitialProps && (await App.getInitialProps(context));
 
-      return { ...componentProps };
+      return { ...componentProps, token };
     }
 
     constructor(props) {

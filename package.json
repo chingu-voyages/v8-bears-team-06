@@ -48,6 +48,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.4.19",
     "next": "^8.0.3",
+    "next-cookies": "^1.1.2",
     "pino": "^5.11.3",
     "react": "^16.8.4",
     "react-apollo": "^2.5.2",

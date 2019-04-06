@@ -3,7 +3,7 @@ import { render, fireEvent, getByTestId, cleanup } from "react-testing-library";
 import React from "react";
 import renderer from "react-test-renderer";
 
-import SignUpBox from "../client/components/SignUpBox";
+import SignUpBox from "./SignUpBox";
 
 afterEach(cleanup);
 

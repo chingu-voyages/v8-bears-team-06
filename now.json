@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "name": "goodWork",
+  "builds": [{ "src": "now.js", "use": "@now/node" }]
+}

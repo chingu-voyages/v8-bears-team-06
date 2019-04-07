@@ -2,10 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2.1
-
-orbs:
-  codecov: codecov/codecov@1.0.4
+version: 2
 
 jobs:
   build:
@@ -37,5 +34,3 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run coverage
-      - codecov/upload:
-          file: coverage

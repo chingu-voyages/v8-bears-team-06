@@ -7,14 +7,13 @@ import { insertMockData, setupDbConnection } from "./db";
 import { createApolloServer } from "./graphql/server";
 import { logger } from "../logger";
 
-const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const JWT_SECRET_KEY =
   process.env.JWT_SECRET_KEY || "SHOULD_NOT_USE_THIS_IN_PRODUCTION";
-const nextApp = next({ dev, dir: "./client" });
-const nextHandler = nextApp.getRequestHandler();
 
-export default async function main() {
+export async function createExpressApp() {
+  const nextApp = next({ dev, dir: "./client" });
+  const nextHandler = nextApp.getRequestHandler();
   await nextApp.prepare();
 
   const server = express();
@@ -43,10 +42,5 @@ export default async function main() {
     return;
   }
 
-  server.listen(port, err => {
-    if (err) {
-      throw err;
-    }
-    logger.info(`> Ready on http://localhost:${port}`);
-  });
+  return server;
 }

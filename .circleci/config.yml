@@ -20,7 +20,8 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: [[ -d node_modules ]] || npm ci
+      - run: |
+          [[ -d node_modules ]] || npm ci
 
       - save_cache:
           paths:

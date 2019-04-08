@@ -4,8 +4,10 @@ import Layout from '../components/layouts/Layout.jsx';
 
 const HowItWorks = () => (
     <Layout>
-        <div className="container">
-            <div className="jumbotron image image5"></div>
+        <div className="container main">
+            <div className="jumbotron text-center">
+                <h1>How It Works</h1>
+            </div>
             <div className="container">
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-6">
@@ -51,7 +53,7 @@ const HowItWorks = () => (
                         <div className="row info-row justify-content-center">
                             <div><h1>Step 4</h1></div>
                             <div className="text-center">
-                                <p>Contact the charities with relevant opportunities and strat to contribute!</p>
+                                <p>Contact the charities with relevant opportunities and start to contribute!</p>
                             </div>
                         </div>
                     </div>
@@ -63,7 +65,7 @@ const HowItWorks = () => (
             .info-row { 
                 height: 250px; 
                 padding: 5px; 
-                font-size: 20px;
+                font-size: 20pt;
             }
             .image {
                 background-position: center;
@@ -85,10 +87,8 @@ const HowItWorks = () => (
             .image4 {
                 background-image: url(../static/contact.jpg); 
             }
-            .image5 {
-                background-image: url(../static/how_it_works.jpg); 
-            }
-        .jumbotron { height: 150px; }
+
+        .main { margin-top: 56px; }
         `}</style>
     </Layout>
 )

@@ -4,62 +4,54 @@ import Layout from '../components/layouts/Layout.jsx'
 const HowItWorks = () => (
     <Layout>
         <div className="container">
-            <div className="jumbotron">
+            <div className="jumbotron text-center">
                 <h1>How it works</h1>
             </div>
             <div className="container">
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-6">
-                        <div className="row info-row">
+                        <div className="row info-row justify-content-center">
                             <div><h1>Step 1</h1></div>
-                            <div>
-                                <p>Maybe we better talk out here; the observation lounge has turned into a swamp. When has justice ever been as simple as a rule book? We could cause a diplomatic crisis. Take the ship into the Neutral Zone Commander William Riker of the Starship Enterprise. Besides, you look good in a dress.</p>
+                            <div className="text-center">
+                                <p>Firstly, your going to need an account. Head over to the sign up page and create one now.</p>
+                                <button 
+                                type="button" 
+                                href="/signup"
+                                className="btn btn-primary">
+                                    {"Sign up"}
+                                </button>
                             </div>
                         </div>
                         <div className="row info-row">
-                            <div><h1>Step 2</h1></div>
-                            <div>
-                                <p>Maybe we better talk out here; the observation lounge has turned into a swamp. When has justice ever been as simple as a rule book? We could cause a diplomatic crisis. Take the ship into the Neutral Zone Commander William Riker of the Starship Enterprise. Besides, you look good in a dress.</p>
-                            </div>
+                            <div className="image image2"></div>
                         </div>
-                        <div className="row info-row">
+                        <div className="row info-row justify-content-center">
                             <div><h1>Step 3</h1></div>
-                            <div>
-                                <p>Maybe we better talk out here; the observation lounge has turned into a swamp. When has justice ever been as simple as a rule book? We could cause a diplomatic crisis. Take the ship into the Neutral Zone Commander William Riker of the Starship Enterprise. Besides, you look good in a dress.</p>
+                            <div className="text-center">
+                                <p>Search for opportunities to volunteer by location. Opportunities that show up will be matched to the skills in your profile.</p>
                             </div>
                         </div>
                         <div className="row info-row">
-                            <div><h1>Step 4</h1></div>
-                            <div>
-                                <p>Maybe we better talk out here; the observation lounge has turned into a swamp. When has justice ever been as simple as a rule book? We could cause a diplomatic crisis. Take the ship into the Neutral Zone Commander William Riker of the Starship Enterprise. Besides, you look good in a dress.</p>
-                            </div>
+                            <div className="image image4"></div>
                         </div>
                     </div>
-                    
-                    
                     <div className="col-xs-12 col-sm-12 col-md-6">
                         <div className="row info-row">
-                            <div><h1>Step 1</h1></div>
-                            <div>
-                                <p>ake the ship into the Neutral Zone Commander William Riker of the Starship Enterprise. Besides, you look good in a dress.</p>
-                            </div>
+                            <div className="image image1"></div>
                         </div>
-                        <div className="row info-row">
+                        <div className="row info-row justify-content-center">
                             <div><h1>Step 2</h1></div>
-                            <div>
-                                <p>Maybe we better talk out here; the observation lounge has turned into a swamp. When has justice ever been as simple as a rule book? We could cause a diplomatic crisis. Take the ship into the Neutral Zone Commander William Riker of the Starship Enterprise. Besides, you look good in a dress.</p>
+                            <div className="text-center">
+                                <p>Fill out your profile. It is important you do this, especially the skills section, as volunteering opportunities will be matched to your skills.</p>
                             </div>
                         </div>
                         <div className="row info-row">
-                            <div><h1>Step 3</h1></div>
-                            <div>
-                                <p>Maybe we better talk out here; the observation lounge has turned into a swamp. When has justice ever been as simple as a rule book? We could cause a diplomatic crisis. Take the ship into the Neutral Zone Commander William Riker of the Starship Enterprise. Besides, you look good in a dress.</p>
-                            </div>
+                            <div className="image image3"></div>
                         </div>
-                        <div className="row info-row">
+                        <div className="row info-row justify-content-center">
                             <div><h1>Step 4</h1></div>
-                            <div>
-                                <p>Maybe we better talk out here; the observation lounge has turned into a swamp. When has justice ever been as simple as a rule book? We could cause a diplomatic crisis. Take the ship into the Neutral Zone Commander William Riker of the Starship Enterprise. Besides, you look good in a dress.</p>
+                            <div className="text-center">
+                                <p>Contact the charities with relevant opportunities and strat to contribute!</p>
                             </div>
                         </div>
                     </div>
@@ -68,9 +60,31 @@ const HowItWorks = () => (
             </div>
         </div>
         <style>{`
-            // .container{ border: solid black 1px; height: 100%; }
-            .col { width: 50%; height: 100%; padding: 10px 10px 10px 10px; }
-            .info-row { height: 200px; }
+            .info-row { 
+                height: 250px; 
+                padding: 5px; 
+                font-size: 20px;
+            }
+            .image {
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                position: relative;
+                justify-content: center;
+                width: 100%;
+            }
+            .image1 { 
+                background-image: url(../static/sign-up.jpg); 
+            }
+            .image2 {
+                background-image: url(../static/tick-box.jpg); 
+            }
+            .image3 {
+                background-image: url(../static/search.jpg); 
+            }
+            .image4 {
+                background-image: url(../static/contact.jpg); 
+            }
         `}</style>
     </Layout>
 )

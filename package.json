@@ -6,6 +6,7 @@
   "scripts": {
     "start:dev": "nodemon main.js --exec babel-node",
     "build": "next build ./client",
+    "now-build": "npm run build",
     "start": "node -r esm main.js",
     "test": "jest",
     "test:watch": "jest --watchAll",

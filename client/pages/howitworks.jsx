@@ -1,12 +1,11 @@
 import React from 'react';
-import Layout from '../components/layouts/Layout.jsx'
+import Link from 'next/link';
+import Layout from '../components/layouts/Layout.jsx';
 
 const HowItWorks = () => (
     <Layout>
         <div className="container">
-            <div className="jumbotron text-center">
-                <h1>How it works</h1>
-            </div>
+            <div className="jumbotron image image5"></div>
             <div className="container">
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-6">
@@ -14,12 +13,13 @@ const HowItWorks = () => (
                             <div><h1>Step 1</h1></div>
                             <div className="text-center">
                                 <p>Firstly, your going to need an account. Head over to the sign up page and create one now.</p>
-                                <button 
-                                type="button" 
-                                href="/signup"
-                                className="btn btn-primary">
-                                    {"Sign up"}
-                                </button>
+                                <Link href="/signup">
+                                    <button 
+                                    type="button" 
+                                    className="btn btn-primary">
+                                        {"Sign up"}
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="row info-row">
@@ -85,6 +85,10 @@ const HowItWorks = () => (
             .image4 {
                 background-image: url(../static/contact.jpg); 
             }
+            .image5 {
+                background-image: url(../static/how_it_works.jpg); 
+            }
+        .jumbotron { height: 150px; }
         `}</style>
     </Layout>
 )

@@ -55,6 +55,7 @@ const Navbar = () => {
                   <li className="nav-item">
                     <a
                       className="nav-link"
+                      href="#"
                       onClick={async () => {
                         logout();
                         await client.cache.reset();

@@ -7,7 +7,7 @@
   ],
   "env": {
     "NODE_ENV": {
-      "required": true
+      "required": false
     },
     "JWT_SECRET_KEY": {
       "generator": "secret"
@@ -18,7 +18,7 @@
       "quantity": 1
     }
   },
-  "name": "v8-bears-team-06",
+  "name": "goodwork",
   "scripts": {},
   "stack": "heroku-18"
 }

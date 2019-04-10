@@ -6,7 +6,9 @@
   "scripts": {
     "start:dev": "nodemon index.js --exec babel-node",
     "lint": "eslint --ext jsx,js .",
-    "start": "node -r esm index.js"
+    "start": "node -r esm index.js",
+    "test": "jest --passWithNoTests",
+    "coverage": "jest --coverage --passWithNoTests"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
     "babel-jest": "^24.5.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.1.0",
+    "jest": "^24.7.1",
     "mongodb-memory-server": "^4.2.1",
     "nodemon": "^1.18.10",
     "pino-pretty": "^2.6.0"

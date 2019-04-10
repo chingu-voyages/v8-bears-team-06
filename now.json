@@ -1,8 +1,14 @@
 {
   "version": 2,
   "name": "goodWork",
-  "builds": [{ "src": "index.js", "use": "@now/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "index.js" }],
+  "builds": [
+    { "src": "server/now.js", "use": "@now/node" },
+    { "src": "client/next.config.js", "use": "@now/next" }
+  ],
+  "routes": [
+    { "src": "/graphql", "dest": "server/now.js" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ],
   "env": {
     "NODE_ENV": "development"
   }

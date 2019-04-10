@@ -7,7 +7,7 @@
   ],
   "env": {
     "NODE_ENV": {
-      "required": true
+      "required": false
     },
     "JWT_SECRET_KEY": {
       "generator": "secret"

@@ -7,7 +7,7 @@ import { onError } from "apollo-link-error";
 import { ApolloLink } from "apollo-link";
 import Cookie from "js-cookie";
 
-import { logger } from "../../logger";
+import { logger } from "../logger";
 
 let apolloClient = null;
 

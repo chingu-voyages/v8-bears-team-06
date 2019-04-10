@@ -1,4 +1,4 @@
-import { ApolloServer } from "apollo-server-express";
+import { ApolloServer } from "apollo-server";
 import jwt from "jsonwebtoken";
 
 import { schema } from "./schema";

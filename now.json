@@ -2,7 +2,7 @@
   "version": 2,
   "name": "goodWork",
   "builds": [
-    { "src": "server/now.js", "use": "@now/node" },
+    { "src": "server/now.js", "use": "@now/node@0.5.0" },
     { "src": "client/next.config.js", "use": "@now/next" }
   ],
   "routes": [

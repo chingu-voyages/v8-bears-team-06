@@ -11,7 +11,7 @@ const AddWork = ({ apolloClient }) =>{
 
     return (
         <>
-            <form>
+            <form className="mt-5">
                 <h1>Add Work Details</h1>
                 <div className="form-group">
                 <label htmlFor="title" className="float-left required">

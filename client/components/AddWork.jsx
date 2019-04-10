@@ -12,7 +12,25 @@ const AddWork = ({ apolloClient }) =>{
     return (
         <>
             <form>
-
+                <h1>Add Work Details</h1>
+                <div className="form-group">
+                <label htmlFor="title" className="float-left required">
+                    Title
+                </label>
+                <input 
+                    type="text"
+                    className="form-control"
+                    id="title"
+                    placeholder="Title of you project..."
+                    value={title}
+                    onChange={event => { 
+                        setTitle(event.target.value); 
+                    }}
+                    autoFocus
+                    required
+                />
+                <br />
+                </div>
             </form>
         </>
     )

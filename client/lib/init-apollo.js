@@ -37,7 +37,8 @@ function create(initialState) {
           headers: {
             ...headers,
             authorization:
-              headers.authorization || (token ? `Bearer ${token}` : "")
+              (headers && headers.authorization) ||
+              (token ? `Bearer ${token}` : "")
           }
         };
       }),

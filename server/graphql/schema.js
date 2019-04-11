@@ -42,7 +42,7 @@ const RootQuery = new GraphQLObjectType({
         email: { type: GraphQLString },
         password: { type: GraphQLString }
       },
-      resolve: async (parent, { email, password }) => {
+      resolve: async (parent, { email, password }, { SECRET_KEY }) => {
         const user = await User.findOne({ email });
         if (!user) {
           throw new Error("Invalid credential");
@@ -51,7 +51,7 @@ const RootQuery = new GraphQLObjectType({
         if (user.password !== password) {
           throw new Error("Invalid credential");
         }
-        const token = jwt.sign({ id: user.id, email: user.email }, "secret", {
+        const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, {
           expiresIn: "1h"
         });
         return { token };

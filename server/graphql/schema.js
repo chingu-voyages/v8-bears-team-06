@@ -8,6 +8,7 @@ import {
 import jwt from "jsonwebtoken";
 
 import { User } from "../models/user";
+import { authenticated } from "./middleware";
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -31,9 +32,9 @@ const RootQuery = new GraphQLObjectType({
     user: {
       type: UserType,
       args: { id: { type: GraphQLID } },
-      resolve(parent, args) {
+      resolve: authenticated((parent, args) => {
         return User.findById(args.id);
-      }
+      })
     },
     login: {
       type: AuthDataType,

@@ -13,16 +13,11 @@ function getUser(token, secretKey) {
   return user;
 }
 
-const PUBLIC_OPERATIONS = ["login", "addUser"];
-
 export function createApolloServer(secretKey) {
   const context = ({ req }) => {
     const contextObj = {};
     const token = req.headers.authorization || "";
     const user = getUser(token, secretKey);
-    if (!PUBLIC_OPERATIONS.includes(req.body.operationName) && !user.loggedIn) {
-      throw new Error("you must be logged in");
-    }
     contextObj.user = user;
     contextObj.SECRET_KEY = secretKey;
     return contextObj;

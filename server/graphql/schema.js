@@ -8,6 +8,7 @@ import {
 import jwt from "jsonwebtoken";
 
 import { User } from "../models/user";
+import { authenticated } from "./middleware";
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -31,9 +32,9 @@ const RootQuery = new GraphQLObjectType({
     user: {
       type: UserType,
       args: { id: { type: GraphQLID } },
-      resolve(parent, args) {
+      resolve: authenticated((parent, args) => {
         return User.findById(args.id);
-      }
+      })
     },
     login: {
       type: AuthDataType,
@@ -41,7 +42,7 @@ const RootQuery = new GraphQLObjectType({
         email: { type: GraphQLString },
         password: { type: GraphQLString }
       },
-      resolve: async (parent, { email, password }) => {
+      resolve: async (parent, { email, password }, { SECRET_KEY }) => {
         const user = await User.findOne({ email });
         if (!user) {
           throw new Error("Invalid credential");
@@ -50,7 +51,7 @@ const RootQuery = new GraphQLObjectType({
         if (user.password !== password) {
           throw new Error("Invalid credential");
         }
-        const token = jwt.sign({ id: user.id, email: user.email }, "secret", {
+        const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, {
           expiresIn: "1h"
         });
         return { token };

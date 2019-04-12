@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import jwt from "jsonwebtoken";
 
 import { getUser, extractToken } from "./server";

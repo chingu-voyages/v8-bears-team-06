@@ -8,6 +8,7 @@ import {
 import jwt from "jsonwebtoken";
 
 import { User } from "../models/user";
+import { Profile } from "../models/profile";
 import { authenticated } from "./middleware";
 
 const UserType = new GraphQLObjectType({
@@ -19,10 +20,27 @@ const UserType = new GraphQLObjectType({
   })
 });
 
+const ProfileType = new GraphQLObjectType({
+  name: "Profile",
+  fields: () => ({
+    id: { type: GraphQLID },
+    email: { type: GraphQLString },
+    firstName: { type: GraphQLString },
+    lastName: { type: GraphQLString },
+    location: { type: GraphQLString },
+    workType: { type: GraphQLString },
+    skills: { type: GraphQLString },
+    tagline: { type: GraphQLString },
+    statement: { type: GraphQLString },
+    experience: { type: GraphQLString },
+  })
+});
+
 const AuthDataType = new GraphQLObjectType({
   name: "AuthData",
   fields: () => ({
-    token: { type: GraphQLString }
+    token: { type: GraphQLString },
+    email: { type: GraphQLString }
   })
 });
 
@@ -35,6 +53,14 @@ const RootQuery = new GraphQLObjectType({
       resolve: authenticated((parent, args) => {
         return User.findById(args.id);
       })
+    },
+    profile: {
+      type: ProfileType,
+      args: { email: { type: GraphQLString } },
+      resolve: async (parent,args) => {
+        const profile = await Profile.findOne({email: args.email});
+        return profile;
+      }
     },
     login: {
       type: AuthDataType,
@@ -54,7 +80,8 @@ const RootQuery = new GraphQLObjectType({
         const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, {
           expiresIn: "1h"
         });
-        return { token };
+        
+        return { token: token, email: email } ;
       }
     }
   }
@@ -74,13 +101,41 @@ const Mutation = new GraphQLObjectType({
         if (check) {
           return { email: "taken", password: "anything" };
         } else if (args.email.length === 0) {
-          return { email: "empty", password: "anything" };
+          return { email: "empty", password: args.password };
         }
         let user = new User({
           email: args.email,
           password: args.password
         });
         return user.save();
+      }
+    },
+    addProfile: {
+      type: ProfileType,
+      args: {
+        email: { type: GraphQLString },
+        firstName: { type: GraphQLString },
+        lastName: { type: GraphQLString },
+        location: { type: GraphQLString },
+        workType: { type: GraphQLString },
+        skills: { type: GraphQLString },
+        tagline: { type: GraphQLString },
+        statement: { type: GraphQLString },
+        experience: { type: GraphQLString },
+      },
+      resolve: async (parent, args) => {
+        let profile = new Profile({
+          email: args.email,
+          firstName: args.firstName,
+          lastName: args.lastName,
+          location: args.location,
+          workType: args.workType,
+          skills: args.skills,
+          tagline: args.tagline,
+          statement: args.statement,
+          experience: args.experience
+        })
+        return profile.save();
       }
     }
   }

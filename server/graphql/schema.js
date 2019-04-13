@@ -7,9 +7,22 @@ import {
   GraphQLList
 } from "graphql";
 import jwt from "jsonwebtoken";
+import { GraphQLDate } from "graphql-iso-date";
 
 import { User } from "../models/user";
 import { authenticated } from "./middleware";
+
+const WorkType = new GraphQLObjectType({
+  name: "WorkType",
+  fields: () => ({
+    id: { type: GraphQLID },
+    title: { type: GraphQLString },
+    startDate: { type: GraphQLDate },
+    endDate: { type: GraphQLDate },
+    description: { type: GraphQLString },
+    thoughts: { type: GraphQLString }
+  })
+});
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -24,7 +37,14 @@ const UserType = new GraphQLObjectType({
     tagline: { type: GraphQLString },
     statement: { type: GraphQLString },
     experience: { type: GraphQLString },
-    password: { type: GraphQLString }
+    password: { type: GraphQLString },
+    works: {
+      type: WorkType,
+      args: {},
+      resolve: (parent, args, context, info) => {
+        return [];
+      }
+    }
   })
 });
 
@@ -42,8 +62,8 @@ const RootQuery = new GraphQLObjectType({
     user: {
       type: UserType,
       args: { id: { type: GraphQLID } },
-      resolve: authenticated((parent, args) => {
-        return User.findById(args.id);
+      resolve: authenticated((parent, { id }) => {
+        return User.findById(id);
       })
     },
     profile: {

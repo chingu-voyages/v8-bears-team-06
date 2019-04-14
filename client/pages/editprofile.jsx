@@ -5,14 +5,14 @@ import Layout from "../components/layouts/Layout";
 import EditProfileBox from "../components/EditProfileBox";
 
 const EditProfile = () => {
-    return (
-        <ApolloConsumer>
-            {client => (
-                <Layout>
-                    <div className="box-container">
-                        <EditProfileBox apolloClient={client} />
-                    </div>
-                    <style jsx>{`
+  return (
+    <ApolloConsumer>
+      {client => (
+        <Layout>
+          <div className="box-container">
+            <EditProfileBox apolloClient={client} />
+          </div>
+          <style jsx>{`
             .box-container {
               text-align: center;
               width: 100%;
@@ -22,10 +22,10 @@ const EditProfile = () => {
               padding-bottom: 40px;
             }
           `}</style>
-                </Layout>
-            )}
-        </ApolloConsumer>
-    );
+        </Layout>
+      )}
+    </ApolloConsumer>
+  );
 };
 
 export default EditProfile;

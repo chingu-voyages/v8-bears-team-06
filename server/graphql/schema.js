@@ -32,7 +32,7 @@ const ProfileType = new GraphQLObjectType({
     skills: { type: GraphQLString },
     tagline: { type: GraphQLString },
     statement: { type: GraphQLString },
-    experience: { type: GraphQLString },
+    experience: { type: GraphQLString }
   })
 });
 
@@ -57,8 +57,8 @@ const RootQuery = new GraphQLObjectType({
     profile: {
       type: ProfileType,
       args: { email: { type: GraphQLString } },
-      resolve: async (parent,args) => {
-        const profile = await Profile.findOne({email: args.email});
+      resolve: async (parent, args) => {
+        const profile = await Profile.findOne({ email: args.email });
         return profile;
       }
     },
@@ -80,8 +80,8 @@ const RootQuery = new GraphQLObjectType({
         const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, {
           expiresIn: "1h"
         });
-        
-        return { token: token, email: email } ;
+
+        return { token: token, email: email };
       }
     }
   }
@@ -121,7 +121,7 @@ const Mutation = new GraphQLObjectType({
         skills: { type: GraphQLString },
         tagline: { type: GraphQLString },
         statement: { type: GraphQLString },
-        experience: { type: GraphQLString },
+        experience: { type: GraphQLString }
       },
       resolve: async (parent, args) => {
         let profile = new Profile({
@@ -134,7 +134,7 @@ const Mutation = new GraphQLObjectType({
           tagline: args.tagline,
           statement: args.statement,
           experience: args.experience
-        })
+        });
         return profile.save();
       }
     }

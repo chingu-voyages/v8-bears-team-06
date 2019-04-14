@@ -13,7 +13,7 @@ export const StoreProvider = ({ children, token: initialToken }) => {
     },
     logout: () => {
       Cookie.remove("token");
-      Cookie.remove("email")
+      Cookie.remove("email");
       setToken("");
     },
     isLoggedIn: !!token

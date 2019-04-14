@@ -102,7 +102,7 @@ const Mutation = new GraphQLObjectType({
         if (check) {
           return { email: "taken", password: "anything" };
         } else if (args.email.length === 0) {
-          return { email: "empty", password: args.password };
+          return { email: "empty", password: "anything" };
         }
         let user = new User({
           email: args.email,

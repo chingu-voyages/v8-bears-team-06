@@ -8,7 +8,7 @@ const schema = new Schema({
   lastName: String,
   location: String,
   workType: String,
-  skills: String,
+  skills: [String],
   tagline: String,
   statement: String,
   experience: String

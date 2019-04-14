@@ -10,7 +10,7 @@ export const addProfileMutation = gql`
     $lastName: String
     $location: String
     $workType: String
-    $skills: String
+    $skills: [String]
     $tagline: String
     $statement: String
     $experience: String
@@ -45,7 +45,7 @@ const EditProfileBox = ({ apolloClient }) => {
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState("");
   const [workType, setWorkType] = useState("");
-  const [skills, setSkills] = useState("");
+  const [skillsList, setSkillsList] = useState("");
   const [tagline, setTagline] = useState("");
   const [statement, setStatement] = useState("");
   const [experience, setExperience] = useState("");
@@ -60,6 +60,10 @@ const EditProfileBox = ({ apolloClient }) => {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    let tmp = skillsList.split(", ");
+    const skills = tmp.map(skill => {
+      return skill;
+    });
     await apolloClient.mutate({
       mutation: addProfileMutation,
       variables: {
@@ -439,40 +443,40 @@ const EditProfileBox = ({ apolloClient }) => {
             <option value="architecture">Architecture</option>
             <option value="arts">Arts</option>
             <option value="automotive">Automotive</option>
-            <option value="chemical-engineering">Chemical Engineering</option>
-            <option value="civil-engineering">Civil Engineering</option>
+            <option value="chemical engineering">Chemical Engineering</option>
+            <option value="civil engineering">Civil Engineering</option>
             <option value="clothing">Clothing</option>
             <option value="consulting">Consulting</option>
             <option value="design">Design</option>
             <option value="education">Education</option>
-            <option value="electrical-engineering">
+            <option value="electrical engineering">
               Electrical Engineering
             </option>
             <option value="electronics">Electronics</option>
             <option value="energy">Energy</option>
             <option value="environment">Environment</option>
             <option value="finance">Finance</option>
-            <option value="food-beverage">Food and Beverage</option>
+            <option value="food and beverage">Food and Beverage</option>
             <option value="health-care">Health Care</option>
             <option value="hospitality">Hospitality</option>
-            <option value="human-resources">Human Resources</option>
-            <option value="industrial-machinery">Industrial Machinery</option>
-            <option value="information-technology">
+            <option value="human resources">Human Resources</option>
+            <option value="industrial machinery">Industrial Machinery</option>
+            <option value="information technology">
               Information Technology
             </option>
             <option value="insurance">Insurance</option>
             <option value="journalism">Journalism</option>
-            <option value="legal-services">Legal Services</option>
-            <option value="life-sciences">Life Sciences</option>
+            <option value="legal services">Legal Services</option>
+            <option value="life sciences">Life Sciences</option>
             <option value="logistics">Logistics</option>
             <option value="manufacturing">Manufacturing</option>
-            <option value="mechanical-engineering">
+            <option value="mechanical engineering">
               Mechanical Engineering
             </option>
-            <option value="media-publishing">Media/Publishing</option>
+            <option value="media publishing">Media/Publishing</option>
             <option value="medicine">Medicine</option>
             <option value="pharmaceutical">Pharmaceutical</option>
-            <option value="real-estate">Real Estate</option>
+            <option value="real estate">Real Estate</option>
             <option value="research">Research</option>
             <option value="service">Service</option>
             <option value="telecommunication">Telecommunication</option>
@@ -480,16 +484,16 @@ const EditProfileBox = ({ apolloClient }) => {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="skills" className="float-left">
+          <label htmlFor="skillsList" className="float-left">
             Skills (ex: web development, electronics)
           </label>
           <textarea
             type="text"
             className="form-control"
             placeholder="List your skills"
-            value={skills}
+            value={skillsList}
             onChange={event => {
-              setSkills(event.target.value);
+              setSkillsList(event.target.value);
             }}
           />
         </div>

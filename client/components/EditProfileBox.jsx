@@ -46,7 +46,6 @@ const EditProfileBox = ({ apolloClient }) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [location, setLocation] = useState("");
-    const [workChoice, setWorkChoice] = useState("");
     const [workType, setWorkType] = useState("");
     const [skills, setSkills] = useState("");
     const [tagline, setTagline] = useState("");
@@ -77,15 +76,16 @@ const EditProfileBox = ({ apolloClient }) => {
                 experience
             }
         });
-        console.log(data);
-        //Router.push("/profile");
+        Router.push("/profile")
+        
+          
     };
 
     return (
         <>
             <form className="mt-5">
                 <h1 className="mb-3">User Profile</h1>
-                <h6 className="mt-2">Your email: {email}</h6>
+                <h6 className="mt-2" suppressHydrationWarning={true}>Your email: {email}</h6>
                 <div className="row mt-5">
                     <div className="form-group col">
                         <label htmlFor="firstName" className="float-left">

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import Cookie from "js-cookie";
 
 import Layout from "../components/layouts/Layout";
+import { AuthContext } from "../context";
 
 export const GET_USER_PROFILE = gql`
   query profile($email: String!) {
@@ -23,7 +23,8 @@ export const GET_USER_PROFILE = gql`
 `;
 
 const Profile = () => {
-  const email = Cookie.get("email");
+  const value = useContext(AuthContext);
+  const email = value.email;
   return (
     <Layout>
       <h1 className="text-center mt-5 pt-5">Profile</h1>

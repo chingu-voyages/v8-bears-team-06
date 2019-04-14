@@ -3,7 +3,8 @@ import {
   GraphQLID,
   GraphQLString,
   GraphQLSchema,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLList
 } from "graphql";
 import jwt from "jsonwebtoken";
 
@@ -29,7 +30,7 @@ const ProfileType = new GraphQLObjectType({
     lastName: { type: GraphQLString },
     location: { type: GraphQLString },
     workType: { type: GraphQLString },
-    skills: { type: GraphQLString },
+    skills: { type: new GraphQLList(GraphQLString) },
     tagline: { type: GraphQLString },
     statement: { type: GraphQLString },
     experience: { type: GraphQLString }
@@ -118,7 +119,7 @@ const Mutation = new GraphQLObjectType({
         lastName: { type: GraphQLString },
         location: { type: GraphQLString },
         workType: { type: GraphQLString },
-        skills: { type: GraphQLString },
+        skills: { type: new GraphQLList(GraphQLString) },
         tagline: { type: GraphQLString },
         statement: { type: GraphQLString },
         experience: { type: GraphQLString }

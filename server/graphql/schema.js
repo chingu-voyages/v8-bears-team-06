@@ -124,7 +124,7 @@ const Mutation = new GraphQLObjectType({
         statement: { type: GraphQLString },
         experience: { type: GraphQLString }
       },
-      resolve: async (parent, args) => {
+      resolve: authenticated(async (parent, args, context) => {
         let profile = new Profile({
           email: args.email,
           firstName: args.firstName,
@@ -137,7 +137,7 @@ const Mutation = new GraphQLObjectType({
           experience: args.experience
         });
         return profile.save();
-      }
+      })
     }
   }
 });

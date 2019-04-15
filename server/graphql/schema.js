@@ -58,10 +58,10 @@ const RootQuery = new GraphQLObjectType({
     profile: {
       type: ProfileType,
       args: { email: { type: GraphQLString } },
-      resolve: async (parent, args) => {
+      resolve: authenticated(async (parent, args, context) => {
         const profile = await Profile.findOne({ email: args.email });
         return profile;
-      }
+      })
     },
     login: {
       type: AuthDataType,

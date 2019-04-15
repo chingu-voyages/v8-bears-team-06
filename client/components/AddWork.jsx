@@ -1,10 +1,37 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 
+export const addWorkMutation = gql`
+    mutation addWork(
+        $title: String!,
+        $startDate: String!,
+        $endDate: String!,
+        $description: String!,
+        $thoughts: String,
+        $link: String
+    ) {
+        addWork(
+            title: $title,
+            startDate: $startDate,
+            endDate: $endDate,
+            description: $description,
+            thoughts: $thoughts,
+            link: $link
+        ) {
+            title
+            startDate
+            endDate
+            description
+            thoughts
+            link
+        }
+    }
+`;
+
 const AddWork = ({ apolloClient }) =>{
     const [title, setTitle] = useState("");
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
     const [description, setDescription] = useState("");
     const [thoughts, setThoughts] = useState("");
     const [link, setLink] = useState("");
@@ -27,7 +54,7 @@ const AddWork = ({ apolloClient }) =>{
                         setTitle(event.target.value); 
                     }}
                     autoFocus
-                    required
+                    // required
                 />
                 <br />
                 </div>
@@ -46,7 +73,7 @@ const AddWork = ({ apolloClient }) =>{
                         setStartDate(event.target.value); 
                     }}
                     autoFocus
-                    required
+                    // required
                 />
                 <br />
                 </div>
@@ -65,7 +92,7 @@ const AddWork = ({ apolloClient }) =>{
                         setEndDate(event.target.value); 
                     }}
                     autoFocus
-                    required
+                    // required
                 />
                 <br />
                 </div>
@@ -84,7 +111,7 @@ const AddWork = ({ apolloClient }) =>{
                         setDescription(event.target.value); 
                     }}
                     autoFocus
-                    required
+                    // required
                 />
                 <br />
                 </div>
@@ -124,6 +151,29 @@ const AddWork = ({ apolloClient }) =>{
                 />
                 <br />
                 </div>
+
+                <button
+                    type="submit"
+                    className="btn btn-primary"
+                    onClick={ async (event) => {
+                        event.preventDefault;
+                        const { data } = await apolloClient.mutate({
+                            mutation: addWorkMutation,
+                            variables: {title, startDate, endDate, description, thoughts, link}
+                        });
+                        console.log(title)
+                        console.log(startDate)
+                        console.log(link)
+                        // setTitle("");
+                        // setStartDate("");
+                        // setEndDate("");
+                        // setDescription("");
+                        // setThoughts("");
+                        // setLink("");
+                    }}
+                >
+                    Save
+                </button>
             </form>
         </>
     )

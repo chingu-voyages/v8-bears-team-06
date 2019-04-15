@@ -6,15 +6,24 @@ import {
   GraphQLNonNull
 } from "graphql";
 import jwt from "jsonwebtoken";
+import { GraphQLDate } from "graphql-iso-date";
 
 import { User } from "../models/user";
+import { Work } from "../models/work";
 
 const UserType = new GraphQLObjectType({
   name: "User",
   fields: () => ({
     id: { type: GraphQLID },
     email: { type: GraphQLString },
-    password: { type: GraphQLString }
+    password: { type: GraphQLString },
+    works: {
+      type: WorkType,
+      args: {},
+      resolve: (parent, args, context, info) => {
+        return [];
+      }
+    }
   })
 });
 
@@ -22,6 +31,18 @@ const AuthDataType = new GraphQLObjectType({
   name: "AuthData",
   fields: () => ({
     token: { type: GraphQLString }
+  })
+});
+
+const WorkType = new GraphQLObjectType({
+  name: "WorkType",
+  fields: () => ({
+    title: { type: GraphQLString },
+    startDate: { type: GraphQLDate },
+    endDate: { type: GraphQLDate },
+    description: { type: GraphQLString },
+    thoughts: { type: GraphQLString },
+    link: { type: GraphQLString }
   })
 });
 
@@ -80,6 +101,29 @@ const Mutation = new GraphQLObjectType({
           password: args.password
         });
         return user.save();
+      }
+    },
+
+    addWork: {
+      type: WorkType,
+      args: {
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        startDate: { type: new GraphQLNonNull(GraphQLString) },
+        endDate: { type: new GraphQLNonNull(GraphQLString) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
+        thoughts: { type: GraphQLString },
+        link: { type: GraphQLString }
+      },
+      resolve(parent, args) {
+        let work = new Work({
+          title: args.title,
+          startDate: args.startDate,
+          endDate: args.endDate,
+          description: args.description,
+          thoughts: args.thoughts,
+          link: args.link
+        });
+        return work.save();
       }
     }
   }

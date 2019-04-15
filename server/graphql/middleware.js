@@ -1,5 +1,5 @@
 export const authenticated = next => (root, args, context, info) => {
-  if (!context.user.isLoggedIn) {
+  if (!context.user.loggedIn) {
     throw new Error(`Unauthenticated!`);
   }
 

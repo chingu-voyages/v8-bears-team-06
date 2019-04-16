@@ -11,6 +11,7 @@ import { GraphQLDate } from "graphql-iso-date";
 
 import { User } from "../models/user";
 import { Work } from "../models/work";
+import { authenticated } from "./middleware";
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -80,7 +81,7 @@ const RootQuery = new GraphQLObjectType({
     },
     works: {
       type: new GraphQLList(WorkType),
-      resolve(parent, args){
+      resolve: async authenticated(parent, args){
         return Work.find({});
       }
     }

@@ -2,7 +2,7 @@ import React from "react";
 import { ApolloConsumer } from "react-apollo";
 
 import Layout from "../components/layouts/Layout";
-import ShowWork from "../components/SignUpBox";
+import ShowWork from "../components/ShowWork";
 
 const ListWork = () => {
   return (

@@ -81,9 +81,10 @@ const RootQuery = new GraphQLObjectType({
     },
     works: {
       type: new GraphQLList(WorkType),
-      resolve: async authenticated(parent, args){
-        return Work.find({});
-      }
+      resolve: authenticated(async(parent, args, context) => {
+        const showWorks = await Work.find({});
+        return showWorks;
+      })
     }
   }
 });
@@ -122,7 +123,7 @@ const Mutation = new GraphQLObjectType({
         thoughts: { type: GraphQLString },
         link: { type: GraphQLString }
       },
-      resolve(parent, args) {
+      resolve: authenticated(async(parent, args, context) => {
         let work = new Work({
           title: args.title,
           startDate: args.startDate,
@@ -132,7 +133,7 @@ const Mutation = new GraphQLObjectType({
           link: args.link
         });
         return work.save();
-      }
+      })
     }
   }
 });

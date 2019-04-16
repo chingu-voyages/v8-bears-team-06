@@ -3,7 +3,8 @@ import {
   GraphQLID,
   GraphQLString,
   GraphQLSchema,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLList
 } from "graphql";
 import jwt from "jsonwebtoken";
 import { GraphQLDate } from "graphql-iso-date";
@@ -35,7 +36,7 @@ const AuthDataType = new GraphQLObjectType({
 });
 
 const WorkType = new GraphQLObjectType({
-  name: "WorkType",
+  name: "Work",
   fields: () => ({
     title: { type: GraphQLString },
     startDate: { type: GraphQLDate },
@@ -75,6 +76,12 @@ const RootQuery = new GraphQLObjectType({
           expiresIn: "1h"
         });
         return { token };
+      }
+    },
+    works: {
+      type: new GraphQLList(WorkType),
+      resolve(parent, args){
+        return Work.find({});
       }
     }
   }

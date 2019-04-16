@@ -161,9 +161,6 @@ const AddWork = ({ apolloClient }) =>{
                             mutation: addWorkMutation,
                             variables: {title, startDate, endDate, description, thoughts, link}
                         });
-                        console.log(title)
-                        console.log(startDate)
-                        console.log(link)
                         // setTitle("");
                         // setStartDate("");
                         // setEndDate("");

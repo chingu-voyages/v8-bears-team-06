@@ -7,7 +7,7 @@ const schema = new mongoose.Schema({
   description: String,
   thoughts: String,
   link: String,
-  // author: {
+  // user: {
   //     id: {
   //         type: mongoose.schema.Types.ObjectID,
   //         ref: "User"

@@ -18,7 +18,7 @@ class ShowWorks extends Component {
     displayWorks(){
         var data = this.props.data;
         if(data.loading){
-            return( <div>Loading books...</div> );
+            return( <div>Loading...</div> );
         } else {
             return data.works.map(work => {
                 return(

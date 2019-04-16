@@ -43,7 +43,7 @@ const withStore = App => {
   };
 };
 
-const PUBLIC_PAGES = ["/", "/login", "/signup", "/howitworks", "/addworktest"];
+const PUBLIC_PAGES = ["/", "/login", "/signup", "/howitworks", "/addworktest", "/showworks"];
 
 function auth(context) {
   const { token } = nextCookie(context);

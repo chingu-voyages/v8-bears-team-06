@@ -6,6 +6,7 @@ import { Work } from "./models/work";
 
 export async function insertMockData() {
   const userFoo = await User.create({
+    _id: mongoose.Types.ObjectId(),
     email: "foo@foo.com",
     firstName: "Michael",
     lastName: "Bolton",
@@ -27,7 +28,11 @@ export async function insertMockData() {
       "I did a summer internship at Microsoft headquarters in Seattle last year.",
     password: "foo"
   });
-  await User.create({ email: "bar@bar.com", password: "bar" });
+  await User.create({
+    _id: mongoose.Types.ObjectId(),
+    email: "bar@bar.com",
+    password: "bar"
+  });
 
   await Work.insertMany([
     {

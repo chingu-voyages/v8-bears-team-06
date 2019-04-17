@@ -4,7 +4,8 @@ import {
   GraphQLString,
   GraphQLSchema,
   GraphQLNonNull,
-  GraphQLList
+  GraphQLList,
+  GraphQLInputObjectType
 } from "graphql";
 import jwt from "jsonwebtoken";
 import { GraphQLDate } from "graphql-iso-date";
@@ -23,6 +24,17 @@ const WorkType = new GraphQLObjectType({
     description: { type: GraphQLString },
     thoughts: { type: GraphQLString }
   })
+});
+
+const WorkInputType = new GraphQLInputObjectType({
+  name: "WorkInput",
+  fields: {
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    startDate: { type: GraphQLDate },
+    endDate: { type: GraphQLDate },
+    description: { type: GraphQLString },
+    thoughts: { type: GraphQLString }
+  }
 });
 
 const UserType = new GraphQLObjectType({
@@ -144,6 +156,24 @@ const Mutation = new GraphQLObjectType({
           }
         });
         return profile;
+      })
+    },
+    workCreate: {
+      type: WorkType,
+      args: {
+        work: { type: new GraphQLNonNull(WorkInputType) }
+      },
+      resolve: authenticated(async (parent, { work: workInput }, context) => {
+        const { title, startDate, endDate, description, thoughts } = workInput;
+        const work = await Work.create({
+          userId: context.user.id,
+          title,
+          startDate,
+          endDate,
+          description,
+          thoughts
+        });
+        return work;
       })
     }
   }

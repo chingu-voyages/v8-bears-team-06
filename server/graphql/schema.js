@@ -10,6 +10,7 @@ import jwt from "jsonwebtoken";
 import { GraphQLDate } from "graphql-iso-date";
 
 import { User } from "../models/user";
+import { Work } from "../models/work";
 import { authenticated } from "./middleware";
 
 const WorkType = new GraphQLObjectType({
@@ -39,10 +40,10 @@ const UserType = new GraphQLObjectType({
     experience: { type: GraphQLString },
     password: { type: GraphQLString },
     works: {
-      type: WorkType,
-      args: {},
-      resolve: (parent, args, context, info) => {
-        return [];
+      type: new GraphQLList(WorkType),
+      resolve: async ({ id }) => {
+        const works = await Work.find({ userId: id });
+        return works;
       }
     }
   })
@@ -59,13 +60,6 @@ const AuthDataType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    user: {
-      type: UserType,
-      args: { id: { type: GraphQLID } },
-      resolve: authenticated((parent, { id }) => {
-        return User.findById(id);
-      })
-    },
     profile: {
       type: UserType,
       args: { email: { type: GraphQLString } },

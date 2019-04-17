@@ -1,8 +1,8 @@
 import React from "react";
 import { ApolloConsumer } from "react-apollo";
 
-import Layout from "../components/layouts/Layout";
-import EditProfileBox from "../components/EditProfileBox";
+import Layout from "../../components/layouts/Layout";
+import EditProfileBox from "../../components/EditProfileBox";
 
 const EditProfile = () => {
   return (

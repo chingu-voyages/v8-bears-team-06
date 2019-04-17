@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-import Layout from "../components/layouts/Layout";
-import { AuthContext } from "../context";
+import Layout from "../../components/layouts/Layout";
+import { AuthContext } from "../../context";
 
 export const GET_USER_PROFILE = gql`
   query profile($email: String!) {
@@ -96,7 +96,7 @@ const Profile = () => {
         }}
       </Query>
       <div className="container w-75">
-        <Link href="/editprofile">
+        <Link href="/profile/edit">
           <a className="btn btn-info mt-5 ml-5 float-left" role="button">
             Edit Profile
           </a>

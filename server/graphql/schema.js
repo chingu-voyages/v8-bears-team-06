@@ -175,6 +175,27 @@ const Mutation = new GraphQLObjectType({
         });
         return work;
       })
+    },
+    workUpdate: {
+      type: WorkType,
+      args: {
+        id: { type: GraphQLString },
+        work: { type: new GraphQLNonNull(WorkInputType) }
+      },
+      resolve: authenticated(
+        async (parent, { id, work: workInput }, context) => {
+          const work = await Work.findById(id);
+          if (!work) {
+            throw new Error(`Work with id ${id} not found`);
+          }
+          if (context.user.id !== work.userId) {
+            throw new Error("Not authorized to update this work");
+          }
+          Object.assign(work, workInput);
+          work.save();
+          return work;
+        }
+      )
     }
   }
 });

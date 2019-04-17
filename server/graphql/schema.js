@@ -93,7 +93,7 @@ const RootQuery = new GraphQLObjectType({
           expiresIn: "1h"
         });
 
-        return { token: token, email: email };
+        return { token, email };
       }
     }
   }

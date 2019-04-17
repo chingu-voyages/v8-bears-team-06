@@ -9,20 +9,10 @@ import {
 import jwt from "jsonwebtoken";
 
 import { User } from "../models/user";
-import { Profile } from "../models/profile";
 import { authenticated } from "./middleware";
 
 const UserType = new GraphQLObjectType({
   name: "User",
-  fields: () => ({
-    id: { type: GraphQLID },
-    email: { type: GraphQLString },
-    password: { type: GraphQLString }
-  })
-});
-
-const ProfileType = new GraphQLObjectType({
-  name: "Profile",
   fields: () => ({
     id: { type: GraphQLID },
     email: { type: GraphQLString },
@@ -33,7 +23,8 @@ const ProfileType = new GraphQLObjectType({
     skills: { type: new GraphQLList(GraphQLString) },
     tagline: { type: GraphQLString },
     statement: { type: GraphQLString },
-    experience: { type: GraphQLString }
+    experience: { type: GraphQLString },
+    password: { type: GraphQLString }
   })
 });
 
@@ -56,10 +47,10 @@ const RootQuery = new GraphQLObjectType({
       })
     },
     profile: {
-      type: ProfileType,
+      type: UserType,
       args: { email: { type: GraphQLString } },
       resolve: authenticated(async (parent, args, context) => {
-        const profile = await Profile.findOne({ email: args.email });
+        const profile = await User.findOne({ email: args.email });
         return profile;
       })
     },
@@ -112,7 +103,7 @@ const Mutation = new GraphQLObjectType({
       }
     },
     addProfile: {
-      type: ProfileType,
+      type: UserType,
       args: {
         email: { type: GraphQLString },
         firstName: { type: GraphQLString },
@@ -125,18 +116,20 @@ const Mutation = new GraphQLObjectType({
         experience: { type: GraphQLString }
       },
       resolve: authenticated(async (parent, args, context) => {
-        let profile = new Profile({
-          email: args.email,
-          firstName: args.firstName,
-          lastName: args.lastName,
-          location: args.location,
-          workType: args.workType,
-          skills: args.skills,
-          tagline: args.tagline,
-          statement: args.statement,
-          experience: args.experience
+        const query = { email: args.email };
+        const profile = await User.findOneAndUpdate(query, {
+          $set: {
+            firstName: args.firstName,
+            lastName: args.lastName,
+            location: args.location,
+            workType: args.workType,
+            skills: args.skills,
+            tagline: args.tagline,
+            statement: args.statement,
+            experience: args.experience
+          }
         });
-        return profile.save();
+        return profile;
       })
     }
   }

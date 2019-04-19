@@ -33,12 +33,6 @@ const Navbar = () => {
                     <a className="nav-link">How it works</a>
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link href="/private">
-                    <a className="nav-link">Private</a>
-                  </Link>
-                </li>
-
                 {!isLoggedIn ? (
                   <>
                     <li className="nav-item">
@@ -57,6 +51,11 @@ const Navbar = () => {
                     <li className="nav-item">
                       <Link href="/profile">
                         <a className="nav-link">My Page</a>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link href="/work/create">
+                        <a className="nav-link">Create Work</a>
                       </Link>
                     </li>
                     <li className="nav-item">

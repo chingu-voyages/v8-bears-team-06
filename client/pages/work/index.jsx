@@ -2,9 +2,9 @@ import React from "react";
 import { Query } from "react-apollo";
 import { withRouter } from "next/router";
 
-import Layout from "../../components/layouts/Layout";
+import Layout from "@/client/components/layouts/Layout";
 import { GET_WORK_BY_ID } from "./queries";
-import routes from "../../../routes";
+import routes from "@/routes";
 
 const WorkPane = ({ title, startDate, endDate, description, thoughts }) => (
   <ul>

@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import { Mutation, Query } from "react-apollo";
 import { withRouter } from "next/router";
 
-import Layout from "../../components/layouts/Layout";
+import Layout from "@/client/components/layouts/Layout";
 import WorkForm from "./WorkForm";
 import { GET_WORK_BY_ID } from "./queries";
 

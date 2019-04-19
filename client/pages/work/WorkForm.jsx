@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import routes from "../../../routes";
+import routes from "@/routes";
 
 const WorkForm = ({
   submitWork,

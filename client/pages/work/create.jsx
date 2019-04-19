@@ -2,7 +2,7 @@ import React from "react";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 
-import Layout from "../../components/layouts/Layout";
+import Layout from "@/client/components/layouts/Layout";
 import WorkForm from "./WorkForm";
 
 export const CREATE_WORK = gql`

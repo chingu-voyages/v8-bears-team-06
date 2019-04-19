@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-import Layout from "../../components/layouts/Layout";
-import { AuthContext } from "../../context";
-import routes from "../../../routes";
+import Layout from "@/client/components/layouts/Layout";
+import { AuthContext } from "@/client/context";
+import routes from "@/routes";
 
 export const GET_USER_PROFILE = gql`
   query profile($email: String!) {

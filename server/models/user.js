@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
   email: String,
-  firstName: String,
-  lastName: String,
+  name: String,
   location: String,
   workType: String,
   skills: [String],

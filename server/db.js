@@ -8,8 +8,7 @@ export async function insertMockData() {
   const userFoo = await User.create({
     _id: mongoose.Types.ObjectId(),
     email: "foo@foo.com",
-    firstName: "Michael",
-    lastName: "Bolton",
+    name: "Michael Bolton",
     location: "Isle of Man",
     workType: "information technology",
     skills: [

@@ -42,8 +42,7 @@ const UserType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     email: { type: GraphQLString },
-    firstName: { type: GraphQLString },
-    lastName: { type: GraphQLString },
+    name: { type: GraphQLString },
     location: { type: GraphQLString },
     workType: { type: GraphQLString },
     skills: { type: new GraphQLList(GraphQLString) },
@@ -132,8 +131,7 @@ const Mutation = new GraphQLObjectType({
       type: UserType,
       args: {
         email: { type: GraphQLString },
-        firstName: { type: GraphQLString },
-        lastName: { type: GraphQLString },
+        name: { type: GraphQLString },
         location: { type: GraphQLString },
         workType: { type: GraphQLString },
         skills: { type: new GraphQLList(GraphQLString) },
@@ -145,8 +143,7 @@ const Mutation = new GraphQLObjectType({
         const query = { email: args.email };
         const profile = await User.findOneAndUpdate(query, {
           $set: {
-            firstName: args.firstName,
-            lastName: args.lastName,
+            name: args.name,
             location: args.location,
             workType: args.workType,
             skills: args.skills,

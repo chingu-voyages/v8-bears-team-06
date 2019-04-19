@@ -4,12 +4,38 @@ import {
   GraphQLString,
   GraphQLSchema,
   GraphQLNonNull,
-  GraphQLList
+  GraphQLList,
+  GraphQLInputObjectType
 } from "graphql";
 import jwt from "jsonwebtoken";
+import { GraphQLDate } from "graphql-iso-date";
 
 import { User } from "../models/user";
+import { Work } from "../models/work";
 import { authenticated } from "./middleware";
+
+const WorkType = new GraphQLObjectType({
+  name: "WorkType",
+  fields: () => ({
+    id: { type: GraphQLID },
+    title: { type: GraphQLString },
+    startDate: { type: GraphQLDate },
+    endDate: { type: GraphQLDate },
+    description: { type: GraphQLString },
+    thoughts: { type: GraphQLString }
+  })
+});
+
+const WorkInputType = new GraphQLInputObjectType({
+  name: "WorkInput",
+  fields: {
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    startDate: { type: GraphQLDate },
+    endDate: { type: GraphQLDate },
+    description: { type: GraphQLString },
+    thoughts: { type: GraphQLString }
+  }
+});
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -24,7 +50,14 @@ const UserType = new GraphQLObjectType({
     tagline: { type: GraphQLString },
     statement: { type: GraphQLString },
     experience: { type: GraphQLString },
-    password: { type: GraphQLString }
+    password: { type: GraphQLString },
+    works: {
+      type: new GraphQLList(WorkType),
+      resolve: async ({ id }) => {
+        const works = await Work.find({ userId: id });
+        return works;
+      }
+    }
   })
 });
 
@@ -39,13 +72,6 @@ const AuthDataType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    user: {
-      type: UserType,
-      args: { id: { type: GraphQLID } },
-      resolve: authenticated((parent, args) => {
-        return User.findById(args.id);
-      })
-    },
     profile: {
       type: UserType,
       args: { email: { type: GraphQLString } },
@@ -73,7 +99,7 @@ const RootQuery = new GraphQLObjectType({
           expiresIn: "1h"
         });
 
-        return { token: token, email: email };
+        return { token, email };
       }
     }
   }
@@ -131,6 +157,45 @@ const Mutation = new GraphQLObjectType({
         });
         return profile;
       })
+    },
+    workCreate: {
+      type: WorkType,
+      args: {
+        work: { type: new GraphQLNonNull(WorkInputType) }
+      },
+      resolve: authenticated(async (parent, { work: workInput }, context) => {
+        const { title, startDate, endDate, description, thoughts } = workInput;
+        const work = await Work.create({
+          userId: context.user.id,
+          title,
+          startDate,
+          endDate,
+          description,
+          thoughts
+        });
+        return work;
+      })
+    },
+    workUpdate: {
+      type: WorkType,
+      args: {
+        id: { type: GraphQLString },
+        work: { type: new GraphQLNonNull(WorkInputType) }
+      },
+      resolve: authenticated(
+        async (parent, { id, work: workInput }, context) => {
+          const work = await Work.findById(id);
+          if (!work) {
+            throw new Error(`Work with id ${id} not found`);
+          }
+          if (context.user.id !== work.userId) {
+            throw new Error("Not authorized to update this work");
+          }
+          Object.assign(work, workInput);
+          work.save();
+          return work;
+        }
+      )
     }
   }
 });

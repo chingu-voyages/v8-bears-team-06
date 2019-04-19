@@ -4,11 +4,11 @@ import jwt from "jsonwebtoken";
 import { schema } from "./schema";
 
 export function getUser(token, secretKey) {
-  const user = { loggedIn: true };
+  let user;
   try {
-    jwt.verify(token, secretKey);
+    user = jwt.verify(token, secretKey);
   } catch (err) {
-    user.loggedIn = false;
+    user = null;
   }
   return user;
 }
@@ -26,12 +26,9 @@ export function extractToken(authorization) {
 }
 
 export const createContext = secretKey => ({ req }) => {
-  const contextObj = {};
   const token = extractToken(req.headers.authorization);
   const user = getUser(token, secretKey);
-  contextObj.user = user;
-  contextObj.SECRET_KEY = secretKey;
-  return contextObj;
+  return { user, SECRET_KEY: secretKey };
 };
 
 export function createApolloServer(secretKey) {

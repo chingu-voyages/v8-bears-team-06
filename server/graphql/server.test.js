@@ -7,16 +7,17 @@ import jwt from "jsonwebtoken";
 import { getUser, extractToken } from "./server";
 
 describe("getUser", () => {
-  it("returns user object with loggedIn set to true when correct secret key is used", () => {
+  it("returns user object with id and email set when correct secret key is used", () => {
     const token = jwt.sign({ id: 1, email: "foo@foo.com" }, "secret");
     const user = getUser(token, "secret");
-    expect(user.loggedIn).toBe(true);
+    expect(user.id).toBe(1);
+    expect(user.email).toBe("foo@foo.com");
   });
 
-  it("returns user object with loggedIn set to false when wrong secret key is used", () => {
+  it("returns user object set to null when wrong secret key is used", () => {
     const token = jwt.sign({ id: 1, email: "foo@foo.com" }, "secret");
     const user = getUser(token, "wrong secret");
-    expect(user.loggedIn).toBe(false);
+    expect(user).toBe(null);
   });
 });
 

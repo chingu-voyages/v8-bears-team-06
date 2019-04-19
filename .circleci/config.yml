@@ -16,7 +16,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v2-dependencies-{{ checksum "package-lock.json" }}
 
       - run:
           name: Install dependencies
@@ -26,7 +26,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: v2-dependencies-{{ checksum "package-lock.json" }}
 
       - run: npm run format:check
       - run: npm run lint

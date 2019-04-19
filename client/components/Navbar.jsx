@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import Link from "next/link";
+import Router from "next/router";
 import { ApolloConsumer } from "react-apollo";
 
 import { AuthContext } from "../context";
@@ -52,18 +53,26 @@ const Navbar = () => {
                     </li>
                   </>
                 ) : (
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      href="#"
-                      onClick={async () => {
-                        logout();
-                        await client.cache.reset();
-                      }}
-                    >
-                      Logout
-                    </a>
-                  </li>
+                  <>
+                    <li className="nav-item">
+                      <Link href="/profile">
+                        <a className="nav-link">My Page</a>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <a
+                        className="nav-link"
+                        href="#"
+                        onClick={async () => {
+                          logout();
+                          await client.cache.reset();
+                          Router.push("/");
+                        }}
+                      >
+                        Logout
+                      </a>
+                    </li>
+                  </>
                 )}
               </ul>
             </div>

@@ -1,22 +1,10 @@
 import React from "react";
-import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { withRouter } from "next/router";
 
 import Layout from "../../components/layouts/Layout";
-
-export const GET_WORK_BY_ID = gql`
-  query workById($id: ID!) {
-    workById(id: $id) {
-      id
-      title
-      startDate
-      endDate
-      description
-      thoughts
-    }
-  }
-`;
+import { GET_WORK_BY_ID } from "./queries";
+import routes from "../../../routes";
 
 const WorkPane = ({ title, startDate, endDate, description, thoughts }) => (
   <ul>
@@ -50,13 +38,18 @@ const IndexPage = ({ router }) => {
             thoughts
           } = data.workById;
           return (
-            <WorkPane
-              title={title}
-              startDate={startDate}
-              endDate={endDate}
-              description={description}
-              thoughts={thoughts}
-            />
+            <>
+              <WorkPane
+                title={title}
+                startDate={startDate}
+                endDate={endDate}
+                description={description}
+                thoughts={thoughts}
+              />
+              <routes.Link route="workEdit" params={{ id }}>
+                <a className="btn btn-primary">Edit</a>
+              </routes.Link>
+            </>
           );
         }}
       </Query>

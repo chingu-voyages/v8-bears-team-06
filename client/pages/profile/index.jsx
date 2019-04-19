@@ -10,8 +10,7 @@ export const GET_USER_PROFILE = gql`
   query profile($email: String!) {
     profile(email: $email) {
       email
-      firstName
-      lastName
+      name
       location
       workType
       skills
@@ -45,11 +44,7 @@ const Profile = () => {
                 <div className="container text-left w-75">
                   <div className="text-center">
                     <h3 className="d-inline text-secondary name">
-                      {data.profile.firstName}
-                    </h3>
-                    <h3 className="d-inline text-secondary name">
-                      {" "}
-                      {data.profile.lastName}
+                      {data.profile.name}
                     </h3>
                   </div>
                   <div className="text-center mt-2">
@@ -57,9 +52,7 @@ const Profile = () => {
                   </div>
                   <div className="mt-5">
                     <h5 className="d-inline">Name: </h5>
-                    <p className="d-inline">
-                      {data.profile.firstName} {data.profile.lastName}
-                    </p>
+                    <p className="d-inline">{data.profile.name}</p>
                   </div>
                   <div className="mt-4">
                     <h5 className="d-inline">Location: </h5>

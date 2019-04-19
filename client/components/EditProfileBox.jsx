@@ -6,8 +6,7 @@ import Cookie from "js-cookie";
 export const addProfileMutation = gql`
   mutation addProfile(
     $email: String
-    $firstName: String
-    $lastName: String
+    $name: String
     $location: String
     $workType: String
     $skills: [String]
@@ -17,8 +16,7 @@ export const addProfileMutation = gql`
   ) {
     addProfile(
       email: $email
-      firstName: $firstName
-      lastName: $lastName
+      name: $name
       location: $location
       workType: $workType
       skills: $skills
@@ -27,8 +25,7 @@ export const addProfileMutation = gql`
       experience: $experience
     ) {
       email
-      firstName
-      lastName
+      name
       location
       workType
       skills
@@ -41,8 +38,7 @@ export const addProfileMutation = gql`
 
 const EditProfileBox = ({ apolloClient }) => {
   const email = Cookie.get("email");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [workType, setWorkType] = useState("");
   const [skillsList, setSkillsList] = useState("");
@@ -68,8 +64,7 @@ const EditProfileBox = ({ apolloClient }) => {
       mutation: addProfileMutation,
       variables: {
         email,
-        firstName,
-        lastName,
+        name,
         location,
         workType,
         skills,
@@ -88,35 +83,19 @@ const EditProfileBox = ({ apolloClient }) => {
         <h6 className="mt-2" suppressHydrationWarning={true}>
           Your email: {email}
         </h6>
-        <div className="row mt-5">
-          <div className="form-group col">
-            <label htmlFor="firstName" className="float-left">
-              First Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter your first name"
-              value={firstName}
-              onChange={event => {
-                setFirstName(event.target.value);
-              }}
-            />
-          </div>
-          <div className="form-group col">
-            <label htmlFor="lastName" className="float-left">
-              Last Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter your last name"
-              value={lastName}
-              onChange={event => {
-                setLastName(event.target.value);
-              }}
-            />
-          </div>
+        <div className="form-group">
+          <label htmlFor="name" className="float-left">
+            Full Name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter your full name"
+            value={name}
+            onChange={event => {
+              setName(event.target.value);
+            }}
+          />
         </div>
         <div className="form-group">
           <label htmlFor="country" className="float-left">

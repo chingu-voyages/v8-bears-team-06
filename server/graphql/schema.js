@@ -101,6 +101,19 @@ const RootQuery = new GraphQLObjectType({
 
         return { token, email };
       }
+    },
+    workById: {
+      type: WorkType,
+      args: {
+        id: { type: GraphQLID }
+      },
+      resolve: authenticated(async (parent, { id }) => {
+        const work = await Work.findById(id);
+        if (!work) {
+          throw new Error("Work not found");
+        }
+        return work;
+      })
     }
   }
 });

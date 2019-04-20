@@ -3,8 +3,9 @@ import Link from "next/link";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-import Layout from "../../components/layouts/Layout";
-import { AuthContext } from "../../context";
+import Layout from "@/client/components/layouts/Layout";
+import { AuthContext } from "@/client/context";
+import routes from "@/routes";
 
 export const GET_USER_PROFILE = gql`
   query profile($email: String!) {
@@ -17,6 +18,10 @@ export const GET_USER_PROFILE = gql`
       tagline
       statement
       experience
+      works {
+        id
+        title
+      }
     }
   }
 `;
@@ -81,6 +86,18 @@ const Profile = () => {
                   <div className="mt-4">
                     <h5 className="d-inline">Experience: </h5>
                     <p className="d-inline">{data.profile.experience}</p>
+                  </div>
+                  <div className="mt-4">
+                    <h5 className="d-inline">Works: </h5>
+                    <ul>
+                      {data.profile.works.map(work => (
+                        <li key={work.id}>
+                          <routes.Link route="work" params={{ id: work.id }}>
+                            <a>{work.title}</a>
+                          </routes.Link>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               )}

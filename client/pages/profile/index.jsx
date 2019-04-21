@@ -58,11 +58,6 @@ const Profile = () => {
                   {setVisibility("none")}
                   <h6>Oops! Something went wrong</h6>
                   <p>Please log out and log in again</p>
-                  <Link href="/profile/create">
-                    <a className="btn btn-primary btn-sm mt-3" role="button">
-                      Log Out
-                    </a>
-                  </Link>
                 </div>
               ) : (
                 <div className="container text-left w-75">

@@ -3,8 +3,8 @@ import Router from "next/router";
 import Link from "next/link";
 import gql from "graphql-tag";
 import { Mutation, Query } from "react-apollo";
-import { AuthContext } from "../../context";
-import Layout from "../../components/layouts/Layout";
+import Layout from "@/client/components/layouts/Layout";
+import { AuthContext } from "@/client/context";
 import { GET_PROFILE } from "./queries";
 
 export const EDIT_PROFILE = gql`

@@ -12,7 +12,7 @@ const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const JWT_SECRET_KEY =
   process.env.JWT_SECRET_KEY || "SHOULD_NOT_USE_THIS_IN_PRODUCTION";
-const nextApp = next({ dev, dir: "./client" });
+const nextApp = next({ dev, dir: "./src/client" });
 const nextHandler = routes.getRequestHandler(nextApp);
 
 export default async function main() {

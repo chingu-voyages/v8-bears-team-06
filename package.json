@@ -4,9 +4,9 @@
   "description": "Add-project-description-here | Voyage-8 | https://chingu.io/",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon index.js --exec babel-node",
-    "build": "next build ./client",
-    "start": "node -r esm index.js",
+    "start:dev": "nodemon src/index.js --exec babel-node",
+    "build": "next build src/client",
+    "start": "node -r esm src/index.js",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "format": "prettier --write \"**/*.{js,jsx,json,md,yml,yaml,html,graphql}\"",

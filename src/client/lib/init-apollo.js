@@ -21,7 +21,6 @@ function create(initialState) {
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors) {
-          console.log(graphQLErrors);
           graphQLErrors.map(({ message, locations, path }) =>
             logger.error(
               `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`

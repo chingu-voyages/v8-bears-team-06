@@ -1,15 +1,15 @@
 import React from 'react';
 import { ApolloConsumer } from "react-apollo";
-import AddWork from '../components/AddWork';
+import AddWorkBox from '../components/AddWorkBox';
 import Layout from '../components/layouts/Layout';
 
-const AddworkTest = () => {
+const Addwork = () => {
     return (
         <ApolloConsumer>
           {client => (
             <Layout>
               <div className="box-container">
-                <AddWork apolloClient={client} />
+                <AddWorkBox apolloClient={client} />
               </div>
               <style jsx>{`
                 .box-container {
@@ -27,4 +27,4 @@ const AddworkTest = () => {
       );
     };
 
-export default AddworkTest;
+export default Addwork;

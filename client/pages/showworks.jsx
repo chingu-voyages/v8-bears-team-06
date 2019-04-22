@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Link from "next/link";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 

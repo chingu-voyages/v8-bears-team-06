@@ -29,7 +29,7 @@ export const addWorkMutation = gql`
     }
 `;
 
-const AddWork = ({ apolloClient }) =>{
+const AddWorkBox = ({ apolloClient }) =>{
     // const email = Cookie.get("email");
     const [title, setTitle] = useState("");
     const [startDate, setStartDate] = useState("");
@@ -163,12 +163,6 @@ const AddWork = ({ apolloClient }) =>{
                             mutation: addWorkMutation,
                             variables: {title, startDate, endDate, description, thoughts, link}
                         });
-                        // setTitle("");
-                        // setStartDate("");
-                        // setEndDate("");
-                        // setDescription("");
-                        // setThoughts("");
-                        // setLink("");
                     }}
                 >
                     Save
@@ -178,4 +172,4 @@ const AddWork = ({ apolloClient }) =>{
     )
 }
 
-export default AddWork;
+export default AddWorkBox;

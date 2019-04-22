@@ -13,7 +13,7 @@ function getUser(token, secretKey) {
   return user;
 }
 
-const PUBLIC_OPERATIONS = ["login", "addUser", "works", "addWorks", "getWorksQuery"];
+const PUBLIC_OPERATIONS = ["login", "addUser", "works", "addWorks", "showworks", "addworktest"];
 
 export function createApolloServer(secretKey) {
   const context = ({ req }) => {

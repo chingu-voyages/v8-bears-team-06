@@ -1,41 +1,43 @@
-import React, { Component } from 'react';
-import { graphql } from "react-apollo";
-import gql from 'graphql-tag';
+import React, { useContext } from "react";
+import Link from "next/link";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
-const getWorksQuery = gql`
+import Layout from "../components/layouts/Layout";
+import { AuthContext } from "../context";
+
+export const getWorksQuery = gql`
     {
-        works {
+        query works {
             title
             link
             id
         }
     }
 `;
-class ShowWorks extends Component {
-    constructor(props){
-        super(props);
-    }
-    displayWorks(){
-        var data = this.props.data;
-        if(data.loading){
-            return( <div>Loading...</div> );
-        } else {
-            return data.works.map(work => {
-                return(
-                    <li key={ work.id }>{ work.title }</li>
-                );
-            })
-        }
-    }
-    render(){
-        return(
-            <div>
-                <ul id="work-list">
-                    { this.displayWorks() }
-                </ul>
-            </div>
-        );
-    }
+
+const ShowWorks = () => {
+    const value = useContext(AuthContext);
+    const email = value.email;
+
+    return (
+        <Layout>
+            <Query
+                query={getWorksQuery}
+                variables={{ email }}
+                fetchPolicy={"cache-and-network"}
+            >
+            {({data}) => {
+                return data.works.map(work => {
+                    return (
+                        <li key={work.id}>{work.title}</li>
+                    )
+                })
+            }}
+                
+            </Query>
+        </Layout>
+    )
 }
 
-export default graphql(getWorksQuery)(ShowWorks);
+export default ShowWorks;

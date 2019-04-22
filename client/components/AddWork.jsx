@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
+import Cookie from "js-cookie";
 
 export const addWorkMutation = gql`
     mutation addWork(
@@ -29,6 +30,7 @@ export const addWorkMutation = gql`
 `;
 
 const AddWork = ({ apolloClient }) =>{
+    // const email = Cookie.get("email");
     const [title, setTitle] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -156,8 +158,8 @@ const AddWork = ({ apolloClient }) =>{
                     type="submit"
                     className="btn btn-primary"
                     onClick={ async (event) => {
-                        event.preventDefault;
-                        const { data } = await apolloClient.mutate({
+                        event.preventDefault();
+                        await apolloClient.mutate({
                             mutation: addWorkMutation,
                             variables: {title, startDate, endDate, description, thoughts, link}
                         });

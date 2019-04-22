@@ -57,13 +57,17 @@ const EditPage = props => {
             if (loading) return "Loading";
             if (error) return <p>ERROR</p>;
 
-            var name = data.profile.name;
-            var location = data.profile.location;
-            var workType = data.profile.workType;
-            var skillsList = data.profile.skills.join(", ");
-            var tagline = data.profile.tagline;
-            var statement = data.profile.statement;
-            var experience = data.profile.experience;
+            let {
+              email,
+              name,
+              location,
+              workType,
+              skills,
+              tagline,
+              statement,
+              experience
+            } = data.profile;
+            let skillsList = skills.join(", ");
 
             const handleWorkSelect = event => {
               workType = event.target.value;

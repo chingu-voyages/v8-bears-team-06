@@ -50,12 +50,14 @@ const Profile = () => {
         {({ data, loading, error }) => {
           if (loading) return "Loading";
           if (error) return <p>ERROR</p>;
+          if (!data.profile) {
+            setVisibility("none");
+          }
 
           return (
             <div className="container text-center mt-5">
               {!data.profile ? (
                 <div>
-                  {setVisibility("none")}
                   <h6>Oops! Something went wrong</h6>
                   <p>Please log out and log in again</p>
                 </div>

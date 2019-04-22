@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Router from "next/router";
 import gql from "graphql-tag";
 
 export const addUserMutation = gql`
@@ -100,6 +101,9 @@ const SignUpBox = ({ apolloClient }) => {
               setErrorMessage("That email address is already in use.");
             } else {
               setSuccessMessage("Your account has been created!");
+              setTimeout(() => {
+                Router.push("/login");
+              }, 2000);
             }
             setEmail("");
             setPassword("");

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
@@ -29,8 +29,18 @@ export const GET_USER_PROFILE = gql`
 const Profile = () => {
   const value = useContext(AuthContext);
   const email = value.email;
+  const [visibility, setVisibility] = useState("block");
   return (
     <Layout>
+      <Link href="/profile/edit">
+        <a
+          className="btn btn-success btn-sm float-right mt-3 mr-2"
+          role="button"
+          style={{ display: visibility }}
+        >
+          Edit Profile
+        </a>
+      </Link>
       <h1 className="text-center mt-5 pt-5">Profile</h1>
       <Query
         query={GET_USER_PROFILE}
@@ -40,11 +50,17 @@ const Profile = () => {
         {({ data, loading, error }) => {
           if (loading) return "Loading";
           if (error) return <p>ERROR</p>;
+          if (!data.profile) {
+            setVisibility("none");
+          }
 
           return (
             <div className="container text-center mt-5">
               {!data.profile ? (
-                <h6>No Profile Yet</h6>
+                <div>
+                  <h6>Oops! Something went wrong</h6>
+                  <p>Please log out and log in again</p>
+                </div>
               ) : (
                 <div className="container text-left w-75">
                   <div className="text-center">
@@ -105,13 +121,6 @@ const Profile = () => {
           );
         }}
       </Query>
-      <div className="container w-75">
-        <Link href="/profile/edit">
-          <a className="btn btn-info mt-5 ml-5 float-left" role="button">
-            Edit Profile
-          </a>
-        </Link>
-      </div>
       <style jsx>{`
         @import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Cabin|Philosopher");
         h1,

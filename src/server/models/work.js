@@ -10,3 +10,5 @@ const schema = new mongoose.Schema({
 });
 
 export const Work = mongoose.model("Work", schema);
+
+// Work.createIndexes({ title: 1, description: 1, thoughts: 1 });

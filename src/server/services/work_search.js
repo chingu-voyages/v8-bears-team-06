@@ -11,7 +11,7 @@ export class WorkSearchService {
       },
       { score: { $meta: "textScore" } }
     );
-    return works.sort((work1, work2) => work1.score < work2.score);
+    return works.sort((work1, work2) => work2.score - work1.score);
   }
 }
 

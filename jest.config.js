@@ -11,5 +11,6 @@ module.exports = {
     "!client/next.config.js",
     "!coverage/**",
     "!jest.config.js"
-  ]
+  ],
+  testURL: "http://localhost/"
 };

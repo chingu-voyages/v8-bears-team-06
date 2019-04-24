@@ -50,15 +50,9 @@ export async function insertMockData() {
 export async function setupDbConnection(dev, mongoUri = "") {
   const mongoServer = new MongoMemoryServer({ binary: { version: "4.0.3" } });
   mongoUri = await mongoServer.getConnectionString();
-  mongoose.connect(mongoUri, { useNewUrlParser: true });
-  const conn = new Promise((resolve, reject) => {
-    mongoose.connection
-      .on("error", err => {
-        reject(err);
-      })
-      .once("open", () => {
-        return resolve();
-      });
+  await mongoose.connect(mongoUri, {
+    useCreateIndex: true,
+    useNewUrlParser: true
   });
-  return conn;
+  return mongoServer;
 }

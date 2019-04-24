@@ -6,7 +6,14 @@ const schema = new mongoose.Schema({
   startDate: Date,
   endDate: Date,
   description: String,
-  thoughts: String
+  thoughts: String,
+  score: Number
+});
+
+schema.index({
+  title: "text",
+  description: "text",
+  thoughts: "text"
 });
 
 export const Work = mongoose.model("Work", schema);

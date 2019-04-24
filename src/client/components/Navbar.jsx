@@ -4,13 +4,14 @@ import Router from "next/router";
 import { ApolloConsumer } from "react-apollo";
 
 import { AuthContext } from "../context";
+import SearchBox from "./SearchBox";
 
 const Navbar = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
   return (
     <ApolloConsumer>
       {client => (
-        <nav className="navbar fixed-top navbar-expand-md navbar-light bg-warning">
+        <nav className="navbar navbar-expand-md navbar-light bg-warning">
           <div className="container">
             <Link href="/">
               <a className="navbar-brand">goodWork</a>
@@ -28,11 +29,21 @@ const Navbar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <ul className="navbar-nav ml-auto">
+                {isLoggedIn && (
+                  <li className="nav-item">
+                    <SearchBox
+                      onEnter={query => {
+                        Router.push(`/search?query=${query}`);
+                      }}
+                    />
+                  </li>
+                )}
                 <li className="nav-item">
                   <Link href="/howitworks">
                     <a className="nav-link">How it works</a>
                   </Link>
                 </li>
+
                 {!isLoggedIn ? (
                   <>
                     <li className="nav-item">

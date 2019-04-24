@@ -4,11 +4,11 @@ exports[`With Snapshot Testing SignUpBox shows "Sign Up" 1`] = `
 <form
   className="jsx-678892718 form-signin mt-5"
 >
-  <h1
+  <h3
     className="jsx-678892718 mb-3"
   >
-    Sign Up
-  </h1>
+    Sign Up To Make A Difference
+  </h3>
   <div
     className="jsx-678892718 form-group"
   >
@@ -30,7 +30,7 @@ exports[`With Snapshot Testing SignUpBox shows "Sign Up" 1`] = `
       value=""
     />
     <small
-      className="jsx-678892718 form-text text-muted float-left mb-3"
+      className="jsx-678892718 form-text text-light float-left mb-3"
       id="emailHelp"
     >
       We'll never share your email with anyone else.
@@ -59,7 +59,7 @@ exports[`With Snapshot Testing SignUpBox shows "Sign Up" 1`] = `
       value=""
     />
     <small
-      className="jsx-678892718 form-text text-muted float-left mb-3"
+      className="jsx-678892718 form-text text-light float-left mb-3"
       id="passwordHelp"
     >
       Must contain at least 6 alphanumeric characters.

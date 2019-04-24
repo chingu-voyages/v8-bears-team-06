@@ -9,6 +9,7 @@ const schema = new mongoose.Schema({
   tagline: String,
   statement: String,
   experience: String,
+  imageId: String,
   password: String
 });
 

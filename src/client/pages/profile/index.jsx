@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-
+import { Image, CloudinaryContext, Transformation } from "cloudinary-react";
 import Layout from "@/client/components/layouts/Layout";
 import { AuthContext } from "@/client/context";
 import routes from "@/routes";
@@ -18,6 +18,7 @@ export const GET_USER_PROFILE = gql`
       tagline
       statement
       experience
+      imageId
       works {
         id
         title
@@ -41,7 +42,7 @@ const Profile = () => {
           Edit Profile
         </a>
       </Link>
-      <h1 className="text-center mt-5 pt-5">Profile</h1>
+      <h3 className="text-center mt-5 pt-5">Profile</h3>
       <Query
         query={GET_USER_PROFILE}
         variables={{ email }}
@@ -67,6 +68,42 @@ const Profile = () => {
                     <h3 className="d-inline text-secondary name">
                       {data.profile.name}
                     </h3>
+                    {!data.profile.imageId ? (
+                      <div>
+                        <small className="d-block mt-3">
+                          No profile image yet. Upload one now
+                        </small>
+                        <Link href="/profile/addimage">
+                          <a
+                            className="btn btn-outline-primary btn-sm mt-1 mb-2"
+                            role="button"
+                          >
+                            Add Image
+                          </a>
+                        </Link>
+                      </div>
+                    ) : (
+                      <div>
+                        <CloudinaryContext cloudName="dcagt6ogi">
+                          <Image publicId={data.profile.imageId}>
+                            <Transformation
+                              width="100"
+                              height="100"
+                              crop="scale"
+                              radius="max"
+                            />
+                          </Image>
+                        </CloudinaryContext>
+                        <Link href="/profile/addimage">
+                          <a
+                            className="btn btn-outline-secondary btn-sm mt-1 mb-2"
+                            role="button"
+                          >
+                            Change Image
+                          </a>
+                        </Link>
+                      </div>
+                    )}
                   </div>
                   <div className="text-center mt-2">
                     <p className="d-inline tagline">{data.profile.tagline}</p>

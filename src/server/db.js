@@ -25,7 +25,8 @@ export async function insertMockData() {
       "I want to make a change in the world, and I believe one of the greatest drivers of change is technological innovation. I want to create innovative software that will help all who use it.",
     experience:
       "I did a summer internship at Microsoft headquarters in Seattle last year.",
-    password: "foo"
+    password: "foo",
+    imageId: "ovt3y1ucmnn90fssieu0"
   });
   await User.create({
     _id: mongoose.Types.ObjectId(),

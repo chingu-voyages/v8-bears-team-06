@@ -49,6 +49,7 @@ const UserType = new GraphQLObjectType({
     tagline: { type: GraphQLString },
     statement: { type: GraphQLString },
     experience: { type: GraphQLString },
+    imageId: { type: GraphQLString },
     password: { type: GraphQLString },
     works: {
       type: new GraphQLList(WorkType),
@@ -163,6 +164,22 @@ const Mutation = new GraphQLObjectType({
             tagline: args.tagline,
             statement: args.statement,
             experience: args.experience
+          }
+        });
+        return profile;
+      })
+    },
+    addImage: {
+      type: UserType,
+      args: {
+        email: { type: GraphQLString },
+        imageId: { type: GraphQLString }
+      },
+      resolve: authenticated(async (parent, args, context) => {
+        const query = { email: args.email };
+        const profile = await User.findOneAndUpdate(query, {
+          $set: {
+            imageId: args.imageId
           }
         });
         return profile;

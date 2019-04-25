@@ -11,7 +11,7 @@ afterEach(cleanup);
 describe("With Enzyme", () => {
   it('SignUpBox shows "Sign Up"', () => {
     const signup = shallow(<SignUpBox />);
-    expect(signup.find("h1").text()).toEqual("Sign Up");
+    expect(signup.find("h3").text()).toEqual("Sign Up To Make A Difference");
   });
 });
 

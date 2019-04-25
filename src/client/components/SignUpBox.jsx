@@ -20,7 +20,7 @@ const SignUpBox = ({ apolloClient }) => {
   return (
     <>
       <form className="form-signin mt-5">
-        <h1 className="mb-3">Sign Up</h1>
+        <h3 className="mb-3">Sign Up To Make A Difference</h3>
         <div className="form-group">
           <label htmlFor="email" className="float-left required">
             Email address
@@ -40,7 +40,7 @@ const SignUpBox = ({ apolloClient }) => {
           />
           <small
             id="emailHelp"
-            className="form-text text-muted float-left mb-3"
+            className="form-text text-light float-left mb-3"
           >
             We&apos;ll never share your email with anyone else.
           </small>
@@ -64,7 +64,7 @@ const SignUpBox = ({ apolloClient }) => {
           />
           <small
             id="passwordHelp"
-            className="form-text text-muted float-left mb-3"
+            className="form-text text-light float-left mb-3"
           >
             Must contain at least 6 alphanumeric characters.
           </small>
@@ -74,7 +74,7 @@ const SignUpBox = ({ apolloClient }) => {
         <button
           data-testid="submitBtn"
           type="submit"
-          className="btn btn-primary float-left"
+          className="btn btn-warning float-left"
           onClick={async event => {
             setErrorMessage("");
             setSuccessMessage("");

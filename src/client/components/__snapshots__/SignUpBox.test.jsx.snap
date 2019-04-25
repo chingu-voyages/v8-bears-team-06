@@ -69,7 +69,7 @@ exports[`With Snapshot Testing SignUpBox shows "Sign Up" 1`] = `
     />
   </div>
   <button
-    className="jsx-678892718 btn btn-primary float-left"
+    className="jsx-678892718 btn btn-warning float-left"
     data-testid="submitBtn"
     onClick={[Function]}
     type="submit"

@@ -33,7 +33,7 @@ const Signup = () => {
                   rgba(0, 0, 0, 0.6),
                   rgba(0, 0, 0, 0.4)
                 ),
-                url(../static/mensShelter.jpg);
+                url(../static/shelter.jpg);
               height: 100vh;
               min-height: 500px;
               width: 100vw;

@@ -44,7 +44,7 @@ const SignInBox = ({ setAuthFailed, apolloClient }) => {
           setLoading(false);
         }}
       >
-        <h1 className="mb-3">Sign In</h1>
+        <h3 className="mb-3 text-light">Sign In</h3>
         <input
           type="email"
           className="form-control mb-3"
@@ -75,10 +75,10 @@ const SignInBox = ({ setAuthFailed, apolloClient }) => {
         >
           {loading ? "Signing In" : "Sign In"}
         </button>
-        <div className="clearfix">
+        <div className="clearfix text-light">
           Don&#39;t have an account?{" "}
           <Link href="/signup">
-            <a>Create one</a>
+            <a className="text-warning">Create one</a>
           </Link>
         </div>
       </form>

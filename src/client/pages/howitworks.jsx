@@ -17,8 +17,8 @@ const HowItWorks = () => (
               </div>
               <div className="text-center">
                 <p>
-                  Firstly, your going to need an account. Head over to the sign
-                  up page and create one now.
+                  Firstly, you&apos;re going to need an account. Head over to
+                  the sign up page and create one now.
                 </p>
                 <Link href="/signup">
                   <button type="button" className="btn btn-primary">

@@ -2,6 +2,7 @@ import { ApolloServer } from "apollo-server-express";
 import jwt from "jsonwebtoken";
 
 import { schema } from "./schema";
+import WorkSearchService from "../services/work_search";
 
 export function getUser(token, secretKey) {
   let user;
@@ -28,7 +29,8 @@ export function extractToken(authorization) {
 export const createContext = secretKey => ({ req }) => {
   const token = extractToken(req.headers.authorization);
   const user = getUser(token, secretKey);
-  return { user, SECRET_KEY: secretKey };
+  const workSearchService = WorkSearchService;
+  return { user, SECRET_KEY: secretKey, workSearchService };
 };
 
 export function createApolloServer(secretKey) {

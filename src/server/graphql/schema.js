@@ -114,6 +114,18 @@ const RootQuery = new GraphQLObjectType({
         }
         return work;
       })
+    },
+    searchWorks: {
+      type: new GraphQLList(WorkType),
+      args: {
+        query: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve: authenticated(
+        async (parent, { query }, { workSearchService }) => {
+          const works = await workSearchService.search(query);
+          return works;
+        }
+      )
     }
   }
 });

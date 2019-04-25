@@ -30,10 +30,10 @@ const Signup = () => {
               // display: flex;
               // flex-direction: column;
               background-image: linear-gradient(
-                  rgba(0, 0, 0, 0.6),
+                  rgba(0, 0, 0, 0.2),
                   rgba(0, 0, 0, 0.4)
                 ),
-                url(../static/shelter.jpg);
+                url(../static/beach-cleanup.jpg);
               height: 100vh;
               min-height: 500px;
               width: 100vw;

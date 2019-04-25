@@ -74,7 +74,7 @@ const SignUpBox = ({ apolloClient }) => {
         <button
           data-testid="submitBtn"
           type="submit"
-          className="btn btn-primary float-left"
+          className="btn btn-warning float-left"
           onClick={async event => {
             setErrorMessage("");
             setSuccessMessage("");

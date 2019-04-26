@@ -26,6 +26,7 @@ const CharityPage = () => (
       </div>
     </div>
     <style>{`
+      @import url("https://fonts.googleapis.com/css?family=Open+Sans|Cabin");
       h1 {
         font-size: 44px;
         font-weight: 700;

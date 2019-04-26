@@ -11,7 +11,7 @@ const Index = () => (
         <button type="button" className="btn btn-success">
           {"I'm a charity"}
         </button>
-        <button type="button" className="btn btn-outline-success">
+        <button type="button" className="btn btn-warning ml-5">
           {"I'm a volunteer"}
         </button>
       </div>

@@ -28,10 +28,6 @@ const VolunteerPage = () => (
     </div>
     <style>{`
         @import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Cabin|Philosopher");
-      body, html {
-        // height: 100vh;
-        // width: 100vw;
-      }
 
       h1 {
         font-size: 44px;

@@ -21,10 +21,6 @@ const Index = () => (
       </div>
     </div>
     <style>{`
-      body, html {
-        // height: 100vh;
-        // width: 100vw;
-      }
 
       .buttons {
         flex-direction: row;

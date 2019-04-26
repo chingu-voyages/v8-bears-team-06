@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from "next/link";
 import Layout from "../components/layouts/Layout";
 
 const Index = () => (
@@ -8,12 +8,16 @@ const Index = () => (
       <h1>goodWork</h1>
       <h3>Where charities and volunteers meet!</h3>
       <div className="buttons">
-        <button type="button" className="btn btn-success">
-          {"I'm a charity"}
-        </button>
-        <button type="button" className="btn btn-warning ml-5">
-          {"I'm a volunteer"}
-        </button>
+        <Link href="/charities">
+          <a role="button" className="btn btn-success">
+            {"I'm a charity"}
+          </a>
+        </Link>
+        <Link href="/volunteers">
+          <a role="button" className="btn btn-warning ml-5">
+            {"I'm a volunteer"}
+          </a>
+        </Link>
       </div>
     </div>
     <style>{`

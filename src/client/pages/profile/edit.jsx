@@ -170,12 +170,12 @@ const EditPage = props => {
 
                     <div className="form-group">
                       <label htmlFor="location" className="float-left">
-                        Location (ex: Mumbai, India)
+                        Location (ex: Mumbai, Maharashtra, India)
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter your city and country"
+                        placeholder="Enter your city, state/province and country"
                         defaultValue={location}
                         onChange={event => {
                           location = event.target.value;

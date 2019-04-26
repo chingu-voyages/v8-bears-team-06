@@ -9,7 +9,7 @@ export async function insertMockData() {
     _id: mongoose.Types.ObjectId(),
     email: "foo@foo.com",
     name: "Michael Bolton",
-    location: "Isle of Man",
+    location: "Austin, TX, USA",
     workType: "information technology",
     skills: [
       "javascript",

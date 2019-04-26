@@ -67,7 +67,7 @@ const Profile = () => {
                   ) : (
                     <div className="container profile-box text-left p-3">
                       <div className="text-center">
-                        <h2 className="d-inline text-light name">
+                        <h2 className="d-inline text-dark name">
                           {data.profile.name}
                         </h2>
                         {!data.profile.imageId ? (
@@ -93,7 +93,7 @@ const Profile = () => {
                           </div>
                         )}
                       </div>
-                      <div className="info p-2 mt-5 border border-warning rounded bg-light">
+                      <div className="info p-2 mt-5 border border-warning rounded text-light">
                         <div className="mt-1">
                           <h5 className="d-inline">Name: </h5>
                           <p className="d-inline">{data.profile.name}</p>
@@ -135,7 +135,7 @@ const Profile = () => {
                                   route="work"
                                   params={{ id: work.id }}
                                 >
-                                  <a>{work.title}</a>
+                                  <a className="text-warning">{work.title}</a>
                                 </routes.Link>
                               </li>
                             ))}
@@ -177,7 +177,8 @@ const Profile = () => {
         }
 
         .info {
-          box-shadow: inset 1px 1px 5px;
+          box-shadow: 1px 1px 5px;
+          background: rgba(0, 0, 0, 0.3);
         }
 
         .bg {

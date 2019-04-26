@@ -2,10 +2,11 @@ import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import { Image, CloudinaryContext, Transformation } from "cloudinary-react";
 import Layout from "@/client/components/layouts/Layout";
 import { AuthContext } from "@/client/context";
 import routes from "@/routes";
+
+import ProfileCard from "../../components/ProfileCard";
 
 export const GET_USER_PROFILE = gql`
   query profile($email: String!) {
@@ -44,7 +45,6 @@ const Profile = () => {
           </a>
         </Link>
         <div className="box-container">
-          <h2 className="heading text-center text-light">Profile</h2>
           <Query
             query={GET_USER_PROFILE}
             variables={{ email }}
@@ -58,18 +58,18 @@ const Profile = () => {
               }
 
               return (
-                <div className="container text-center mt-5">
+                <div className="container text-center mt-3">
                   {!data.profile ? (
                     <div>
                       <h6>Oops! Something went wrong</h6>
                       <p>Please log out and log in again</p>
                     </div>
                   ) : (
-                    <div className="container profile-box text-left border border-warning rounded bg-white p-3">
+                    <div className="container profile-box text-left p-3">
                       <div className="text-center">
-                        <h3 className="d-inline text-secondary name">
+                        <h2 className="d-inline text-light name">
                           {data.profile.name}
-                        </h3>
+                        </h2>
                         {!data.profile.imageId ? (
                           <div>
                             <small className="d-block mt-3">
@@ -77,7 +77,7 @@ const Profile = () => {
                             </small>
                             <Link href="/profile/addimage">
                               <a
-                                className="btn btn-outline-primary btn-sm mt-1 mb-2"
+                                className="btn btn-info btn-sm mt-1 mb-2"
                                 role="button"
                               >
                                 Add Image
@@ -86,78 +86,61 @@ const Profile = () => {
                           </div>
                         ) : (
                           <div>
-                            <CloudinaryContext cloudName="dcagt6ogi">
-                              <Image publicId={data.profile.imageId}>
-                                <Transformation
-                                  width="100"
-                                  height="100"
-                                  crop="scale"
-                                  radius="max"
-                                />
-                              </Image>
-                            </CloudinaryContext>
-                            <Link href="/profile/addimage">
-                              <a
-                                className="btn btn-outline-secondary btn-sm mt-2 mb-2"
-                                role="button"
-                              >
-                                Change Image
-                              </a>
-                            </Link>
+                            <ProfileCard
+                              publicId={data.profile.imageId}
+                              tagline={data.profile.tagline}
+                            />
                           </div>
                         )}
                       </div>
-                      <div className="text-center mt-2">
-                        <p className="d-inline tagline">
-                          {data.profile.tagline}
-                        </p>
-                      </div>
-                      <div className="mt-5">
-                        <h5 className="d-inline">Name: </h5>
-                        <p className="d-inline">{data.profile.name}</p>
-                      </div>
-                      <div className="mt-4">
-                        <h5 className="d-inline">Location: </h5>
-                        <p className="d-inline">{data.profile.location}</p>
-                      </div>
-                      <div className="mt-4">
-                        <h5 className="d-inline">Industry: </h5>
-                        <p className="d-inline">{data.profile.workType}</p>
-                      </div>
-                      <div className="mt-4">
-                        <h5 className="d-inline">Skills: </h5>
-                        <ul className="list-group d-inline">
-                          {data.profile.skills.map((skill, i) => {
-                            return (
-                              <li key={i} className="ml-4 d-inline">
-                                {skill}
+                      <div className="info p-2 mt-5 border border-warning rounded bg-light">
+                        <div className="mt-1">
+                          <h5 className="d-inline">Name: </h5>
+                          <p className="d-inline">{data.profile.name}</p>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="d-inline">Location: </h5>
+                          <p className="d-inline">{data.profile.location}</p>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="d-inline">Industry: </h5>
+                          <p className="d-inline">{data.profile.workType}</p>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="d-inline">Skills: </h5>
+                          <ul className="list-group d-inline">
+                            {data.profile.skills.map((skill, i) => {
+                              return (
+                                <li key={i} className="ml-4 d-inline">
+                                  {skill}
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="d-inline">Personal Statement: </h5>
+                          <p className="d-inline">{data.profile.statement}</p>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="d-inline">Experience: </h5>
+                          <p className="d-inline">{data.profile.experience}</p>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="d-inline">Works: </h5>
+                          <ul>
+                            {data.profile.works.map(work => (
+                              <li key={work.id}>
+                                <routes.Link
+                                  route="work"
+                                  params={{ id: work.id }}
+                                >
+                                  <a>{work.title}</a>
+                                </routes.Link>
                               </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                      <div className="mt-4">
-                        <h5 className="d-inline">Personal Statement: </h5>
-                        <p className="d-inline">{data.profile.statement}</p>
-                      </div>
-                      <div className="mt-4">
-                        <h5 className="d-inline">Experience: </h5>
-                        <p className="d-inline">{data.profile.experience}</p>
-                      </div>
-                      <div className="mt-4">
-                        <h5 className="d-inline">Works: </h5>
-                        <ul>
-                          {data.profile.works.map(work => (
-                            <li key={work.id}>
-                              <routes.Link
-                                route="work"
-                                params={{ id: work.id }}
-                              >
-                                <a>{work.title}</a>
-                              </routes.Link>
-                            </li>
-                          ))}
-                        </ul>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -176,16 +159,24 @@ const Profile = () => {
           font-family: "Cabin";
         }
 
+        a {
+          text-decoration: none;
+        }
+
         .box-container {
           text-align: center;
           width: 100%;
           max-width: 600px;
           margin: auto;
-          padding-top: 60px;
+          padding-top: 40px;
           padding-bottom: 40px;
         }
 
         .profile-box {
+          // box-shadow: inset 1px 1px 5px;
+        }
+
+        .info {
           box-shadow: inset 1px 1px 5px;
         }
 

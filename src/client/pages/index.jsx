@@ -37,7 +37,7 @@ const Index = () => (
       h1 {
         font-size: 64px;
         font-weight: 700;
-        margin: 0 0 125px 0;
+        margin: 0 0 65px 0;
         color: #2c3e50;
       }
 

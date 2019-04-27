@@ -172,10 +172,6 @@ const Profile = () => {
           padding-bottom: 40px;
         }
 
-        .profile-box {
-          // box-shadow: inset 1px 1px 5px;
-        }
-
         .info {
           box-shadow: 1px 1px 5px;
           background: rgba(0, 0, 0, 0.3);

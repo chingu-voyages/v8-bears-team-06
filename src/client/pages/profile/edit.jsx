@@ -4,6 +4,7 @@ import Link from "next/link";
 import gql from "graphql-tag";
 import { Mutation, Query } from "react-apollo";
 import Layout from "@/client/components/layouts/Layout";
+import ProfileCard from "../../components/ProfileCard";
 import { AuthContext } from "@/client/context";
 import { GET_PROFILE } from "./queries";
 
@@ -47,7 +48,7 @@ const EditPage = props => {
   return (
     <Layout>
       <div className="box-container">
-        <h3 className="mb-3">User Profile</h3>
+        <h3 className="mb-3">Edit User Profile</h3>
         <Query
           query={GET_PROFILE}
           variables={{ email }}
@@ -65,7 +66,8 @@ const EditPage = props => {
               skills,
               tagline,
               statement,
-              experience
+              experience,
+              imageId
             } = data.profile;
             let skillsList = skills.join(", ");
 
@@ -100,16 +102,44 @@ const EditPage = props => {
                       Router.push("/profile");
                     }}
                   >
-                    <h6 className="mt-2" suppressHydrationWarning={true}>
-                      {email}
-                    </h6>
+                    <h6 suppressHydrationWarning={true}>{email}</h6>
                     <div>
+                      {!data.profile.imageId ? (
+                        <div>
+                          <small className="d-block mt-3">
+                            No profile image yet. Upload one now
+                          </small>
+                          <Link href="/profile/addimage">
+                            <a
+                              className="btn btn-outline-info btn-sm mt-1 mb-2"
+                              role="button"
+                            >
+                              Add Image
+                            </a>
+                          </Link>
+                        </div>
+                      ) : (
+                        <div>
+                          <ProfileCard publicId={imageId} tagline={tagline} />
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="mt-4">
                       <Link href="/profile">
                         <a
                           className="btn btn-danger btn-sm float-right ml-1 mb-1"
                           role="button"
                         >
                           Cancel Edit
+                        </a>
+                      </Link>
+                      <Link href="/profile/addimage">
+                        <a
+                          className="btn btn-secondary btn-sm float-right ml-1 mb-1"
+                          role="button"
+                        >
+                          Change Image
                         </a>
                       </Link>
                       <button
@@ -119,6 +149,7 @@ const EditPage = props => {
                         Save Profile
                       </button>
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="name" className="float-left">
                         Full Name
@@ -134,14 +165,15 @@ const EditPage = props => {
                         }}
                       />
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="location" className="float-left">
-                        Location (ex: Mumbai, India)
+                        Location (ex: Mumbai, Maharashtra, India)
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter your city and country"
+                        placeholder="Enter your city, state/province and country"
                         defaultValue={location}
                         onChange={event => {
                           location = event.target.value;
@@ -218,6 +250,7 @@ const EditPage = props => {
                         <option value="translation">Translation</option>
                       </select>
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="skillsList" className="float-left">
                         Skills (ex: web development, electronics)
@@ -232,10 +265,12 @@ const EditPage = props => {
                         }}
                       />
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="tagline" className="float-left">
                         Tagline (ex: A software developer with over six years
-                        experience who loves building awesome applications)
+                        experience who loves building awesome applications) -
+                        displayed with profile picture only
                       </label>
                       <textarea
                         type="text"
@@ -247,6 +282,7 @@ const EditPage = props => {
                         }}
                       />
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="statement" className="float-left">
                         Personal Statement (This one&apos;s totally up to you.)
@@ -261,6 +297,7 @@ const EditPage = props => {
                         }}
                       />
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="experience" className="float-left">
                         Experience (Talk about your most relevant work

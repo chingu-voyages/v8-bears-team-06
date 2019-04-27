@@ -32,10 +32,10 @@ const AddImage = props => {
 
     const formData = new FormData();
     formData.append("file", selectedFile);
-    formData.append("upload_preset", "aqzs3lv0");
+    formData.append("upload_preset", process.env.UPLOAD_PRESET);
 
     const response = await axios.post(
-      "https://api.cloudinary.com/v1_1/dcagt6ogi/image/upload/",
+      `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/image/upload/`,
       formData
     );
     setImageId(response.data.public_id);
@@ -58,7 +58,7 @@ const AddImage = props => {
             Upload Image
           </button>
         </form>
-        <CloudinaryContext cloudName="dcagt6ogi">
+        <CloudinaryContext cloudName={process.env.CLOUD_NAME}>
           <Image publicId={imageId}>
             <Transformation
               width="150"

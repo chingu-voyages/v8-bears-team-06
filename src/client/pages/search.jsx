@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
 import Layout from "../components/layouts/Layout";
+import Alert from "../components/atom/Alert";
 import routes from "@/routes";
 
 export const SEARCH_WORKS = gql`
@@ -11,46 +12,63 @@ export const SEARCH_WORKS = gql`
     searchWorks(query: $query) {
       id
       title
+      description
     }
   }
 `;
 
-const WorkCard = ({ id, title }) => (
-  <ul>
-    <li>
+const WorkCard = ({ id, title, description }) => (
+  <div className="card" style={{ width: "18rem" }}>
+    <div className="card-body">
+      <h5 className="card-title">title</h5>
+      <p className="card-text">{description}</p>
       <routes.Link route="work" params={{ id }}>
-        <a>
-          <h2>{title}</h2>
-        </a>
+        <a className="btn btn-primary">See more</a>
       </routes.Link>
-    </li>
-  </ul>
+    </div>
+  </div>
 );
 
 const SearchPage = ({ router }) => {
   const { query } = router.query;
   return (
-    <Layout>
-      <Query query={SEARCH_WORKS} variables={{ query }}>
-        {({ data, loading, error }) => {
-          if (loading) {
-            return <div>Loading...</div>;
+    <>
+      <Layout>
+        <Query query={SEARCH_WORKS} variables={{ query }}>
+          {({ data, loading, error }) => {
+            if (loading) {
+              return <div>Loading...</div>;
+            }
+            if (error) {
+              return <div>Unexpected Error</div>;
+            }
+            if (data.searchWorks.length === 0) {
+              return <Alert variant="info">No matching works found</Alert>;
+            }
+            return (
+              <ul>
+                {data.searchWorks.map(work => (
+                  <li key={work.id} className="work-card-item">
+                    <WorkCard
+                      id={work.id}
+                      title={work.title}
+                      description={work.description}
+                    />
+                  </li>
+                ))}
+              </ul>
+            );
+          }}
+        </Query>
+      </Layout>
+      <style jsx>
+        {`
+          .work-card-item {
+            list-style: none;
           }
-          if (error) {
-            return <div>Unexpected Error</div>;
-          }
-          return (
-            <ul>
-              {data.searchWorks.map(work => (
-                <li key={work.id}>
-                  <WorkCard id={work.id} title={work.title} />
-                </li>
-              ))}
-            </ul>
-          );
-        }}
-      </Query>
-    </Layout>
+        `}
+      </style>
+    </>
   );
 };
 

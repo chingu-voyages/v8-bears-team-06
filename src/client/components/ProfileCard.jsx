@@ -18,8 +18,28 @@ const ProfileCard = props => {
               </Image>
             </CloudinaryContext>
           </div>
-          <p className="d-inline text-dark tagline ml-3 mt-3 w-75">
+          <p className="d-inline text-dark text-left ml-3 mt-3 w-75">
             {props.tagline}
+          </p>
+        </div>
+        <div>
+          <p className="text-left">
+            <strong>Name: </strong>
+            {props.name}
+          </p>
+          <p className="text-left">
+            <strong>Industry: </strong>
+            {props.industry}
+          </p>
+          <p className="text-left">
+            <strong>Skills: </strong>
+            {props.skills.map((skill, i) => {
+              return (
+                <li key={i} className="ml-4 d-inline">
+                  {skill}
+                </li>
+              );
+            })}
           </p>
         </div>
       </div>
@@ -30,7 +50,7 @@ const ProfileCard = props => {
           box-shadow: inset 1px 1px 5px;
         }
 
-        .tagline {
+        p {
           font-family: "Raleway";
         }
       `}</style>

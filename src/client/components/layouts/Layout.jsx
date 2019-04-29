@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 const Layout = props => (
   <>
@@ -32,6 +33,7 @@ const Layout = props => (
     </Head>
     <Navbar />
     <div>{props.children}</div>
+    <Footer />
   </>
 );
 

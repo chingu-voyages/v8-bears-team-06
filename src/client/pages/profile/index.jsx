@@ -1,32 +1,12 @@
 import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
 import Layout from "@/client/components/layouts/Layout";
 import { AuthContext } from "@/client/context";
 import routes from "@/routes";
 
 import ProfileCard from "../../components/ProfileCard";
-
-export const GET_USER_PROFILE = gql`
-  query profile($email: String!) {
-    profile(email: $email) {
-      email
-      name
-      location
-      workType
-      skills
-      tagline
-      statement
-      experience
-      imageId
-      works {
-        id
-        title
-      }
-    }
-  }
-`;
+import { GET_USER_PROFILE } from "./queries";
 
 const Profile = () => {
   const value = useContext(AuthContext);
@@ -67,9 +47,7 @@ const Profile = () => {
                   ) : (
                     <div className="container profile-box text-left p-3">
                       <div className="text-center">
-                        <h2 className="d-inline text-dark name">
-                          {data.profile.name}
-                        </h2>
+                        <h2 className="d-inline text-dark name">Profile</h2>
                         {!data.profile.imageId ? (
                           <div>
                             <small className="d-block mt-3">
@@ -87,16 +65,18 @@ const Profile = () => {
                         ) : (
                           <div>
                             <ProfileCard
+                              name={data.profile.name}
                               publicId={data.profile.imageId}
                               tagline={data.profile.tagline}
+                              industry={data.profile.workType}
+                              skills={data.profile.skills}
                             />
                           </div>
                         )}
                       </div>
                       <div className="info p-2 mt-5 border border-warning rounded text-light">
-                        <div className="mt-1">
-                          <h5 className="d-inline">Name: </h5>
-                          <p className="d-inline">{data.profile.name}</p>
+                        <div className="mt-1 text-center">
+                          <h2 className="d-inline">{data.profile.name}</h2>
                         </div>
                         <div className="mt-4">
                           <h5 className="d-inline">Location: </h5>
@@ -117,6 +97,10 @@ const Profile = () => {
                               );
                             })}
                           </ul>
+                        </div>
+                        <div className="mt-4">
+                          <h5 className="d-inline">Contact: </h5>
+                          <p className="d-inline">{data.profile.email}</p>
                         </div>
                         <div className="mt-4">
                           <h5 className="d-inline">Personal Statement: </h5>
@@ -153,6 +137,7 @@ const Profile = () => {
       <style jsx>{`
         @import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Cabin|Philosopher");
         h1,
+        h2,
         h5,
         h6,
         .heading {
@@ -178,8 +163,6 @@ const Profile = () => {
         }
 
         .bg {
-          // display: flex;
-          // flex-direction: column;
           background-image: linear-gradient(
               rgba(0, 0, 0, 0.3),
               rgba(0, 0, 0, 0.3)

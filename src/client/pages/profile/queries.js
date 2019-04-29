@@ -35,15 +35,3 @@ export const GET_USER_PROFILE = gql`
     }
   }
 `;
-
-export const GET_PROFILE_CARDS = gql`
-  query profileCards {
-    profileCards {
-      name
-      workType
-      skills
-      tagline
-      imageId
-    }
-  }
-`;

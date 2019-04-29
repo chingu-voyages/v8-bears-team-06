@@ -80,6 +80,15 @@ const RootQuery = new GraphQLObjectType({
         return profile;
       })
     },
+    profileCards: {
+      type: new GraphQLList(UserType),
+      resolve: authenticated(async (parent, args, context) => {
+        const user = await User.find({}).select(
+          "name workType skills tagline imageId"
+        );
+        return user;
+      })
+    },
     login: {
       type: AuthDataType,
       args: {

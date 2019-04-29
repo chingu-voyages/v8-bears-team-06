@@ -1,21 +1,9 @@
 import React from "react";
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
 import Layout from "@/client/components/layouts/Layout";
 
 import ProfileCard from "../../components/ProfileCard";
-
-export const GET_PROFILE_CARDS = gql`
-  query profileCards {
-    profileCards {
-      name
-      workType
-      skills
-      tagline
-      imageId
-    }
-  }
-`;
+import GET_PROFILE_CARDS from "./queries";
 
 const ProfileList = () => {
   return (

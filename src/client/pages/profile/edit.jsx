@@ -48,7 +48,7 @@ const EditPage = props => {
   return (
     <Layout>
       <div className="box-container">
-        <h3 className="mb-3">Edit User Profile</h3>
+        <h2 className="mb-3">Edit Profile</h2>
         <Query
           query={GET_PROFILE}
           variables={{ email }}
@@ -102,7 +102,6 @@ const EditPage = props => {
                       Router.push("/profile");
                     }}
                   >
-                    <h6 suppressHydrationWarning={true}>{email}</h6>
                     <div>
                       {!data.profile.imageId ? (
                         <div>
@@ -120,7 +119,13 @@ const EditPage = props => {
                         </div>
                       ) : (
                         <div>
-                          <ProfileCard publicId={imageId} tagline={tagline} />
+                          <ProfileCard
+                            name={name}
+                            publicId={imageId}
+                            tagline={tagline}
+                            industry={workType}
+                            skills={skills}
+                          />
                         </div>
                       )}
                     </div>

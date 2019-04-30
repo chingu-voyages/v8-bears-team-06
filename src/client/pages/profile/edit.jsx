@@ -49,11 +49,7 @@ const EditPage = props => {
     <Layout>
       <div className="box-container">
         <h2 className="mb-3">Edit Profile</h2>
-        <Query
-          query={GET_PROFILE}
-          variables={{ email }}
-          fetchPolicy={"cache-and-network"}
-        >
+        <Query query={GET_PROFILE} variables={{ email }}>
           {({ data, loading, error }) => {
             if (loading) return "Loading";
             if (error) return <p>ERROR</p>;

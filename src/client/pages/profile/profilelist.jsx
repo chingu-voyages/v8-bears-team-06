@@ -2,6 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Layout from "@/client/components/layouts/Layout";
+import routes from "@/routes";
 
 import ProfileCard from "../../components/ProfileCard";
 
@@ -13,6 +14,7 @@ export const GET_PROFILE_CARDS = gql`
       skills
       tagline
       imageId
+      id
     }
   }
 `;
@@ -39,14 +41,23 @@ const ProfileList = () => {
                     <div className="container profile-box text-left p-3">
                       {data.profileCards.map((card, i) => {
                         return (
-                          <ProfileCard
-                            key={i}
-                            name={card.name}
-                            publicId={card.imageId}
-                            tagline={card.tagline}
-                            industry={card.workType}
-                            skills={card.skills}
-                          />
+                          <div key={i}>
+                            <ProfileCard
+                              name={card.name}
+                              publicId={card.imageId}
+                              tagline={card.tagline}
+                              industry={card.workType}
+                              skills={card.skills}
+                            />
+                            <routes.Link
+                              route="profileView"
+                              params={{ id: card.id }}
+                            >
+                              <a className="btn btn-primary btn-sm mt-2">
+                                View Full Profile
+                              </a>
+                            </routes.Link>
+                          </div>
                         );
                       })}
                     </div>

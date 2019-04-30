@@ -84,7 +84,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(UserType),
       resolve: authenticated(async (parent, args, context) => {
         const user = await User.find({}).select(
-          "name workType skills tagline imageId"
+          "name workType skills tagline imageId id"
         );
         return user;
       })
@@ -110,6 +110,17 @@ const RootQuery = new GraphQLObjectType({
 
         return { token, email };
       }
+    },
+    profileById: {
+      type: UserType,
+      args: { id: { type: GraphQLID } },
+      resolve: authenticated(async (parent, { id }) => {
+        const profile = await User.findById(id);
+        if (!User) {
+          throw new Error("Profile not found");
+        }
+        return profile;
+      })
     },
     workById: {
       type: WorkType,

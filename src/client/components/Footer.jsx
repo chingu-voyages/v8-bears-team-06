@@ -1,9 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import Link from "next/link";
-import Router from "next/router";
-import { Consumer } from "react-apollo";
-
-import { AuthContext } from "../context";
 
 const Footer = () => {
   return (
@@ -92,33 +88,16 @@ const Footer = () => {
                 <li className="quick-links-item">
                   <Link href="/">
                     <a className="footer-link">
-                      <i className="fa fa-angle-double-right icon" />About Us
+                      <i className="fa fa-angle-double-right icon" />
+                      About Us
                     </a>
                   </Link>
                 </li>
                 <li className="quick-links-item">
                   <Link href="/">
                     <a className="footer-link">
-                      <i className="fa fa-angle-double-right icon" />FAQ
-                    </a>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4">
-              <h5 className="footer-title d-none d-sm-block">Quick links</h5>
-              <ul className="list-unstyled quick-links">
-                <li className="quick-links-item">
-                  <Link href="/">
-                    <a className="footer-link">
-                      <i className="fa fa-angle-double-right icon" />Support Us
-                    </a>
-                  </Link>
-                </li>
-                <li className="quick-links-item">
-                  <Link href="/">
-                    <a className="footer-link">
-                      <i className="fa fa-angle-double-right icon" />Patrons
+                      <i className="fa fa-angle-double-right icon" />
+                      FAQ
                     </a>
                   </Link>
                 </li>
@@ -130,14 +109,37 @@ const Footer = () => {
                 <li className="quick-links-item">
                   <Link href="/">
                     <a className="footer-link">
-                      <i className="fa fa-angle-double-right icon" />Contact Us
+                      <i className="fa fa-angle-double-right icon" />
+                      Support Us
                     </a>
                   </Link>
                 </li>
                 <li className="quick-links-item">
                   <Link href="/">
                     <a className="footer-link">
-                      <i className="fa fa-angle-double-right icon" />Terms
+                      <i className="fa fa-angle-double-right icon" />
+                      Patrons
+                    </a>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="col-xs-12 col-sm-4 col-md-4">
+              <h5 className="footer-title d-none d-sm-block">Quick links</h5>
+              <ul className="list-unstyled quick-links">
+                <li className="quick-links-item">
+                  <Link href="/">
+                    <a className="footer-link">
+                      <i className="fa fa-angle-double-right icon" />
+                      Contact Us
+                    </a>
+                  </Link>
+                </li>
+                <li className="quick-links-item">
+                  <Link href="/">
+                    <a className="footer-link">
+                      <i className="fa fa-angle-double-right icon" />
+                      Terms
                     </a>
                   </Link>
                 </li>

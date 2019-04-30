@@ -82,7 +82,7 @@ const Footer = () => {
       <footer className="footer bg-success">
         <div className="container">
           <div className="row text-center text-xs-center text-sm-left text-md-left">
-            <div className="col-xs-12 col-sm-4 col-md-4">
+            <div className="col-xs-12 col-sm-3 col-md-3 offset-sm-1 offset-md-1">
               <h5 className="footer-title">Quick links</h5>
               <ul className="list-unstyled quick-links">
                 <li className="quick-links-item">
@@ -103,7 +103,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-xs-12 col-sm-4 col-md-4">
+            <div className="col-xs-12 col-sm-3 col-md-3 offset-sm-1 offset-md-1">
               <h5 className="footer-title d-none d-sm-block">Quick links</h5>
               <ul className="list-unstyled quick-links">
                 <li className="quick-links-item">
@@ -124,7 +124,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-xs-12 col-sm-4 col-md-4">
+            <div className="col-xs-12 col-sm-3 col-md-3 offset-sm-1 offset-md-1">
               <h5 className="footer-title d-none d-sm-block">Quick links</h5>
               <ul className="list-unstyled quick-links">
                 <li className="quick-links-item">

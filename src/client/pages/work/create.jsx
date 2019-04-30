@@ -23,6 +23,7 @@ const CreatePage = props => {
       </div>
       <style jsx>{`
         .box-container {
+          min-height: calc(100vh - 400px);
           text-align: center;
           width: 100%;
           max-width: 600px;

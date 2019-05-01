@@ -6,7 +6,7 @@ import { Mutation, Query } from "react-apollo";
 import Layout from "@/client/components/layouts/Layout";
 import ProfileCard from "../../components/ProfileCard";
 import { AuthContext } from "@/client/context";
-import { GET_PROFILE } from "./queries";
+import { GET_USER_PROFILE } from "./queries";
 
 export const EDIT_PROFILE = gql`
   mutation addProfile(
@@ -50,7 +50,7 @@ const EditPage = props => {
       <div className="main">
         <div className="box-container">
           <h2 className="mb-3 text-light">Edit Profile</h2>
-          <Query query={GET_PROFILE} variables={{ email }}>
+          <Query query={GET_USER_PROFILE} variables={{ email }}>
             {({ data, loading, error }) => {
               if (loading) return "Loading";
               if (error) return <p>ERROR</p>;

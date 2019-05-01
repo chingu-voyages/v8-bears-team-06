@@ -14,11 +14,7 @@ const PublicProfile = ({ router }) => {
     <Layout>
       <div className="bg">
         <div className="box-container">
-          <Query
-            query={GET_PUBLIC_PROFILE}
-            variables={{ id }}
-            fetchPolicy={"cache-and-network"}
-          >
+          <Query query={GET_PUBLIC_PROFILE} variables={{ id }}>
             {({ data, loading, error }) => {
               if (loading) return "Loading";
               if (error) return <p>ERROR</p>;

@@ -71,7 +71,7 @@ const AddImage = props => {
         <p>
           You should choose an image that can be nicely squared, meaning the
           height and width are equal. All profile images will be displayed in a
-          circular frame with width and height equal to 150 pixels.
+          circular frame with width and height equal to 100 pixels.
         </p>
         {!imageId ? (
           <p>

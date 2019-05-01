@@ -7,7 +7,7 @@ const ProfileCard = props => {
       <div className="container">
         <div className="row p-2">
           <div id="image" className="d-inline">
-            <CloudinaryContext cloudName="dcagt6ogi">
+            <CloudinaryContext cloudName={process.env.CLOUD_NAME}>
               <Image publicId={props.publicId}>
                 <Transformation
                   width="100"

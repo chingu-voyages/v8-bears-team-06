@@ -176,7 +176,6 @@ const Profile = () => {
             url(../static/leone.jpg);
           height: 100%;
           min-height: 500px;
-          width: 100vw;
           background-position: center;
           background-repeat: no-repeat;
           background-size: cover;

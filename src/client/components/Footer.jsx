@@ -7,12 +7,14 @@ const Footer = () => {
       <style>
         {`
         @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+        @import url("https://fonts.googleapis.com/css?family=Open+Sans|Cabin|Raleway");
 
         .footer {
           padding: 60px 0;
         }
       
         .footer-title {
+          font-family: "Raleway";
           border-left: 3px solid #eeeeee;
           color:#ffffff;
           margin-bottom: 30px;
@@ -32,6 +34,7 @@ const Footer = () => {
       
         .footer-link {
           color: #ffffff;
+          font-family: "Raleway";
           text-decoration: none !important;
           background-color: transparent;
         }

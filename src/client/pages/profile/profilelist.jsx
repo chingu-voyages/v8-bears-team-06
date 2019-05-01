@@ -24,14 +24,14 @@ const ProfileList = () => {
     <Layout>
       <div className="bg">
         <div className="box-container">
-          <h2>Profiles</h2>
+          <h2 className="text-light">Members</h2>
           <Query query={GET_PROFILE_CARDS} fetchPolicy={"cache-and-network"}>
             {({ data, loading, error }) => {
               if (loading) return "Loading";
               if (error) return <p>ERROR</p>;
 
               return (
-                <div className="container text-center mt-3">
+                <div className="container text-center">
                   {!data.profileCards ? (
                     <div>
                       <h6>Oops! Something went wrong</h6>
@@ -79,6 +79,7 @@ const ProfileList = () => {
         }
 
         .box-container {
+          background: black;
           text-align: center;
           width: 100%;
           max-width: 600px;
@@ -88,11 +89,7 @@ const ProfileList = () => {
         }
 
         .bg {
-          background-image: linear-gradient(
-              rgba(0, 0, 0, 0.3),
-              rgba(0, 0, 0, 0.3)
-            ),
-            url(../static/leone.jpg);
+          background: lightgray;
           height: 100%;
           min-height: 500px;
           width: 100vw;

@@ -36,7 +36,10 @@ const EditPage = ({ router }) => {
               thoughts
             } = data.workById;
             return (
-              <Mutation mutation={EDIT_WORK}>
+              <Mutation
+                mutation={EDIT_WORK}
+                refetchQueries={[{ query: GET_WORK_BY_ID, variables: { id } }]}
+              >
                 {updateWork => (
                   <WorkForm
                     submitWork={updateWork}

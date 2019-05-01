@@ -6,22 +6,10 @@ import Layout from "@/client/components/layouts/Layout";
 import { GET_WORK_BY_ID } from "./queries";
 import routes from "@/routes";
 
-const WorkPane = ({ title, startDate, endDate, description, thoughts }) => (
-  <ul>
-    <li>Title: {title}</li>
-    <li>
-      Period: {startDate} ~ {endDate}
-    </li>
-    <li>Description: {description}</li>
-    <li>Thoughts: {thoughts}</li>
-  </ul>
-);
-
 const IndexPage = ({ router }) => {
   const { id } = router.query;
   return (
     <Layout>
-      <h1 className="text-center mt-5 pt-5">Work</h1>
       <Query query={GET_WORK_BY_ID} variables={{ id }}>
         {({ data, loading, error }) => {
           if (loading) {
@@ -39,16 +27,17 @@ const IndexPage = ({ router }) => {
           } = data.workById;
           return (
             <>
-              <WorkPane
-                title={title}
-                startDate={startDate}
-                endDate={endDate}
-                description={description}
-                thoughts={thoughts}
-              />
-              <routes.Link route="workEdit" params={{ id }}>
-                <a className="btn btn-primary">Edit</a>
-              </routes.Link>
+              <h1 className="text-center mt-5 pt-5">
+                {title}
+                <routes.Link route="workEdit" params={{ id }}>
+                  <a className="btn btn-primary">Edit</a>
+                </routes.Link>
+              </h1>
+              <p className="text-center">
+                {startDate} ~ {endDate}
+              </p>
+              <p className="text-center">{description}</p>
+              <p className="text-center">{thoughts}</p>
             </>
           );
         }}

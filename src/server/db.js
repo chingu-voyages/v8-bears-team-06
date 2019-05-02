@@ -1,8 +1,18 @@
 import mongoose from "mongoose";
 import MongoMemoryServer from "mongodb-memory-server";
-
 import { User } from "./models/user";
 import { Work } from "./models/work";
+import { logger } from "../logger";
+
+const dbUser = process.env.DB_USER;
+const dbPass = process.env.DB_PASS;
+
+const authData = {
+  useNewUrlParser: true,
+  useCreateIndex: true
+};
+
+const dbURI = `mongodb+srv://${dbUser}:${dbPass}@goodwork-qh1n9.mongodb.net/goodwork?retryWrites=true`;
 
 export async function insertMockData() {
   const userFoo = await User.create({
@@ -59,12 +69,24 @@ export async function insertMockData() {
   ]);
 }
 
-export async function setupDbConnection(dev, mongoUri = "") {
-  const mongoServer = new MongoMemoryServer({ binary: { version: "4.0.3" } });
-  mongoUri = await mongoServer.getConnectionString();
-  await mongoose.connect(mongoUri, {
-    useCreateIndex: true,
-    useNewUrlParser: true
-  });
-  return mongoServer;
+export async function setupDbConnection(dev) {
+  if (dev) {
+    const mongoServer = new MongoMemoryServer({ binary: { version: "4.0.3" } });
+    const mongoUri = await mongoServer.getConnectionString();
+
+    await mongoose.connect(mongoUri, {
+      useCreateIndex: true,
+      useNewUrlParser: true
+    });
+  } else {
+    await mongoose.connect(dbURI, authData, error => {
+      if (!error) {
+        logger.info("Successfully connected to the MongoDB");
+      } else {
+        logger.error(
+          "Error in MongoDB connection: " + JSON.stringify(error, undefined, 2)
+        );
+      }
+    });
+  }
 }

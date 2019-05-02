@@ -27,8 +27,9 @@ const VolunteerPage = () => (
       </div>
     </div>
     <style>{`
-      @import url("https://fonts.googleapis.com/css?family=Open+Sans|Cabin");
+      @import url("https://fonts.googleapis.com/css?family=Open+Sans|Cabin|Raleway");
       h1 {
+        font-family: "Raleway";
         font-size: 44px;
         font-weight: 700;
         color: #2c3e50;
@@ -52,7 +53,6 @@ const VolunteerPage = () => (
         background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../static/volunteer.jpg);
         height: 100vh;
         min-height: 500px;
-        width: 100vw;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;

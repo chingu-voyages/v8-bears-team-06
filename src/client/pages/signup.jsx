@@ -36,7 +36,6 @@ const Signup = () => {
                 url(../static/beach-cleanup.jpg);
               height: 100vh;
               min-height: 500px;
-              width: 100vw;
               background-position: center;
               background-repeat: no-repeat;
               background-size: cover;

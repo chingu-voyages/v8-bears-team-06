@@ -21,7 +21,7 @@ const Index = () => (
       </div>
     </div>
     <style>{`
-
+      @import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Cabin");
       .buttons {
         flex-direction: row;
       }
@@ -31,24 +31,25 @@ const Index = () => (
       }
 
       h1 {
+        font-family: "Raleway";
         font-size: 64px;
         font-weight: 700;
         margin: 0 0 65px 0;
-        color: #2c3e50;
+        color: black;
       }
 
       h3 {
-        color: #2c3e50;
+        font-family: "Cabin";
+        color: ivory;
         margin-bottom: 40px;
       }
 
       .bg {
         display: flex;
         flex-direction: column;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../static/leone.jpg);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../static/remoteWork.png);
         height: 100vh;
         min-height: 500px;
-        width: 100vw;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;

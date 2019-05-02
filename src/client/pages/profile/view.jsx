@@ -6,7 +6,7 @@ import Layout from "@/client/components/layouts/Layout";
 import routes from "@/routes";
 
 import ProfileCard from "../../components/ProfileCard";
-import { GET_PUBLIC_PROFILE } from "./queries";
+import { GET_USER_PROFILE } from "./queries";
 
 const PublicProfile = ({ router }) => {
   const { id } = router.query;
@@ -14,7 +14,7 @@ const PublicProfile = ({ router }) => {
     <Layout>
       <div className="bg">
         <div className="box-container">
-          <Query query={GET_PUBLIC_PROFILE} variables={{ id }}>
+          <Query query={GET_USER_PROFILE} variables={{ id }}>
             {({ data, loading, error }) => {
               if (loading) return "Loading";
               if (error) return <p>ERROR</p>;

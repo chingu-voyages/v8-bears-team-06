@@ -10,7 +10,7 @@ import { GET_USER_PROFILE } from "./queries";
 
 const Profile = () => {
   const value = useContext(AuthContext);
-  const email = value.email;
+  const id = value.id;
   const [visibility, setVisibility] = useState("block");
   return (
     <Layout>
@@ -27,19 +27,19 @@ const Profile = () => {
         <div className="box-container">
           <Query
             query={GET_USER_PROFILE}
-            variables={{ email }}
+            variables={{ id }}
             fetchPolicy={"cache-and-network"}
           >
             {({ data, loading, error }) => {
               if (loading) return "Loading";
               if (error) return <p>ERROR</p>;
-              if (!data.profile) {
+              if (!data.profileById) {
                 setVisibility("none");
               }
 
               return (
                 <div className="container text-center mt-3">
-                  {!data.profile ? (
+                  {!data.profileById ? (
                     <div>
                       <h6>Oops! Something went wrong</h6>
                       <p>Please log out and log in again</p>
@@ -48,7 +48,7 @@ const Profile = () => {
                     <div className="container profile-box text-left p-3">
                       <div className="text-center">
                         <h2 className="d-inline text-dark name">Profile</h2>
-                        {!data.profile.imageId ? (
+                        {!data.profileById.imageId ? (
                           <div>
                             <small className="d-block mt-3">
                               No profile image yet. Upload one now
@@ -65,32 +65,36 @@ const Profile = () => {
                         ) : (
                           <div>
                             <ProfileCard
-                              name={data.profile.name}
-                              publicId={data.profile.imageId}
-                              tagline={data.profile.tagline}
-                              industry={data.profile.workType}
-                              skills={data.profile.skills}
-                              id={data.profile.id}
+                              name={data.profileById.name}
+                              publicId={data.profileById.imageId}
+                              tagline={data.profileById.tagline}
+                              industry={data.profileById.workType}
+                              skills={data.profileById.skills}
+                              id={data.profileById.id}
                             />
                           </div>
                         )}
                       </div>
                       <div className="info p-2 mt-5 border border-warning rounded text-light">
                         <div className="mt-1 text-center">
-                          <h2 className="d-inline">{data.profile.name}</h2>
+                          <h2 className="d-inline">{data.profileById.name}</h2>
                         </div>
                         <div className="mt-4">
                           <h5 className="d-inline">Location: </h5>
-                          <p className="d-inline">{data.profile.location}</p>
+                          <p className="d-inline">
+                            {data.profileById.location}
+                          </p>
                         </div>
                         <div className="mt-4">
                           <h5 className="d-inline">Industry: </h5>
-                          <p className="d-inline">{data.profile.workType}</p>
+                          <p className="d-inline">
+                            {data.profileById.workType}
+                          </p>
                         </div>
                         <div className="mt-4">
                           <h5 className="d-inline">Skills: </h5>
                           <ul className="list-group d-inline">
-                            {data.profile.skills.map((skill, i) => {
+                            {data.profileById.skills.map((skill, i) => {
                               return (
                                 <li key={i} className="ml-4 d-inline">
                                   {skill}
@@ -101,20 +105,24 @@ const Profile = () => {
                         </div>
                         <div className="mt-4">
                           <h5 className="d-inline">Contact: </h5>
-                          <p className="d-inline">{data.profile.email}</p>
+                          <p className="d-inline">{data.profileById.email}</p>
                         </div>
                         <div className="mt-4">
                           <h5 className="d-inline">Personal Statement: </h5>
-                          <p className="d-inline">{data.profile.statement}</p>
+                          <p className="d-inline">
+                            {data.profileById.statement}
+                          </p>
                         </div>
                         <div className="mt-4">
                           <h5 className="d-inline">Experience: </h5>
-                          <p className="d-inline">{data.profile.experience}</p>
+                          <p className="d-inline">
+                            {data.profileById.experience}
+                          </p>
                         </div>
                         <div className="mt-4">
                           <h5 className="d-inline">Works: </h5>
                           <ul>
-                            {data.profile.works.map(work => (
+                            {data.profileById.works.map(work => (
                               <li key={work.id}>
                                 <routes.Link
                                   route="work"

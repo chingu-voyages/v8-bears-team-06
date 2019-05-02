@@ -5,22 +5,22 @@ import { AuthContext } from "../context";
 
 export const StoreProvider = ({ children, token: initialToken }) => {
   const [token, setToken] = useState(initialToken);
-  const [email, setEmail] = useState(Cookie.get("email"));
+  const [id, setId] = useState(Cookie.get("id"));
   const contextValue = {
-    login: (newToken, newEmail) => {
+    login: (newToken, newId) => {
       setToken(newToken);
-      setEmail(newEmail);
+      setId(newId);
       Cookie.set("token", newToken);
-      Cookie.set("email", newEmail);
+      Cookie.set("id", newId);
     },
     logout: () => {
       Cookie.remove("token");
-      Cookie.remove("email");
+      Cookie.remove("id");
       setToken("");
-      setEmail("");
+      setId("");
     },
     isLoggedIn: !!token,
-    email: email
+    id: id
   };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

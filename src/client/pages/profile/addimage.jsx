@@ -8,9 +8,9 @@ import Layout from "@/client/components/layouts/Layout";
 import { AuthContext } from "@/client/context";
 
 export const ADD_IMAGE = gql`
-  mutation addImage($email: String, $imageId: String) {
-    addImage(email: $email, imageId: $imageId) {
-      email
+  mutation addImage($id: ID, $imageId: String) {
+    addImage(id: $id, imageId: $imageId) {
+      id
       imageId
     }
   }
@@ -18,7 +18,7 @@ export const ADD_IMAGE = gql`
 
 const AddImage = props => {
   const value = useContext(AuthContext);
-  const email = value.email;
+  const id = value.id;
   let selectedFile;
 
   const [imageId, setImageId] = useState("");
@@ -91,7 +91,7 @@ const AddImage = props => {
                         e.preventDefault();
                         addImage({
                           variables: {
-                            email,
+                            id,
                             imageId
                           }
                         });

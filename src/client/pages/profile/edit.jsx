@@ -43,14 +43,14 @@ export const EDIT_PROFILE = gql`
 
 const EditPage = props => {
   const value = useContext(AuthContext);
-  const email = value.email;
+  const id = value.id;
 
   return (
     <Layout>
       <div className="main">
         <div className="box-container">
           <h2 className="mb-3 text-light">Edit Profile</h2>
-          <Query query={GET_USER_PROFILE} variables={{ email }}>
+          <Query query={GET_USER_PROFILE} variables={{ id }}>
             {({ data, loading, error }) => {
               if (loading) return "Loading";
               if (error) return <p>ERROR</p>;
@@ -65,7 +65,7 @@ const EditPage = props => {
                 statement,
                 experience,
                 imageId
-              } = data.profile;
+              } = data.profileById;
               let skillsList = skills.join(", ");
 
               const handleWorkSelect = event => {
@@ -101,7 +101,7 @@ const EditPage = props => {
                         }}
                       >
                         <div>
-                          {!data.profile.imageId ? (
+                          {!data.profileById.imageId ? (
                             <div>
                               <small className="d-block mt-3">
                                 No profile image yet. Upload one now

@@ -10,6 +10,7 @@ export const LOGIN = gql`
     login(email: $email, password: $password) {
       token
       email
+      id
     }
   }
 `;
@@ -32,7 +33,7 @@ const SignInBox = ({ setAuthFailed, apolloClient }) => {
             });
             setLoading(true);
             const { data } = await signinPromise;
-            login(data.login.token, data.login.email);
+            login(data.login.token, data.login.id);
             Router.push("/profile"); // TODO: change redirect path to user profile or something
           } catch {
             setAuthFailed(true);

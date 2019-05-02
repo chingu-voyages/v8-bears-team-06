@@ -65,19 +65,21 @@ const AuthDataType = new GraphQLObjectType({
   name: "AuthData",
   fields: () => ({
     token: { type: GraphQLString },
-    email: { type: GraphQLString }
+    email: { type: GraphQLString },
+    id: { type: GraphQLString }
   })
 });
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    profile: {
-      type: UserType,
-      args: { email: { type: GraphQLString } },
+    profileCards: {
+      type: new GraphQLList(UserType),
       resolve: authenticated(async (parent, args, context) => {
-        const profile = await User.findOne({ email: args.email });
-        return profile;
+        const user = await User.find({}).select(
+          "name workType skills tagline imageId id"
+        );
+        return user;
       })
     },
     login: {
@@ -98,9 +100,21 @@ const RootQuery = new GraphQLObjectType({
         const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, {
           expiresIn: "1h"
         });
+        const id = user._id;
 
-        return { token, email };
+        return { token, email, id };
       }
+    },
+    profileById: {
+      type: UserType,
+      args: { id: { type: GraphQLID } },
+      resolve: authenticated(async (parent, { id }) => {
+        const profile = await User.findById(id);
+        if (!User) {
+          throw new Error("Profile not found");
+        }
+        return profile;
+      })
     },
     workById: {
       type: WorkType,
@@ -184,11 +198,11 @@ const Mutation = new GraphQLObjectType({
     addImage: {
       type: UserType,
       args: {
-        email: { type: GraphQLString },
+        id: { type: GraphQLID },
         imageId: { type: GraphQLString }
       },
       resolve: authenticated(async (parent, args, context) => {
-        const query = { email: args.email };
+        const query = { _id: args.id };
         const profile = await User.findOneAndUpdate(query, {
           $set: {
             imageId: args.imageId

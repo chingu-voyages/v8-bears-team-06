@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-export const GET_PROFILE = gql`
-  query profile($email: String!) {
-    profile(email: $email) {
+export const GET_USER_PROFILE = gql`
+  query profileById($id: ID!) {
+    profileById(id: $id) {
       email
       name
       location
@@ -12,6 +12,11 @@ export const GET_PROFILE = gql`
       statement
       experience
       imageId
+      id
+      works {
+        id
+        title
+      }
     }
   }
 `;

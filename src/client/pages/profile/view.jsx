@@ -1,41 +1,23 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { Query } from "react-apollo";
+import { withRouter } from "next/router";
 import Layout from "@/client/components/layouts/Layout";
-import { AuthContext } from "@/client/context";
 import routes from "@/routes";
 
 import ProfileCard from "../../components/ProfileCard";
 import { GET_USER_PROFILE } from "./queries";
 
-const Profile = () => {
-  const value = useContext(AuthContext);
-  const id = value.id;
-  const [visibility, setVisibility] = useState("block");
+const PublicProfile = ({ router }) => {
+  const { id } = router.query;
   return (
     <Layout>
       <div className="bg">
-        <Link href="/profile/edit">
-          <a
-            className="btn btn-success btn-sm float-right mt-3 mr-4"
-            role="button"
-            style={{ display: visibility }}
-          >
-            Edit Profile
-          </a>
-        </Link>
         <div className="box-container">
-          <Query
-            query={GET_USER_PROFILE}
-            variables={{ id }}
-            fetchPolicy={"cache-and-network"}
-          >
+          <Query query={GET_USER_PROFILE} variables={{ id }}>
             {({ data, loading, error }) => {
               if (loading) return "Loading";
               if (error) return <p>ERROR</p>;
-              if (!data.profileById) {
-                setVisibility("none");
-              }
 
               return (
                 <div className="container text-center mt-3">
@@ -133,11 +115,6 @@ const Profile = () => {
                               </li>
                             ))}
                           </ul>
-                          <Link href="/work/create">
-                            <a className="btn btn-warning btn-sm" role="button">
-                              Add Work
-                            </a>
-                          </Link>
                         </div>
                       </div>
                     </div>
@@ -181,7 +158,7 @@ const Profile = () => {
               rgba(0, 0, 0, 0.3),
               rgba(0, 0, 0, 0.3)
             ),
-            url(../static/leone.jpg);
+            url(../../static/leone.jpg);
           height: 100%;
           min-height: 500px;
           width: 100vw;
@@ -209,4 +186,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default withRouter(PublicProfile);

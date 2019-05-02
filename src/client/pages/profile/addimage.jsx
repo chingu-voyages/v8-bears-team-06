@@ -8,9 +8,9 @@ import Layout from "@/client/components/layouts/Layout";
 import { AuthContext } from "@/client/context";
 
 export const ADD_IMAGE = gql`
-  mutation addImage($email: String, $imageId: String) {
-    addImage(email: $email, imageId: $imageId) {
-      email
+  mutation addImage($id: ID, $imageId: String) {
+    addImage(id: $id, imageId: $imageId) {
+      id
       imageId
     }
   }
@@ -18,7 +18,7 @@ export const ADD_IMAGE = gql`
 
 const AddImage = props => {
   const value = useContext(AuthContext);
-  const email = value.email;
+  const id = value.id;
   let selectedFile;
 
   const [imageId, setImageId] = useState("");
@@ -43,89 +43,96 @@ const AddImage = props => {
 
   return (
     <Layout>
-      <div className="box-container">
-        <h3 className="mt-5">Image Upload</h3>
-        <form className="form-group mt-4">
-          <input
-            className="d-inline-block"
-            type="file"
-            onChange={fileSelectedHandler}
-          />
-          <button
-            className="btn btn-warning d-block mt-4 ml-auto mr-auto"
-            onClick={fileUploadHandler}
-          >
-            Upload Image
-          </button>
-        </form>
-        <CloudinaryContext cloudName={process.env.CLOUD_NAME}>
-          <Image publicId={imageId}>
-            <Transformation
-              width="150"
-              height="150"
-              crop="scale"
-              radius="max"
+      <div className="main">
+        <div className="box-container">
+          <h3 className="mt-5">Profile Image Upload</h3>
+          <form className="form-group mt-5">
+            <input
+              className="d-inline-block"
+              type="file"
+              onChange={fileSelectedHandler}
             />
-          </Image>
-        </CloudinaryContext>
-        <p>
-          You should choose an image that can be nicely squared, meaning the
-          height and width are equal. All profile images will be displayed in a
-          circular frame with width and height equal to 150 pixels.
-        </p>
-        {!imageId ? (
+            <button
+              className="btn btn-warning d-block mt-4 ml-auto mr-auto"
+              onClick={fileUploadHandler}
+            >
+              Upload Image
+            </button>
+          </form>
+          <CloudinaryContext cloudName={process.env.CLOUD_NAME}>
+            <Image publicId={imageId}>
+              <Transformation
+                width="150"
+                height="150"
+                crop="scale"
+                radius="max"
+              />
+            </Image>
+          </CloudinaryContext>
           <p>
-            No image yet. If no image appears within a few seconds after
-            uploading, try again
+            You should choose an image that can be nicely squared, meaning the
+            height and width are equal. All profile images will be displayed in
+            a circular frame with width and height equal to 100 pixels.
           </p>
-        ) : (
-          <Mutation mutation={ADD_IMAGE}>
-            {addImage => (
-              <div>
-                <form className="form-group mt-4">
-                  <label className="d-block">Image good? Save it now.</label>
-                  <button
-                    className="btn btn-success"
-                    onClick={e => {
-                      e.preventDefault();
-                      addImage({
-                        variables: {
-                          email,
-                          imageId
-                        }
-                      });
-                      Router.push("/profile");
-                    }}
-                  >
-                    Save
-                  </button>
-                </form>
-              </div>
-            )}
-          </Mutation>
-        )}
+          {!imageId ? (
+            <p>
+              No image yet. If no image appears within a few seconds after
+              uploading, try again
+            </p>
+          ) : (
+            <Mutation mutation={ADD_IMAGE}>
+              {addImage => (
+                <div>
+                  <form className="form-group mt-4">
+                    <label className="d-block">Image good? Save it now.</label>
+                    <button
+                      className="btn btn-success"
+                      onClick={e => {
+                        e.preventDefault();
+                        addImage({
+                          variables: {
+                            id,
+                            imageId
+                          }
+                        });
+                        Router.push("/profile");
+                      }}
+                    >
+                      Save
+                    </button>
+                  </form>
+                </div>
+              )}
+            </Mutation>
+          )}
+        </div>
+        <style jsx>{`
+          @import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Cabin|Philosopher");
+
+          .main {
+            background: lightgray;
+          }
+
+          h3,
+          p {
+            font-family: "Cabin";
+          }
+
+          .box-container {
+            background: white;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            padding-top: 20px;
+            padding-bottom: 40px;
+          }
+
+          input {
+            box-shadow: 1px 1px 5px;
+          }
+        `}</style>
       </div>
-      <style jsx>{`
-        @import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Cabin|Philosopher");
-
-        h3,
-        p {
-          font-family: "Cabin";
-        }
-
-        .box-container {
-          text-align: center;
-          width: 100%;
-          max-width: 600px;
-          margin: auto;
-          padding-top: 80px;
-          padding-bottom: 40px;
-        }
-
-        input {
-          box-shadow: 1px 1px 5px;
-        }
-      `}</style>
     </Layout>
   );
 };

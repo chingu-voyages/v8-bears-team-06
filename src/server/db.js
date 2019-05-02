@@ -31,7 +31,18 @@ export async function insertMockData() {
   await User.create({
     _id: mongoose.Types.ObjectId(),
     email: "bar@bar.com",
-    password: "bar"
+    name: "William Lumbergh",
+    location: "Austin, TX, USA",
+    workType: "information technology",
+    skills: ["cobol", "project management", "accounting", "human resources"],
+    tagline:
+      "Hey... What's Happening? I'm gonna need you to hire me as a volunteer, so if you could do that, that would be great. Mmmkay?",
+    statement:
+      "I believe everyone could be more effective if they just read the memos",
+    experience:
+      "Fifteen years experience managing the Austin office of Initech",
+    password: "bar",
+    imageId: "by7fyjr4f7oxe0othr7d"
   });
 
   await Work.insertMany([

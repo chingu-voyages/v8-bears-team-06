@@ -4,79 +4,79 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <>
-      <style>
+      <style jsx>
         {`
-        @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+          @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
-        .footer {
-          padding: 60px 0;
-        }
-      
-        .footer-title {
-          border-left: 3px solid #eeeeee;
-          color:#ffffff;
-          margin-bottom: 30px;
-          padding-left: 10px;
-          padding-bottom: 6px;
-          text-transform: uppercase;
-        }
-        
-        @media (max-width:767px){
-          .footer-title {
-          border-left: transparent;
-          margin-bottom: 10px;
-          padding-left: 0;
-          padding-bottom: 0px;
+          .footer {
+            padding: 60px 0;
           }
-        }
-      
-        .footer-link {
-          color: #ffffff;
-          text-decoration: none !important;
-          background-color: transparent;
-        }
 
-        .footer-link:hover {
-          color:#eeeeee;
-        }
-        
-        .footer .quick-links .quick-links-item{
-          padding: 3px 0;
-          -webkit-transition: .5s all ease;
-          -moz-transition: .5s all ease;
-          transition: .5s all ease;
-        }
-        
-        .footer .quick-links .quick-links-item:hover{
-          padding: 3px 0;
-          margin-left:5px;
-          font-weight:700;
-        }
-        
-        .footer .quick-links .quick-links-item .footer-link .icon {
-          margin-right: 5px;
-        }
-        
-        .footer .quick-links .quick-links-item:hover .footer-link .icon {
-          font-weight: 700;
-        }
-        
-        .footer .social .list-inline-item {
-          padding: 3px 0;
-        }
-        
-        .footer .social .list-inline-item .footer-link .icon {
-          margin-right: 5px;
-          font-size:25px;
-          -webkit-transition: .5s all ease;
-          -moz-transition: .5s all ease;
-          transition: .5s all ease;
-        }
-        
-        .footer .social .list-inline-item:hover .footer-link .icon {
-          font-size:30px;
-          margin-top:-10px;
-        }
+          .footer-title {
+            border-left: 3px solid #eeeeee;
+            color: #ffffff;
+            margin-bottom: 30px;
+            padding-left: 10px;
+            padding-bottom: 6px;
+            text-transform: uppercase;
+          }
+
+          @media (max-width: 767px) {
+            .footer-title {
+              border-left: transparent;
+              margin-bottom: 10px;
+              padding-left: 0;
+              padding-bottom: 0px;
+            }
+          }
+
+          .footer-link {
+            color: #ffffff;
+            text-decoration: none !important;
+            background-color: transparent;
+          }
+
+          .footer-link:hover {
+            color: #eeeeee;
+          }
+
+          .footer .quick-links .quick-links-item {
+            padding: 3px 0;
+            -webkit-transition: 0.5s all ease;
+            -moz-transition: 0.5s all ease;
+            transition: 0.5s all ease;
+          }
+
+          .footer .quick-links .quick-links-item:hover {
+            padding: 3px 0;
+            margin-left: 5px;
+            font-weight: 700;
+          }
+
+          .footer .quick-links .quick-links-item .footer-link .icon {
+            margin-right: 5px;
+          }
+
+          .footer .quick-links .quick-links-item:hover .footer-link .icon {
+            font-weight: 700;
+          }
+
+          .footer .social .list-inline-item {
+            padding: 3px 0;
+          }
+
+          .footer .social .list-inline-item .footer-link .icon {
+            margin-right: 5px;
+            font-size: 25px;
+            -webkit-transition: 0.5s all ease;
+            -moz-transition: 0.5s all ease;
+            transition: 0.5s all ease;
+          }
+
+          .footer .social .list-inline-item:hover .footer-link .icon {
+            font-size: 30px;
+            margin-top: -10px;
+          }
         `}
       </style>
       <footer className="footer bg-success">

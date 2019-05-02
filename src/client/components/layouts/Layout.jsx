@@ -7,6 +7,17 @@ import Footer from "../Footer";
 const Layout = props => (
   <>
     <Head>
+      <meta charset="UTF-8" />
+      <meta
+        name="description"
+        content="Online platform for charities and volunteers"
+      />
+      <meta
+        name="keywords"
+        content="goodWorks, Charities, Volunteers, nonprofit, online-platform"
+      />
+      <meta name="author" content="Bears Team # 06" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>goodWork</title>
       <link
         rel="stylesheet"

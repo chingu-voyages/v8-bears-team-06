@@ -45,7 +45,6 @@ const Login = () => {
                   url(../static/recovery.jpg);
                 height: 100vh;
                 min-height: 500px;
-                width: 100vw;
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;

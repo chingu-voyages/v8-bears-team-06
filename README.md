@@ -4,7 +4,8 @@
 [![codecov](https://codecov.io/gh/chingu-voyages/v8-bears-team-06/branch/develop/graph/badge.svg)](https://codecov.io/gh/chingu-voyages/v8-bears-team-06)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-Add-project-description-here | Voyage-8 | https://chingu.io/
+## goodWork - Where Charities and Volunteers Meet
+A website where those looking to volunteer and do some good can connect with organizations looking for qualified volunteers who are ready to work in various industries. | Voyage-8 | https://chingu.io/
 
 ## Requirements
 

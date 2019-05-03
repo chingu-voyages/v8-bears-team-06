@@ -63,6 +63,12 @@ const CharityPage = () => (
         //justify-content: center;
         text-align: center;
       }
+
+      @media (max-width: 620px) {
+        .text-box {
+          width: 90%;
+        }
+      }
     `}</style>
   </Layout>
 );

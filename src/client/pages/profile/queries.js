@@ -12,6 +12,7 @@ export const GET_USER_PROFILE = gql`
       statement
       experience
       imageId
+      signupDate
       id
       works {
         id

@@ -11,7 +11,7 @@ import { Work } from "../models/work";
 let mongoServer;
 
 beforeAll(async () => {
-  mongoServer = await setupDbConnection();
+  mongoServer = await setupDbConnection(true);
   const works = [
     {
       userId: new mongoose.Types.ObjectId(),

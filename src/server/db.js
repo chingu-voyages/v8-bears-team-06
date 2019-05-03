@@ -78,6 +78,7 @@ export async function setupDbConnection(dev) {
       useCreateIndex: true,
       useNewUrlParser: true
     });
+    return mongoServer;
   } else {
     await mongoose.connect(dbURI, authData, error => {
       if (!error) {

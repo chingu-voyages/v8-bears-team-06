@@ -4,15 +4,14 @@ import { User } from "./models/user";
 import { Work } from "./models/work";
 import { logger } from "../logger";
 
-const dbUser = process.env.DB_USER;
-const dbPass = process.env.DB_PASS;
+const dbURI = process.env.DB_HOST;
 
 const authData = {
+  user: process.env.DB_USER,
+  pass: process.env.DB_PASS,
   useNewUrlParser: true,
   useCreateIndex: true
 };
-
-const dbURI = `mongodb+srv://${dbUser}:${dbPass}@goodwork-qh1n9.mongodb.net/goodwork?retryWrites=true`;
 
 export async function insertMockData() {
   const userFoo = await User.create({

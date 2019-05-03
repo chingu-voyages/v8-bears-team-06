@@ -25,7 +25,7 @@ const CharityPage = () => (
         </Link>
       </div>
     </div>
-    <style>{`
+    <style jsx>{`
       @import url("https://fonts.googleapis.com/css?family=Open+Sans|Cabin|Raleway");
       h1 {
         font-family: "Raleway";
@@ -39,17 +39,21 @@ const CharityPage = () => (
       }
 
       .text-box {
-          box-shadow: 1px 1px 3px;
-          font-family: "Cabin";
-          width: 60%;
-          background: rgba(0, 0, 0, 0.5);
-          color: white;
+        box-shadow: 1px 1px 3px;
+        font-family: "Cabin";
+        width: 60%;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
       }
 
       .bg {
         display: flex;
         flex-direction: column;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../static/agriculture.jpg);
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.3)
+          ),
+          url(../static/agriculture.jpg);
         height: 100vh;
         min-height: 500px;
         background-position: center;

@@ -80,35 +80,37 @@ const HowItWorks = () => (
         </div>
       </div>
     </div>
-    <style>{`
-            .info-row { 
-                height: 250px; 
-                padding: 5px; 
-                font-size: 20pt;
-            }
-            .image {
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                position: relative;
-                justify-content: center;
-                width: 100%;
-            }
-            .image1 { 
-                background-image: url(../static/sign-up.jpg); 
-            }
-            .image2 {
-                background-image: url(../static/tick-box.jpg); 
-            }
-            .image3 {
-                background-image: url(../static/search.jpg); 
-            }
-            .image4 {
-                background-image: url(../static/contact.jpg); 
-            }
+    <style jsx>{`
+      .info-row {
+        height: 250px;
+        padding: 5px;
+        font-size: 20pt;
+      }
+      .image {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        justify-content: center;
+        width: 100%;
+      }
+      .image1 {
+        background-image: url(../static/sign-up.jpg);
+      }
+      .image2 {
+        background-image: url(../static/tick-box.jpg);
+      }
+      .image3 {
+        background-image: url(../static/search.jpg);
+      }
+      .image4 {
+        background-image: url(../static/contact.jpg);
+      }
 
-        .main { margin-top: 56px; }
-        `}</style>
+      .main {
+        margin-top: 56px;
+      }
+    `}</style>
   </Layout>
 );
 

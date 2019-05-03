@@ -20,7 +20,7 @@ const Index = () => (
         </Link>
       </div>
     </div>
-    <style>{`
+    <style jsx>{`
       @import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Cabin");
       .buttons {
         flex-direction: row;
@@ -47,7 +47,11 @@ const Index = () => (
       .bg {
         display: flex;
         flex-direction: column;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../static/remoteWork.png);
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.3)
+          ),
+          url(../static/remoteWork.png);
         height: 100vh;
         min-height: 500px;
         background-position: center;

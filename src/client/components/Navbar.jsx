@@ -87,13 +87,12 @@ const Navbar = () => {
               </ul>
             </div>
           </div>
-          <style>{`
-
-           @import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway");                        
-          .navbar-brand {
-            font-family: "Raleway";
-          }
-      `}</style>
+          <style jsx>{`
+            @import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway");
+            .navbar-brand {
+              font-family: "Raleway";
+            }
+          `}</style>
         </nav>
       )}
     </ApolloConsumer>

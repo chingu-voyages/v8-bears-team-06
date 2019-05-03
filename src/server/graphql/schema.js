@@ -50,6 +50,7 @@ const UserType = new GraphQLObjectType({
     statement: { type: GraphQLString },
     experience: { type: GraphQLString },
     imageId: { type: GraphQLString },
+    signupDate: { type: GraphQLDate },
     password: { type: GraphQLString },
     works: {
       type: new GraphQLList(WorkType),
@@ -160,9 +161,12 @@ const Mutation = new GraphQLObjectType({
         } else if (args.email.length === 0) {
           return { email: "empty", password: "anything" };
         }
+        const signupDate = new Date();
+
         let user = new User({
           email: args.email,
-          password: args.password
+          password: args.password,
+          signupDate: signupDate
         });
         return user.save();
       }

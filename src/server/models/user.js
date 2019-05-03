@@ -10,6 +10,7 @@ const schema = new mongoose.Schema({
   statement: String,
   experience: String,
   imageId: String,
+  signupDate: Date,
   password: String
 });
 

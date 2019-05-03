@@ -26,7 +26,8 @@ export async function insertMockData() {
     experience:
       "I did a summer internship at Microsoft headquarters in Seattle last year.",
     password: "foo",
-    imageId: "ovt3y1ucmnn90fssieu0"
+    imageId: "ovt3y1ucmnn90fssieu0",
+    signupDate: "2019-04-01"
   });
   await User.create({
     _id: mongoose.Types.ObjectId(),
@@ -42,7 +43,8 @@ export async function insertMockData() {
     experience:
       "Fifteen years experience managing the Austin office of Initech",
     password: "bar",
-    imageId: "by7fyjr4f7oxe0othr7d"
+    imageId: "by7fyjr4f7oxe0othr7d",
+    signupDate: "2019-04-03"
   });
 
   await Work.insertMany([

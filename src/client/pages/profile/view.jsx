@@ -78,7 +78,7 @@ const PublicProfile = ({ router }) => {
                           <ul className="list-group d-inline">
                             {data.profileById.skills.map((skill, i) => {
                               return (
-                                <li key={i} className="ml-4 d-inline">
+                                <li key={i} className="ml-4 d-inline-block">
                                   {skill}
                                 </li>
                               );

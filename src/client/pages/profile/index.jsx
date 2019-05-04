@@ -93,10 +93,10 @@ const Profile = () => {
                         </div>
                         <div className="mt-4">
                           <h5 className="d-inline">Skills: </h5>
-                          <ul className="list-group d-inline">
+                          <ul className="list-group abilities d-inline">
                             {data.profileById.skills.map((skill, i) => {
                               return (
-                                <li key={i} className="ml-4 d-inline">
+                                <li key={i} className="ml-4 d-inline-block">
                                   {skill}
                                 </li>
                               );

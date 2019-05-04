@@ -36,7 +36,9 @@ export default async function main() {
 
   try {
     await setupDbConnection(dev);
-    insertMockData(); // FIXME: Insert mock data for all environments for now
+    if (dev) {
+      insertMockData(); // Insert mock data for dev environments only
+    }
   } catch (err) {
     logger.error(err);
     return;

@@ -43,7 +43,7 @@
     "body-parser": "^1.18.3",
     "cloudinary-react": "^1.1.0",
     "esm": "^3.2.22",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-pino-logger": "^4.0.0",
     "graphql": "^14.1.1",
     "graphql-iso-date": "^3.6.1",
